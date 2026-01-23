@@ -513,3 +513,16 @@ function renderPageItems() {
             }
         });
     });
+    /**
+ * 通用复制功能
+ * @param {string} text - 需要复制的文字内容
+ */
+function copyContent(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        // 这里的提示语可以根据需要修改，比如改成英文 "Copied!"
+        alert("已复制到剪贴板 (Copied): \n" + text);
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+        alert("复制失败，请手动复制 (Copy failed).");
+    });
+}

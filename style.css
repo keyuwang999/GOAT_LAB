@@ -397,11 +397,13 @@ a {
     width: 100px; height: 100px; object-fit: cover;
     border: 3px solid #f8f9fa;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    object-position: top; 
 }
 .member-img-sm {
-    width: 80px; height: 80px; object-fit: cover;
+    width: 100px; height: 100px; object-fit: cover;
     border: 3px solid #f8f9fa;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    object-position: top; 
 }
 
 .pi-image-wrapper img {
