@@ -750,3 +750,58 @@ body {
 
 /* (可选) 如果 Highlight 区域也有这个类但不希望它编号，可以取消 */
 /* 通常 Highlight 区您没有加 pub-number 类，所以应该没事 */
+
+/* =========================================
+   学术简历列表模式 (List Layout Style)
+   ========================================= */
+
+/* LBL 风格列表布局样式 */
+.member-img-rect {
+    width: 160px;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 4px;   /* 轻微圆角 */
+    border: 1px solid #eee; /* 极淡的边框增加精致感 */
+}
+
+.profile-row {
+    border-bottom: 1px solid #e0e0e0 !important; /* 实线分割 */
+    transition: background-color 0.3s;
+}
+
+/* 鼠标放上去整行微变色，增加一体感 */
+.profile-row:hover {
+    background-color: #fcfcfc;
+}
+
+/* 名字标题颜色 (参考 LBNL 的蓝绿色) */
+.profile-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #559dbd; /* LBL 风格蓝 */
+}
+/* 经历列表 */
+.edu-list li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
+    margin-bottom: 2px; /*行距稍微紧凑点 */
+}
+
+@media (max-width: 767px) {
+    .member-img-rect {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        aspect-ratio: 3/4;
+    }
+    .profile-row {
+        text-align: center; /* 手机上居中对齐 */
+    }
+    /* 手机上邮箱左对齐变居中 */
+    .profile-row .d-flex {
+        justify-content: center;
+    }
+}
