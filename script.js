@@ -1,528 +1,466 @@
 /* 
-   THE ZHANG GROUP WEBSITE SCRIPTS
-   Author: The Zhang Group
-   Description: Integrated logic for animations, search, pagination, and galleries.
+   THE ZHANG GROUP - CORE JAVASCRIPT
+   Version: 4.0 (Final Optimized)
+   Includes: Particles, Smart Scroll, News System, Gallery, Search
 */
 
 // =========================================
-// 全局变量定义 (Global Variables)
+// 全局变量 (News State Management)
 // =========================================
-
-// News Pagination Settings
-const newsItemsPerPage = 5;
-let newsCurrentPage = 1;
-let newsVisibleItems = []; // 存储当前筛选后可见的新闻卡片列表
+const newsState = {
+    itemsPerPage: 5,
+    currentPage: 1,
+    visibleItems: [], // 当前筛选后的数据副本
+    allItems: []      // 所有原始数据缓存
+};
 
 // =========================================
-// 页面加载完成后执行 (DOMContentLoaded)
+// 主程序入口 (DOM Loaded)
 // =========================================
 document.addEventListener('DOMContentLoaded', function () {
 
-    // --- 1. 基础功能初始化 ---
+    // --- 1. 基础插件与UI初始化 ---
+    initPlugins();
+    initNavbarEffect();
+    initPreloader();
+    initBackToTop();
+    initImageProtection();
 
-    // Initialize AOS Animation
+    // --- 2. 核心功能：智能滚动 (解决被挡住问题) ---
+    initSmartScroll();
+
+    // --- 3. 首页：粒子特效 ---
+    initHeroParticles();
+
+    // --- 4. 论文页：搜索与吸顶 ---
+    initPublicationFeatures();
+
+    // --- 5. 新闻页：分页与筛选 ---
+    // 只有在存在新闻列表容器时才启动新闻系统，避免在其他页面空跑资源
+    if (document.getElementById('news-feed')) {
+        initNewsSystem();
+    }
+
+    // --- 6. 相册页：GLightbox 与 动画过滤 ---
+    initGalleryFeatures();
+
+});
+
+
+// =========================================
+// 模块化函数定义 (Module Functions)
+// =========================================
+
+// 1. 基础插件 (AOS & GLightbox)
+function initPlugins() {
+    // 动画初始化
     if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out',
-            once: true,
-            offset: 100
+        AOS.init({ duration: 800, easing: 'ease-out', once: true, offset: 60 });
+    }
+    // 灯箱初始化 (针对相册)
+    if (typeof GLightbox !== 'undefined' && document.querySelector('.glightbox')) {
+        const lightbox = GLightbox({ 
+            touchNavigation: true, loop: true, selector: '.glightbox' 
         });
     }
+}
 
-    // Navbar Scroll Effect (Shadow Toggle)
+// 2. 导航栏滚动阴影
+function initNavbarEffect() {
     const navbar = document.getElementById('mainNav');
-    if (navbar) {
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-sm');
-            } else {
-                navbar.classList.remove('shadow-sm');
-            }
-        });
-    }
+    if (!navbar) return;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) navbar.classList.add('shadow-sm');
+        else navbar.classList.remove('shadow-sm');
+    });
+}
 
-    // Preloader Logic
+// 3. 预加载动画 (Preloader)
+function initPreloader() {
     const preloader = document.getElementById('preloader');
-    if (preloader) {
-        // 当页面资源加载完毕后消失
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                preloader.classList.add('fade-out');
-            }, 300);
-        });
-        // 兜底机制：如果3秒还没加载完，强制消失，避免一直转圈
-        setTimeout(() => {
-            preloader.classList.add('fade-out');
-        }, 3000);
-    }
+    if (!preloader) return;
+    
+    const removeLoader = () => setTimeout(() => preloader.classList.add('fade-out'), 300);
+    window.addEventListener('load', removeLoader);
+    setTimeout(removeLoader, 3000); // 3秒超时强制关闭
+}
 
-    // Back to Top Button
-    const backToTopBtn = document.getElementById('back-to-top');
-    if (backToTopBtn) {
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
+// 4. 回到顶部按钮
+function initBackToTop() {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) btn.classList.add('show');
+        else btn.classList.remove('show');
+    });
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// 5. 图片防崩坏 (Image Fallback)
+function initImageProtection() {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function () {
+            // 如果图片挂了，隐藏它，如果是卡片里的图，可以用灰色块代替
+            if (this.classList.contains('img-fluid')) {
+                this.style.display = 'none';
+                const placeholder = document.createElement('div');
+                placeholder.className = 'bg-light text-muted d-flex align-items-center justify-content-center';
+                placeholder.style.cssText = 'height: 200px; width: 100%; border-radius: inherit;';
+                placeholder.innerHTML = '<i class="fas fa-image fa-2x opacity-25"></i>';
+                if(this.parentNode) this.parentNode.insertBefore(placeholder, this);
             }
         });
-        backToTopBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
+    });
+}
 
-    // =========================================
-    // 强制修复：防遮挡平滑滚动 (粘贴到 script.js 中)
-    // =========================================
-
-    // 1. 通用滚动函数 (自动计算高度，绝对不会被挡住)
-    function scrollToWithOffset(selector) {
-        const element = document.querySelector(selector);
-        if (!element) return;
-
-        // 计算遮挡高度：
-        // 电脑端 = 120px (导航栏 + 间隙)
-        // 手机端 = 220px (导航栏 + 吸顶搜索框 + 间隙)
-        const headerOffset = window.innerWidth < 992 ? 220 : 120;
-        
-        // 计算目标绝对坐标
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        // 执行滚动
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-        });
-    }
-
-    // 2. 监听所有“Jump To”侧边栏链接 (以及回到顶部以外的锚点)
+// 6. 智能滚动逻辑 (Smart Scroll) - 核心修复
+function initSmartScroll() {
+    // 接管所有 # 链接
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             
-            // 忽略空链接、回到顶部按钮、News分页按钮
-            if (targetId === '#' || this.id === 'back-to-top' || this.classList.contains('page-link')) return;
+            // 过滤：忽略 News 分页按钮、无效链接
+            if (targetId === '#' || targetId === '' || this.classList.contains('page-link')) return;
             
-            e.preventDefault(); // 阻止浏览器默认跳转
-            scrollToWithOffset(targetId); // 让我们自己算的 JS 负责跳转
+            // 阻止默认跳转，使用精确计算
+            e.preventDefault();
+            performSmartScroll(targetId);
+            
+            // 移动端：如果是导航栏链接，点击后自动收起菜单
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse && navbarCollapse.classList.contains('show') && 
+                window.getComputedStyle(navbarToggler).display !== 'none') {
+                navbarToggler.click();
+            }
         });
     });
 
-    // 3. 监听手机端的下拉菜单
+    // 接管手机端下拉框 (Publications)
     const mobileSelect = document.getElementById('mobileYearSelect');
     if (mobileSelect) {
-        mobileSelect.addEventListener('change', function() {
-            scrollToWithOffset(this.value);
+        mobileSelect.addEventListener('change', function () {
+            performSmartScroll(this.value);
         });
     }
+}
 
-    // --- 2. 首页 (Home) 功能 ---
+// 辅助：执行滚动
+function performSmartScroll(targetId) {
+    const targetElement = document.querySelector(targetId);
+    if (!targetElement) return;
 
-    // Particle Animation for Hero Section
-    const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-        const particleContainer = document.createElement('div');
-        particleContainer.className = 'hero-particles';
-        heroSection.appendChild(particleContainer);
-        // 生成25个随机浮动粒子
-        for (let i = 0; i < 25; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            // 随机大小
-            const size = Math.random() * 15 + 3;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            // 随机位置
-            particle.style.left = `${Math.random() * 100}%`;
-            // 随机动画时长
-            const duration = Math.random() * 15 + 5;
-            particle.style.animationDuration = `${duration}s`;
-            particle.style.animationDelay = `${Math.random() * 5}s`;
-            particleContainer.appendChild(particle);
-        }
+    // 计算偏移量：根据设备宽度判断是否需要避开“吸顶搜索框”
+    const width = window.innerWidth;
+    // 手机端留 240px (导航+搜索框+间隙)，电脑端留 140px
+    const offset = width < 992 ? 240 : 140; 
+
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+}
+
+// 7. 首页粒子特效
+function initHeroParticles() {
+    const hero = document.querySelector('.hero-section');
+    if (!hero) return;
+
+    const container = document.createElement('div');
+    container.className = 'hero-particles';
+    hero.appendChild(container);
+
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 12 + 4; // 随机大小
+        p.style.cssText = `
+            width: ${size}px; height: ${size}px;
+            left: ${Math.random() * 100}%;
+            animation-duration: ${Math.random() * 12 + 8}s;
+            animation-delay: ${Math.random() * 5}s;
+        `;
+        container.appendChild(p);
     }
+}
 
-    // --- 3. 论文页 (Publications) 功能 ---
+// 8. 论文页逻辑 (Search & Mobile Sticky)
+function initPublicationFeatures() {
+    // 搜索
+    const searchInput = document.getElementById('paperSearch');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', function () {
+            const term = this.value.toLowerCase();
+            const items = document.querySelectorAll('.pub-list li');
+            let hasResult = false;
 
-    // Real-time Paper Search
-    const paperSearch = document.getElementById('paperSearch');
-    if (paperSearch) {
-        const noResultsMsg = document.getElementById('noResultsMsg');
-        paperSearch.addEventListener('keyup', function () {
-            const filter = paperSearch.value.toLowerCase();
-            const papers = document.querySelectorAll('.pub-list li');
-            let visibleCount = 0;
-
-            papers.forEach(paper => {
-                const text = paper.innerText.toLowerCase();
-                if (text.includes(filter)) {
-                    paper.style.display = "";
-                    visibleCount++;
+            items.forEach(item => {
+                if (item.innerText.toLowerCase().includes(term)) {
+                    item.style.display = '';
+                    hasResult = true;
                 } else {
-                    paper.style.display = "none";
+                    item.style.display = 'none';
                 }
             });
-            // 提示搜不到内容
-            if (noResultsMsg) {
-                noResultsMsg.style.display = visibleCount === 0 ? "block" : "none";
-            }
+
+            const noMsg = document.getElementById('noResultsMsg');
+            if (noMsg) noMsg.style.display = hasResult ? 'none' : 'block';
         });
     }
 
-    // Mobile Search Bar Sticky Logic (Force Sticky via JS)
+    // 手机吸顶
     const searchContainer = document.getElementById('searchContainer');
     const searchPlaceholder = document.getElementById('searchPlaceholder');
-
+    
     if (searchContainer && searchPlaceholder) {
-        window.addEventListener('scroll', function () {
-            // 只在移动端生效 (< 992px)
+        window.addEventListener('scroll', () => {
+            // 只在移动端判断
             if (window.innerWidth < 992) {
+                // 占位块位置检测
                 const rect = searchPlaceholder.getBoundingClientRect();
-                // 76px 是导航栏的大致高度
-                if (rect.top <= 76) {
+                // 76px 是导航栏底部的界限
+                const shouldFix = rect.top <= 76;
+                
+                // 仅当状态改变时才操作 Class，减少重绘
+                if (shouldFix && !searchContainer.classList.contains('search-is-fixed')) {
                     searchContainer.classList.add('search-is-fixed');
                     searchPlaceholder.classList.add('show');
-                } else {
+                } else if (!shouldFix && searchContainer.classList.contains('search-is-fixed')) {
                     searchContainer.classList.remove('search-is-fixed');
                     searchPlaceholder.classList.remove('show');
                 }
             } else {
-                // 桌面端重置
+                // 电脑端清理
                 searchContainer.classList.remove('search-is-fixed');
                 searchPlaceholder.classList.remove('show');
             }
         });
     }
+}
 
-    // --- 9. 全局图片防崩机制 (Image Fallback) ---
-    // 这是一道“保险”。如果您以后换图片手抖写错了路径，
-    // 它会自动换成一张默认图，或者东南大学Logo，防止出现丑陋的“裂图”图标。
-    document.querySelectorAll('img').forEach(img => {
-        img.addEventListener('error', function () {
-            // 方法A: 替换为默认图 (推荐找一张通用的实验室Logo存下来)
-            // this.src = 'https://dummyimage.com/600x400/e9ecef/6c757d&text=Image+Not+Found';
+// 9. 新闻系统逻辑 (Pagination & Filter)
+function initNewsSystem() {
+    const searchInput = document.getElementById('newsSearchInput');
+    const catLinks = document.querySelectorAll('.category-filter');
+    
+    // 缓存所有新闻条目
+    newsState.allItems = Array.from(document.querySelectorAll('.news-item'));
+    
+    // 首次渲染：全部显示
+    runNewsFilter('', 'all');
 
-            // 方法B: (更优雅) 既然图挂了，不如用CSS给它一个漂亮的灰色背景
-            this.style.display = 'none'; // 隐藏破图
-            const placeholder = document.createElement('div');
-            placeholder.className = 'img-error-placeholder d-flex align-items-center justify-content-center bg-light text-muted small';
-            placeholder.style.width = '100%';
-            placeholder.style.height = '100%';
-            placeholder.style.minHeight = '200px'; // 保证占位
-            placeholder.innerHTML = '<i class="fas fa-image fa-2x opacity-25"></i>';
-
-            // 把占位块插到破图的位置
-            if (this.parentNode) {
-                this.parentNode.appendChild(placeholder);
-            }
-        });
-    });
-
-    // --- 4. 新闻页 (News) 功能 ---
-
-    // Auto Pagination & Filtering Initialization
-    // 检测是否在新闻页面
-    if (document.getElementById('news-feed')) {
-        const newsSearchInput = document.getElementById('newsSearchInput');
-        const categoryLinks = document.querySelectorAll('.category-filter');
-        // 获取所有新闻条目，作为初始全集
-        const allNewsItems = Array.from(document.querySelectorAll('.news-item'));
-
-        // 首次加载，显示所有，初始化分页
-        updatePagination(allNewsItems);
-
-        // 绑定左侧搜索框事件
-        if (newsSearchInput) {
-            newsSearchInput.addEventListener('keyup', function () {
-                const term = this.value.toLowerCase();
-                // 重置所有分类按钮的高亮状态
-                categoryLinks.forEach(l => l.classList.remove('text-seu-green', 'fw-bold'));
-                // 执行综合过滤
-                runNewsFilter(term, 'all', allNewsItems);
-            });
-        }
-
-        // 绑定右侧分类链接事件
-        if (categoryLinks) {
-            categoryLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    // 样式高亮切换
-                    categoryLinks.forEach(l => l.classList.remove('text-seu-green', 'fw-bold'));
-                    this.classList.add('text-seu-green', 'fw-bold');
-
-                    const category = this.getAttribute('data-filter');
-                    // 清空搜索框内容，确保逻辑清晰
-                    if (newsSearchInput) newsSearchInput.value = '';
-
-                    // 执行综合过滤
-                    runNewsFilter('', category, allNewsItems);
-                });
-            });
-        }
-    }
-
-    // --- 5. Gallery 页 (Gallery) 功能 ---
-
-    // GLightbox Initialization
-    if (typeof GLightbox !== 'undefined') {
-        const lightbox = GLightbox({
-            touchNavigation: true,
-            loop: true,
-            autoplayVideos: true,
-            selector: '.glightbox' // 绑定特定 class
+    // 绑定搜索
+    if (searchInput) {
+        searchInput.addEventListener('keyup', (e) => {
+            // 清除分类高亮
+            catLinks.forEach(l => l.classList.remove('text-seu-green', 'fw-bold'));
+            runNewsFilter(e.target.value.toLowerCase(), 'all');
         });
     }
 
-    // Animated Gallery Filtering
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    if (filterButtons.length > 0) {
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // 按钮样式
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filterValue = btn.getAttribute('data-filter');
-
-                galleryItems.forEach(item => {
-                    // 第一步：缩小淡出
-                    item.style.transition = 'all 0.3s ease';
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.8)';
-
-                    setTimeout(() => {
-                        // 判断是否匹配
-                        if (filterValue === 'all' || item.classList.contains(filterValue)) {
-                            item.style.display = 'block';
-                            // 第二步：淡入放大 (略微延迟以实现动画效果)
-                            setTimeout(() => {
-                                item.style.opacity = '1';
-                                item.style.transform = 'scale(1)';
-                            }, 50);
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    }, 300); // 300ms 后切换 display 属性
-                });
-            });
+    // 绑定分类
+    catLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            catLinks.forEach(l => l.classList.remove('text-seu-green', 'fw-bold'));
+            link.classList.add('text-seu-green', 'fw-bold');
+            
+            // 切换分类时清空搜索框
+            if (searchInput) searchInput.value = '';
+            runNewsFilter('', link.getAttribute('data-filter'));
         });
-    }
-
-});
-
-// =========================================
-// 全局辅助函数 (Global Helper Functions)
-// 这些函数必须在 global scope，因为 HTML inline onclick 只能调用 global
-// =========================================
-
-/**
- * 复制论文引用 (Publications Page)
- */
-function copyCitation(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        alert("Citation copied to clipboard! (引用已复制)");
-    }).catch(err => {
-        console.error('Failed to copy: ', err);
-        alert("Copy failed. Please manually copy the citation.");
     });
 }
 
-/**
- * 打开新闻详情弹窗 (News Page)
- * 参数包括触发元素、标题、日期、分类、正文内容、图片地址
- */
-function openNewsModal(element, title, date, category, content, imgSrc) {
-    // 阻止链接默认行为
-    // event 关键字依赖于 window.event
-    if (window.event) window.event.preventDefault();
+// 9.1 新闻过滤核心函数
+function runNewsFilter(term, cat) {
+    newsState.visibleItems = []; // 清空当前结果集
 
-    // 填充 Modal 内部的数据
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDate = document.getElementById('modalDate');
-    const modalCategory = document.getElementById('modalCategory');
-    const modalContent = document.getElementById('modalContent');
-    const modalImage = document.getElementById('modalImage');
+    newsState.allItems.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        const itemCat = item.getAttribute('data-category') || '';
+        
+        const matchSearch = text.includes(term);
+        const matchCat = cat === 'all' || itemCat.includes(cat);
 
-    if (modalTitle) modalTitle.innerText = title;
-    if (modalDate) modalDate.innerText = date;
-    if (modalCategory) modalCategory.innerText = category;
-
-    // 内容支持 HTML 标签（如换行符）
-    if (modalContent) modalContent.innerHTML = content; // 使用 innerHTML 允许分段
-
-    if (modalImage) modalImage.src = imgSrc;
-
-    // 使用 Bootstrap API 显示 Modal
-    const myModalEl = document.getElementById('newsDetailModal');
-    if (myModalEl) {
-        const myModal = new bootstrap.Modal(myModalEl);
-        myModal.show();
-    }
-}
-
-/**
- * 新闻筛选逻辑核心
- * 搜索 + 分类 双重判断
- */
-function runNewsFilter(searchTerm, category, allItems) {
-    const filteredItems = [];
-
-    allItems.forEach(item => {
-        const text = item.innerText.toLowerCase(); // 获取卡片内的所有文本
-        const itemCats = item.getAttribute('data-category'); // 获取 data-category 属性
-
-        const matchesSearch = text.includes(searchTerm);
-        const matchesCategory = category === 'all' || (itemCats && itemCats.includes(category));
-
-        if (matchesSearch && matchesCategory) {
-            filteredItems.push(item);
+        if (matchSearch && matchCat) {
+            newsState.visibleItems.push(item); // 加入可见列表
         } else {
-            // 如果不匹配，暂时先隐藏，等 pagination 接管
-            item.style.display = 'none';
+            item.style.display = 'none'; // 立即隐藏
         }
     });
 
-    // 搜索结果提示
-    const noNewsMsg = document.getElementById('noNewsMsg');
-    if (noNewsMsg) {
-        noNewsMsg.style.display = filteredItems.length === 0 ? 'block' : 'none';
-    }
+    // 提示
+    const noMsg = document.getElementById('noNewsMsg');
+    if(noMsg) noMsg.style.display = newsState.visibleItems.length === 0 ? 'block' : 'none';
 
-    // 重置分页到第一页
-    newsCurrentPage = 1;
-
-    // 触发分页渲染
-    updatePagination(filteredItems);
+    // 重置分页
+    newsState.currentPage = 1;
+    renderPagination();
 }
 
-/**
- * 新闻分页: 更新按钮与列表 (News Page)
- */
-function updatePagination(items) {
-    // 保存当前过滤后的项目到全局变量
-    newsVisibleItems = items;
+// 9.2 新闻分页按钮渲染
+function renderPagination() {
+    const container = document.getElementById('pagination-container');
+    if(!container) return;
 
-    const totalPages = Math.ceil(items.length / newsItemsPerPage);
-    const paginationContainer = document.getElementById('pagination-container');
-
-    // 安全检查
-    if (!paginationContainer) return;
-
-    // 如果页数少于等于1，隐藏分页条，显示所有 items
-    if (totalPages <= 1) {
-        paginationContainer.style.display = 'none';
-        // 显示 items (如果没有分页，就全部展示出来)
-        renderPageItems();
+    const total = Math.ceil(newsState.visibleItems.length / newsState.itemsPerPage);
+    
+    // 一页以内，隐藏按钮
+    if (total <= 1) {
+        container.style.display = 'none';
+        displayCurrentPageItems();
         return;
     }
 
-    // 如果需要分页，显示分页条
-    paginationContainer.style.display = 'flex';
-    let paginationHTML = '';
+    container.style.display = 'flex';
+    let html = `
+        <li class="page-item ${newsState.currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="javascript:void(0)" onclick="switchNewsPage(${newsState.currentPage - 1})">Prev</a>
+        </li>
+    `;
 
-    // Prev Button
-    paginationHTML += `
-        <li class="page-item ${newsCurrentPage === 1 ? 'disabled' : ''}">
-            <a class="page-link" href="#" onclick="changePage(${newsCurrentPage - 1}); return false;">Previous</a>
-        </li>`;
-
-    // Page Numbers
-    for (let i = 1; i <= totalPages; i++) {
-        paginationHTML += `
-            <li class="page-item ${newsCurrentPage === i ? 'active' : ''}">
-                <a class="page-link ${newsCurrentPage === i ? 'bg-seu-green border-seu-green' : 'text-dark'}" 
-                   href="#" onclick="changePage(${i}); return false;">${i}</a>
-            </li>`;
+    for (let i = 1; i <= total; i++) {
+        html += `
+            <li class="page-item ${newsState.currentPage === i ? 'active' : ''}">
+                <a class="page-link ${newsState.currentPage === i ? 'bg-seu-green border-seu-green' : 'text-dark'}" 
+                   href="javascript:void(0)" onclick="switchNewsPage(${i})">${i}</a>
+            </li>
+        `;
     }
 
-    // Next Button
-    paginationHTML += `
-        <li class="page-item ${newsCurrentPage === totalPages ? 'disabled' : ''}">
-            <a class="page-link text-dark" href="#" onclick="changePage(${newsCurrentPage + 1}); return false;">Next</a>
-        </li>`;
+    html += `
+        <li class="page-item ${newsState.currentPage === total ? 'disabled' : ''}">
+            <a class="page-link text-dark" href="javascript:void(0)" onclick="switchNewsPage(${newsState.currentPage + 1})">Next</a>
+        </li>
+    `;
 
-    paginationContainer.innerHTML = paginationHTML;
-
-    // 最后渲染实际的新闻卡片
-    renderPageItems();
+    container.innerHTML = html;
+    displayCurrentPageItems();
 }
 
-/**
- * 新闻分页: 切换页面事件
- */
-function changePage(page) {
-    const totalPages = Math.ceil(newsVisibleItems.length / newsItemsPerPage);
+// 9.3 实际渲染页面条目
+function displayCurrentPageItems() {
+    // 再次全部隐藏
+    newsState.allItems.forEach(el => el.style.display = 'none');
 
-    // 边界检查
-    if (page < 1 || page > totalPages) return;
+    const start = (newsState.currentPage - 1) * newsState.itemsPerPage;
+    const end = start + newsState.itemsPerPage;
+    const itemsToShow = newsState.visibleItems.slice(start, end);
 
-    newsCurrentPage = page;
-
-    // 更新按钮状态
-    updatePagination(newsVisibleItems);
-
-    // 滚动回到新闻列表顶部 (增强体验)
-    const newsFeed = document.getElementById('news-feed');
-    if (newsFeed) newsFeed.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-/**
- * 新闻分页: 渲染当前页的内容
- */
-function renderPageItems() {
-    // 1. 先把所有可能的新闻都隐藏
-    // 注意：这里需要操作的是原始的所有新闻 DOM 集合，还是只是可见集合？
-    // 为了保险，先全部隐藏，再显示 slice 出来的部分
-    // 但是效率最高的方式是只操作 currentVisibleItems
-
-    const allDomItems = document.querySelectorAll('.news-item');
-    allDomItems.forEach(el => el.style.display = 'none');
-
-    // 2. 计算切片索引
-    const start = (newsCurrentPage - 1) * newsItemsPerPage;
-    const end = start + newsItemsPerPage;
-
-    // 3. 截取当前页需要显示的数据
-    const itemsToShow = newsVisibleItems.slice(start, end);
-
-    // 4. 显示
     itemsToShow.forEach(item => {
         item.style.display = 'block';
-        // 重新触发 AOS 滚动动画 (小技巧：先移除再添加类名)
+        // 重新触发动画
         item.classList.remove('aos-animate');
         setTimeout(() => item.classList.add('aos-animate'), 50);
     });
 }
 
-// --- 10. 移动端导航自动收起优化 ---
-    // 专门解决：手机上点击了链接跳转，菜单栏却还挡在脸上的问题
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
-    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            // 如果菜单是打开状态，且确实是在手机模式下
-            if (navbarCollapse.classList.contains('show') && window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click(); // 模拟点击一下汉堡按钮来关闭
-            }
+// 10. 相册页：高级筛选 (带动画)
+function initGalleryFeatures() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    if (filterBtns.length === 0) return;
+
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // 按钮UI
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const category = btn.getAttribute('data-filter');
+
+            galleryItems.forEach(item => {
+                // 第一步：CSS动画淡出
+                item.style.transition = 'all 0.3s ease';
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.9)';
+                
+                setTimeout(() => {
+                    const shouldShow = category === 'all' || item.classList.contains(category);
+                    if (shouldShow) {
+                        item.style.display = 'block';
+                        // 第二步：淡入
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }, 300); // 必须等待淡出动画完成
+            });
         });
     });
-    /**
- * 通用复制功能
- * @param {string} text - 需要复制的文字内容
- */
-function copyContent(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        // 这里的提示语可以根据需要修改，比如改成英文 "Copied!"
-        alert("已复制到剪贴板 (Copied): \n" + text);
-    }).catch(err => {
-        console.error('Failed to copy: ', err);
-        alert("复制失败，请手动复制 (Copy failed).");
-    });
 }
+
+
+// =========================================
+// 全局暴露函数 (Exposed to HTML onclick)
+// =========================================
+
+// 1. 新闻分页切换 (HTML 调用)
+window.switchNewsPage = function(page) {
+    const total = Math.ceil(newsState.visibleItems.length / newsState.itemsPerPage);
+    if(page < 1 || page > total) return;
+    
+    newsState.currentPage = page;
+    renderPagination();
+    // 平滑回到列表顶部
+    const feed = document.getElementById('news-feed');
+    if(feed) performSmartScroll('#news-feed');
+};
+
+// 2. 复制文本 (Email/WeChat/Text)
+window.copyContent = function(text) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Copied to clipboard!\n已复制: " + text);
+        }).catch(err => alert("Copy failed. Please manually copy."));
+    } else {
+        alert("Your browser does not support auto-copy.\nText: " + text);
+    }
+};
+
+// 3. 复制引用 (Cite Button)
+window.copyCitation = function(text) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Reference copied successfully!\n引用已复制到剪贴板。");
+        });
+    }
+};
+
+// 4. 打开新闻详情弹窗 (News Card Read More)
+window.openNewsModal = function(el, title, date, category, content, imgSrc) {
+    if (window.event) window.event.preventDefault();
+
+    // 填充数据
+    const setText = (id, txt) => { 
+        const node = document.getElementById(id); 
+        if(node) node.innerText = txt; 
+    };
+    
+    setText('modalTitle', title);
+    setText('modalDate', date);
+    setText('modalCategory', category);
+    
+    const contentNode = document.getElementById('modalContent');
+    if(contentNode) contentNode.innerHTML = content; // 支持HTML格式
+
+    const imgNode = document.getElementById('modalImage');
+    if(imgNode) {
+        imgNode.src = imgSrc;
+        imgNode.style.display = imgSrc ? 'block' : 'none'; // 如果没图则隐藏
+    }
+
+    // 显示
+    const modalEl = document.getElementById('newsDetailModal');
+    if(modalEl) new bootstrap.Modal(modalEl).show();
+};
