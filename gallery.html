@@ -4,23 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gallery of GOAT LAB: Research facilities, team building, and academic events at SEU Wuxi Campus.">
+    <meta name="description"
+        content="Gallery of GOAT LAB: Research facilities, team building, and academic events at SEU Wuxi Campus.">
     <meta name="keywords" content="Zhang Group, Lab Photos, Team Building, SEU Wuxi, Scientific Gallery">
     <meta name="author" content="GOAT LAB">
-    
+    <!-- Open Graph / Facebook / WeChat -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://goatlab.seu.edu.cn/"> <!-- 如果以后有了域名，请填在这里 -->
+    <meta property="og:title" content="GOAT LAB | Southeast University">
+    <meta property="og:description" content="Prof. Qiubo Zhang's Group at SEU Wuxi Campus. Researching In-situ TEM, Atomic Manufacturing, and HEAs.">
+    <meta property="og:image" content="images/news/lab_opening.jpg"> <!-- 建议放一张好看的实验室合影或Logo，路径要对 -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="GOAT LAB | Southeast University">
+    <meta property="twitter:description" content="Genesis of Operando Atomic Thought (G.O.A.T) LAB.">
+    <meta property="twitter:image" content="images/news/lab_opening.jpg">
+
     <title>Gallery | GOAT LAB</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/icon.png">
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- GLightbox CSS (专业灯箱样式库) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
     <!-- Fonts (国内镜像加速) -->
-    <link href="https://fonts.loli.net/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.loli.net/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -52,17 +67,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-                    <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
-                    <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="btn btn-seu-green btn-sm px-3 rounded-pill" href="join.html">Join Us</a>
-                    </li>
-                </ul>
+                <ul class="navbar-nav ms-auto" id="nav-menu-container"><!-- JS 将会自动在这里生成菜单 --></ul>
             </div>
         </div>
     </nav>
@@ -83,27 +88,33 @@
     <!-- Gallery Section -->
     <section class="py-section">
         <div class="container">
-            
+
             <!-- Filters (分类按钮) -->
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12 text-center">
                     <div class="btn-group filter-group" role="group">
-                        <button type="button" class="btn btn-outline-dark active filter-btn rounded-pill px-4 mx-1" data-filter="all">All</button>
-                        <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1" data-filter="lab">Facility</button>
-                        <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1" data-filter="events">Events</button>
-                        <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1" data-filter="life">Life</button>
+                        <button type="button" class="btn btn-outline-dark active filter-btn rounded-pill px-4 mx-1"
+                            data-filter="all">All</button>
+                        <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1"
+                            data-filter="lab">Facility</button>
+                        <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1"
+                            data-filter="events">Events</button>
+                        <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1"
+                            data-filter="life">Life</button>
                     </div>
                 </div>
             </div>
 
             <!-- Masonry Grid -->
             <div class="gallery-grid" id="galleryGrid">
-                
+
                 <!-- 增加gallery时增加这一项 -->
                 <!-- 修改category:lab实验室,life团建,events活动 -->
                 <div class="gallery-item lab mb-4" data-aos="fade-up">
                     <!-- 修改大图链接、相关信息 -->
-                    <a href="images/gallery_1.png" class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Advanced TEM Facility" data-description="Our state-of-the-art Aberration-Corrected Transmission Electron Microscope used for atomic-scale imaging.">
+                    <a href="images/gallery_1.png" class="glightbox gallery-card" data-gallery="lab-gallery"
+                        data-title="Advanced TEM Facility"
+                        data-description="Our state-of-the-art Aberration-Corrected Transmission Electron Microscope used for atomic-scale imaging.">
                         <!-- 修改小图链接 -->
                         <img src="images/gallery_1.png" alt="TEST FOR ADDING" class="img-fluid" loading="lazy">
                         <div class="gallery-overlay">
@@ -117,11 +128,14 @@
                         </div>
                     </a>
                 </div>
-                
+
                 <!-- Item 1: Lab Facility -->
                 <div class="gallery-item lab mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1581093588401-fbb07586547a?q=80&w=2000" class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Advanced TEM Facility" data-description="Our state-of-the-art Aberration-Corrected Transmission Electron Microscope used for atomic-scale imaging.">
-                        <img src="https://images.unsplash.com/photo-1581093588401-fbb07586547a?q=80&w=2000&auto=format&fit=crop" alt="TEM Facility" class="img-fluid" loading="lazy">
+                    <a href="https://images.unsplash.com/photo-1581093588401-fbb07586547a?q=80&w=2000"
+                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Advanced TEM Facility"
+                        data-description="Our state-of-the-art Aberration-Corrected Transmission Electron Microscope used for atomic-scale imaging.">
+                        <img src="https://images.unsplash.com/photo-1581093588401-fbb07586547a?q=80&w=2000&auto=format&fit=crop"
+                            alt="TEM Facility" class="img-fluid" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
@@ -134,8 +148,11 @@
 
                 <!-- Item 2: Campus Life -->
                 <div class="gallery-item life mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1596496356938-a2a198c3d964?q=80&w=2071" class="glightbox gallery-card" data-gallery="lab-gallery" data-title="SEU Wuxi Campus" data-description="The beautiful environment of Southeast University Wuxi Campus, providing a quiet place for research.">
-                        <img src="https://images.unsplash.com/photo-1596496356938-a2a198c3d964?q=80&w=2071&auto=format&fit=crop" alt="Campus View" class="img-fluid" loading="lazy">
+                    <a href="https://images.unsplash.com/photo-1596496356938-a2a198c3d964?q=80&w=2071"
+                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="SEU Wuxi Campus"
+                        data-description="The beautiful environment of Southeast University Wuxi Campus, providing a quiet place for research.">
+                        <img src="https://images.unsplash.com/photo-1596496356938-a2a198c3d964?q=80&w=2071&auto=format&fit=crop"
+                            alt="Campus View" class="img-fluid" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
@@ -148,8 +165,11 @@
 
                 <!-- Item 3: Conference Event -->
                 <div class="gallery-item events mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070" class="glightbox gallery-card" data-gallery="lab-gallery" data-title="International Conference" data-description="Group members attending the international conference on nanotechnology.">
-                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop" alt="Conference" class="img-fluid" loading="lazy">
+                    <a href="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070"
+                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="International Conference"
+                        data-description="Group members attending the international conference on nanotechnology.">
+                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop"
+                            alt="Conference" class="img-fluid" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
@@ -162,8 +182,11 @@
 
                 <!-- Item 4: Lab Work -->
                 <div class="gallery-item lab mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1574170609519-d1d8d4b71f60?q=80&w=2069" class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Device Fabrication" data-description="Cleanroom processing of nanodevices for in-situ experiments.">
-                        <img src="https://images.unsplash.com/photo-1574170609519-d1d8d4b71f60?q=80&w=2069&auto=format&fit=crop" alt="Wafer" class="img-fluid" loading="lazy">
+                    <a href="https://images.unsplash.com/photo-1574170609519-d1d8d4b71f60?q=80&w=2069"
+                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Device Fabrication"
+                        data-description="Cleanroom processing of nanodevices for in-situ experiments.">
+                        <img src="https://images.unsplash.com/photo-1574170609519-d1d8d4b71f60?q=80&w=2069&auto=format&fit=crop"
+                            alt="Wafer" class="img-fluid" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
@@ -176,8 +199,11 @@
 
                 <!-- Item 5: Team Building -->
                 <div class="gallery-item life mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070" class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Annual Group Dinner" data-description="GOAT LAB celebrating a productive year with a team dinner.">
-                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" alt="Dinner" class="img-fluid" loading="lazy">
+                    <a href="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070"
+                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Annual Group Dinner"
+                        data-description="GOAT LAB celebrating a productive year with a team dinner.">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop"
+                            alt="Dinner" class="img-fluid" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
@@ -190,8 +216,11 @@
 
                 <!-- Item 6: Group Meeting -->
                 <div class="gallery-item lab mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070" class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Group Meeting" data-description="Weekly group meeting discussion and research progress updates.">
-                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop" alt="Meeting" class="img-fluid" loading="lazy">
+                    <a href="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070"
+                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Group Meeting"
+                        data-description="Weekly group meeting discussion and research progress updates.">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop"
+                            alt="Meeting" class="img-fluid" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
@@ -206,13 +235,8 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-5 mt-auto">
-        <div class="container">
-            <div class="text-center small opacity-50">
-                &copy; 2025 GOAT LAB. Southeast University.
-            </div>
-        </div>
+    <footer class="bg-dark text-white py-5 mt-auto" id="global-footer">
+        <!-- JS 将会自动加载页脚 -->
     </footer>
 
     <!-- Back to Top Button -->
@@ -222,13 +246,16 @@
 
     <!-- GLightbox JS Library -->
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-    
+
     <!-- Other Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+    <!-- 数据加载器 (必须放在 script.js 之前或之后均可，但建议放在这里) -->
+    <script src="data-loader.js"></script>
+
     <!-- Custom Logic -->
     <script src="script.js"></script>
 
 </body>
+
 </html>

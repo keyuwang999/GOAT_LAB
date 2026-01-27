@@ -1,0 +1,89 @@
+[
+  {
+    "type": "pi",
+    "name": "Qiubo Zhang",
+    "title": "Professor, Ph.D. Supervisor",
+    "email": "qiubozhang@seu.edu.cn",
+    "image": "images/qiubo_zhang.jpg",
+    "bio": "Selected member of the National Overseas High-level Talent Program..."
+  },
+  {
+    "type": "phd",
+    "name": "Yu Su",
+    "chineseName": "苏雨",
+    "title": "PhD Student",
+    "period": "2025 – present",
+    "email": "icsuyu@seu.edu.cn",
+    "image": "images/yu_su.jpg",
+    "education": [
+      "Ph.D., Integrated Circuit Science & Engineering, SEU (2025-Present)",
+      "M.S., Materials Science & Engineering, Nanjing Tech (2022-2025)",
+      "B.S., Materials Science & Engineering, Qingdao University of Technology (2018-2022)"
+    ]
+  },
+  {
+    "type": "phd",
+    "name": "Ziming Shang",
+    "chineseName": "尚子铭",
+    "title": "PhD Student",
+    "period": "2025 – present",
+    "email": "ziming_shang@seu.edu.cn",
+    "image": "images/ziming_shang.jpg",
+    "education": [
+      "Ph.D., Integrated Circuit Engineering, Southeast University (2025 – present)",
+      "B.S., Automation, Southeast University (2021-2025)"
+    ]
+  },
+  {
+    "type": "master",
+    "name": "Shuai Zhang",
+    "chineseName": "张帅",
+    "title": "Master Student",
+    "period": "2025 – present",
+    "email": "220256518@seu.edu.cn",
+    "image": "images/shuai_zhang.jpg",
+    "education": [
+      "M.S., Integrated Circuit Engineering, SEU (2025 – present)",
+      "B.S., Minzu University of China (2021-2025)"
+    ]
+  },
+  {
+    "type": "master",
+    "name": "Yi Tang",
+    "chineseName": "唐忆",
+    "title": "Master Student",
+    "period": "2025 – present",
+    "email": "ty_yiyi_0815@163.com",
+    "image": "images/yi_tang.jpg",
+    "education": [
+      "M.S., Integrated Circuit Science & Engineering, Southeast University (2025 – present)",
+      "B.S., Electronic Information Engineering, Central South University (2018-2022)"
+    ]
+  },
+  {
+    "type": "master",
+    "name": "Xingyu Xu",
+    "chineseName": "徐星宇",
+    "title": "Master Student",
+    "period": "2025 – present",
+    "email": "220256550@seu.edu.cn",
+    "image": "images/xingyu_xu.jpg",
+    "education": [
+      "M.S., Integrated Circuit Engineering, Southeast University (2025 – present)",
+      "B.S., Microelectronic Science and Engineering, Nanjing University of Information Science and Technology (2021-2025)"
+    ]
+  },
+  {
+    "type": "master",
+    "name": "Keyu Wang",
+    "chineseName": "王珂瑜",
+    "title": "Master Student",
+    "period": "2025 – present",
+    "email": "220256528@seu.edu.cn",
+    "image": "images/keyu_wang.jpg",
+    "education": [
+      "M.S., Integrated Circuit Engineering, Southeast University (2025 – present)",
+      "B.S., Electronic Science and Technology, North University of China (2017-2021)"
+    ]
+  }
+]

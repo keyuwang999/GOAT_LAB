@@ -4,11 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Publication list of GOAT LAB: In-situ TEM, HEAs, and Nanodevices. Includes works in Nature, Science Advances, etc.">
+    <meta name="description"
+        content="Publication list of GOAT LAB: In-situ TEM, HEAs, and Nanodevices. Includes works in Nature, Science Advances, etc.">
     <meta name="author" content="GOAT LAB">
-    
+    <!-- Open Graph / Facebook / WeChat -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://goatlab.seu.edu.cn/"> <!-- 如果以后有了域名，请填在这里 -->
+    <meta property="og:title" content="GOAT LAB | Southeast University">
+    <meta property="og:description"
+        content="Prof. Qiubo Zhang's Group at SEU Wuxi Campus. Researching In-situ TEM, Atomic Manufacturing, and HEAs.">
+    <meta property="og:image" content="images/news/lab_opening.jpg"> <!-- 建议放一张好看的实验室合影或Logo，路径要对 -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="GOAT LAB | Southeast University">
+    <meta property="twitter:description" content="Genesis of Operando Atomic Thought (G.O.A.T) LAB.">
+    <meta property="twitter:image" content="images/news/lab_opening.jpg">
+
     <title>Publications | GOAT LAB</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/icon.png">
 
@@ -16,7 +30,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Fonts (国内镜像) -->
-    <link href="https://fonts.loli.net/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.loli.net/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,7 +44,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body class="bg-light" data-bs-spy="scroll" data-bs-target="#year-nav-wrapper" data-bs-root-margin="0px 0px -80% 0px"
+<body class="bg-light" data-bs-spy="scroll" data-bs-target="#year-nav-container" data-bs-root-margin="0px 0px -80% 0px"
     data-bs-smooth-scroll="true">
 
     <!-- Preloader -->
@@ -49,17 +65,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-                    <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="publications.html">Publications</a></li>
-                    <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="btn btn-seu-green btn-sm px-3 rounded-pill" href="join.html">Join Us</a>
-                    </li>
-                </ul>
+                <ul class="navbar-nav ms-auto" id="nav-menu-container"><!-- JS 将会自动在这里生成菜单 --></ul>
             </div>
         </div>
     </nav>
@@ -73,8 +79,8 @@
                     <h1 class="display-4 font-serif fw-bold">Publications</h1>
                     <p class="lead opacity-75">Selected works from 2015 to Present.</p>
                     <div class="mt-3">
-                        <a href="https://scholar.google.com/citations?hl=zh-CN&user=sSZYmjgAAAAJ" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-light btn-sm rounded-pill fw-bold text-dark-blue">
+                        <a href="https://scholar.google.com/citations?hl=zh-CN&user=sSZYmjgAAAAJ" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-light btn-sm rounded-pill fw-bold text-dark-blue">
                             <i class="fas fa-graduation-cap me-2"></i> Google Scholar
                         </a>
                     </div>
@@ -83,7 +89,7 @@
         </div>
     </header>
 
-    <!-- Selected Highlights Section (重点展示: Double Nature) -->
+    <!-- Selected Highlights Section -->
     <section class="py-section bg-white">
         <div class="container">
             <div class="text-center mb-5">
@@ -95,8 +101,9 @@
             <div class="card border-0 shadow-lg overflow-hidden mb-5" data-aos="fade-up">
                 <div class="row g-0">
                     <div class="col-lg-4 bg-light position-relative">
-                        <img src="images/nature2025.png"
-                            class="img-fluid h-100 object-fit-cover" alt="Nature HEA Paper">
+                        <!-- 请确认图片路径正确，建议下载到本地 images 文件夹 -->
+                        <img src="images/nature2025.png" class="img-fluid h-100 object-fit-cover" alt="Nature HEA Paper"
+                            onerror="this.src='https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080'">
                         <div class="position-absolute top-0 start-0 m-3">
                             <span class="badge bg-danger fs-6 px-3 py-2">Nature</span>
                         </div>
@@ -105,7 +112,9 @@
                         <div class="card-body p-5">
                             <div class="text-muted small mb-2 font-monospace">2025 · Research Article</div>
                             <h3 class="card-title font-serif fw-bold mb-3">
-                                <a href="https://doi.org/10.1038/s41586-025-09530-w" class="text-dark-blue text-decoration-none hover-green">Isothermal solidification for high-entropy alloy synthesis</a>
+                                <a href="https://doi.org/10.1038/s41586-025-09530-w" target="_blank"
+                                    class="text-dark-blue text-decoration-none hover-green">Isothermal solidification
+                                    for high-entropy alloy synthesis</a>
                             </h3>
                             <p class="card-text text-muted mb-4">
                                 <strong>Qiubo Zhang</strong> (First Author), Haimei Zheng*, et al.
@@ -117,14 +126,12 @@
                                 synthesizing high-entropy alloys, overcoming traditional phase separation challenges.
                             </p>
                             <div class="d-flex gap-3">
-                                <a href="https://doi.org/10.1038/s41586-025-09530-w" class="btn btn-outline-dark btn-sm rounded-0"><i
+                                <a href="https://doi.org/10.1038/s41586-025-09530-w" target="_blank"
+                                    class="btn btn-outline-dark btn-sm rounded-0"><i
                                         class="fas fa-link me-2"></i>DOI</a>
+                                <!-- 如果还没有本地PDF，请保留这个链接或删掉 -->
                                 <a href="files/s41586-025-09530-w-compressed.pdf" class="btn btn-outline-danger btn-sm rounded-0"><i
                                         class="far fa-file-pdf me-2"></i>PDF</a>
-                                <button class="btn btn-outline-primary btn-sm rounded-0"
-                                    onclick="copyCitation('Zhang, Q., Gallant, M.C., Chen, Y. et al. Isothermal solidification for high-entropy alloy synthesis. Nature 646, 323–330 (2025). https://doi.org/10.1038/s41586-025-09530-w')">
-                                    <i class="fas fa-quote-right me-2"></i>Cite
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -135,8 +142,9 @@
             <div class="card border-0 shadow-lg overflow-hidden mb-5" data-aos="fade-up" data-aos-delay="100">
                 <div class="row g-0">
                     <div class="col-lg-4 bg-light position-relative">
-                        <img src="images/nature2024.png"
-                            class="img-fluid h-100 object-fit-cover" alt="Nature Liquid Cell Paper">
+                        <img src="images/nature2024.png" class="img-fluid h-100 object-fit-cover"
+                            alt="Nature Liquid Cell Paper"
+                            onerror="this.src='https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080'">
                         <div class="position-absolute top-0 start-0 m-3">
                             <span class="badge bg-danger fs-6 px-3 py-2">Nature</span>
                         </div>
@@ -145,7 +153,9 @@
                         <div class="card-body p-5">
                             <div class="text-muted small mb-2 font-monospace">2024 · Research Article</div>
                             <h3 class="card-title font-serif fw-bold mb-3">
-                                <a href="#" class="text-dark-blue text-decoration-none hover-green">Atomic dynamics of electrified solid–liquid interfaces in liquid-cell TEM</a>
+                                <a href="https://doi.org/10.1038/s41586-024-07479-w" target="_blank"
+                                    class="text-dark-blue text-decoration-none hover-green">Atomic dynamics of
+                                    electrified solid–liquid interfaces in liquid-cell TEM</a>
                             </h3>
                             <p class="card-text text-muted mb-4">
                                 <strong>Zhang, Q.*</strong>, Song, Z., Sun, X. et al.
@@ -158,15 +168,11 @@
                                 the atomic scale.
                             </p>
                             <div class="d-flex gap-3">
-                                <a href="https://doi.org/10.1038/s41586-024-07479-w" class="btn btn-outline-dark btn-sm rounded-0"><i
+                                <a href="https://doi.org/10.1038/s41586-024-07479-w" target="_blank"
+                                    class="btn btn-outline-dark btn-sm rounded-0"><i
                                         class="fas fa-link me-2"></i>DOI</a>
                                 <a href="files/s41586-024-07479-w.pdf" class="btn btn-outline-danger btn-sm rounded-0"><i
                                         class="far fa-file-pdf me-2"></i>PDF</a>
-                                <!-- 新增：Cite 按钮 -->
-                                <button class="btn btn-outline-primary btn-sm rounded-0"
-                                    onclick="copyCitation('Zhang, Q., Song, Z., Sun, X. et al. Atomic dynamics of electrified solid–liquid interfaces in liquid-cell TEM. Nature 630, 643–647 (2024). https://doi.org/10.1038/s41586-024-07479-w')">
-                                    <i class="fas fa-quote-right me-2"></i>Cite
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -196,792 +202,24 @@
                             <div class="position-relative flex-grow-1">
                                 <input type="text" id="paperSearch" class="form-control border-0 shadow-sm ps-5 py-3"
                                     placeholder="Search...">
-                                <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                                <i
+                                    class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
                             </div>
 
                             <!-- 右侧：年份下拉菜单 (只在手机/平板显示 d-lg-none) -->
                             <div class="d-lg-none">
-                                <select id="mobileYearSelect" class="form-select border-0 shadow-sm h-100 fw-bold text-seu-green" style="min-width: 100px;">
+                                <select id="mobileYearSelect"
+                                    class="form-select border-0 shadow-sm h-100 fw-bold text-seu-green"
+                                    style="min-width: 100px;">
                                     <option selected disabled>Year</option>
-                                    <option value="#year-2025">2025</option>
-                                    <option value="#year-2024">2024</option>
-                                    <option value="#year-2023">2023</option>
-                                    <option value="#year-2022">2022</option>
-                                    <option value="#year-2021">2021</option>
-                                    <option value="#year-2020">2020</option>
-                                    <option value="#year-2019">2019</option>
-                                    <option value="#year-2018">2018</option>
-                                    <option value="#year-prior">Prior</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 2025 List -->
-                    <div id="year-2025" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-seu-green border-bottom pb-2">2025</h4>
-                        <ul class="list-unstyled pub-list">
-                            <!-- 每次增加publication时增加li模块 -->
-                            <!--  
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">It's a test for adding publication.</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Yu Su, Ziming Shang, et al.
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nature</span>, 2025.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li> 
-                            -->
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Strain release through hydrogen bond–mediated layer twisting</h5>
-                                        <p class="text-muted small mb-1">
-                                            Qi Zheng, Boyang Li, Sizhan Liu, Chuntian Cao, Jessica M Rimsza, <strong>Qiubo Zhang</strong>, Jianming Bai, Chun Chang, Jiawei Wang, Chengyao Liang, Haiyan Mao, Matthew R Carbone, Deyu Lu, Tatiana Pyatina, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Science Advances</span>, 2025.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Isothermal solidification for high-entropy alloy
-                                            synthesis</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Max C Gallant, Yi Chen, Zhigang Song, Yang Liu, Qi Zheng, Linfeng Chen, Karen C Bustillo, Yu Huang, Kristin A Persson, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nature</span>, 2025.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Liquid Phase Electron Microscopy Study of the Atomic Dynamics of Electrified Solid-liquid Interfaces</h5>
-                                        <p class="text-muted small mb-1">
-                                            Yi Chen, <strong>Qiubo Zhang</strong>, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Microscopy and Microanalysis</span>, 2025.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">In situ atomic observation of transformation twinning in nanocrystals</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Hui Dong, Amy Ren, Yifan Nie, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano Today</span>, 2025.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">In-situ/operando study of Cu-based nanocatalysts for CO2 electroreduction using electrochemical liquid cell TEM</h5>
-                                        <p class="text-muted small mb-1">
-                                            Jiawei Wan, <strong>Qiubo Zhang</strong>, Ershuai Liu, Yi Chen, Jiana Zheng, Amy Ren, Walter S Drisdell, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Frontiers in Chemistry</span>, 2025.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                    <div id="publications-container">
+                        <div class="text-center text-muted py-5">Loading publications...</div>
                     </div>
-
-                    <!-- 2024 List -->
-                    <div id="year-2024" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-seu-green border-bottom pb-2">2024</h4>
-                        <ul class="list-unstyled pub-list">
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Nanoscale materials transformations revealed by liquid phase TEM</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Daewon Lee, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano Research</span>, 2024.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Operando probing of nanocracking in CuO-derived Cu during CO electroreduction</h5>
-                                        <p class="text-muted small mb-1">
-                                            Jiawei Wan, Ershuai Liu, Woong Choi, Jiayun Liang, Buyu Zhang, Keon-Han Kim, Xianhu Sun, Meng Zhang, Han Xue, Yi Chen, <strong>Qiubo Zhang</strong>, Changlian Wen, Ji Yang, Karen C Bustillo, Peter Ercius, Denis Leshchev, Ji Su, Zakaria Y Al Balushi, Adam Z Weber, Mark Asta, Alexis T Bell, Walter S Drisdell, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">arXiv preprint arXiv:2407.16910</span>, 2024.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Atomic dynamics of electrified solid–liquid interfaces in liquid-cell TEM</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Zhigang Song, Xianhu Sun, Yang Liu, Jiawei Wan, Sophia B Betzler, Qi Zheng, Junyi Shangguan, Karen C Bustillo, Peter Ercius, Prineha Narang, Yu Huang, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nature</span>, 2024.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Engineering liquid-liquid interfaces for high-entropy alloy synthesis</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Yi Chen, Karen Bustillo, Haimei Zheng
-                                            <span class="journal-name fw-bold text-dark">arXiv preprint arXiv:2405.16329</span>, 2024.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Unveiling corrosion pathways of Sn nanocrystals through high-resolution liquid cell electron microscopy</h5>
-                                        <p class="text-muted small mb-1">
-                                            Xinxing Peng, Junyi Shangguan, <strong>Qiubo Zhang</strong>, Matthew Hauwiller, Haobo Yu, Yifan Nie, Karen C Bustillo, A Paul Alivisatos, Mark Asta, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano Letters</span>, 2024.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 2023 List -->
-                    <div id="year-2023" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-seu-green border-bottom pb-2">2023</h4>
-                        <ul class="list-unstyled pub-list">
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Visualizing facets asymmetry induced directional movement of cadmium chloride nanomotor</h5>
-                                        <p class="text-muted small mb-1">
-                                            Jiawei Wan, <strong>Qiubo Zhang</strong>, Jiayun Liang, Karen C Bustillo, Zakaria Y Al Balushi, Mark Asta, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano Letters</span>, 2023.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 2022 List -->
-                    <div id="year-2022" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-seu-green border-bottom pb-2">2022</h4>
-                        <ul class="list-unstyled pub-list">
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">A covalent organic framework onion structure</h5>
-                                        <p class="text-muted small mb-1">
-                                            Qi Zheng, Xinle Li, <strong>Qiubo Zhang</strong>, Daewon Lee, Haiyan Mao, Chongqing Yang, Karen C Bustillo, Jeffrey A Reimer, Yi Liu, Jinyang Jiang, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Materials Today</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Swap motion–directed twinning of nanocrystals</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Zhigang Song, Yu Wang, Yifan Nie, Jiawei Wan, Karen C Bustillo, Peter Ercius, Linwang Wang, Litao Sun, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Science Advances</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Observation of formation and local structures of metal-organic layers via complementary electron microscopy techniques</h5>
-                                        <p class="text-muted small mb-1">
-                                            Xinxing Peng, Philipp M Pelz, <strong>Qiubo Zhang</strong>, Peican Chen, Lingyun Cao, Yaqian Zhang, Hong-Gang Liao, Haimei Zheng, Cheng Wang, Shi-Gang Sun, Mary C Scott
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nature Communications</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Tacking Directional Movement of Nanomotors with Liquid Cell Electron Microscopy</h5>
-                                        <p class="text-muted small mb-1">
-                                            Jiawei Wan, <strong>Qiubo Zhang</strong>, Mark Asta, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Microscopy and Microanalysis</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Solid–liquid–gas reaction accelerated by gas molecule tunnelling-like effect</h5>
-                                        <p class="text-muted small mb-1">
-                                            Wen Wang, Tao Xu, Jige Chen, Junyi Shangguan, Hui Dong, Huishu Ma, <strong>Qiubo Zhang</strong>, Junwei Yang, Tingting Bai, Zhirui Guo, Haiping Fang, Haimei Zheng, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nature Materials</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Electron Tomography Reveals Porosity Degradation Spatially on Individual Pt-Based Nanocatalysts</h5>
-                                        <p class="text-muted small mb-1">
-                                            Weiwei Xia, Mingxing Gong, Chuanyun Wang, Lianyang Chen, Yu Wang, Ran Cai, Zhichao Liu, Mengqian Zhang, <strong>Qiubo Zhang</strong>, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">ACS applied materials & interfaces</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Tailoring Bi2Te3 edge with semiconductor and metal properties under electron beam irradiation</h5>
-                                        <p class="text-muted small mb-1">
-                                            Yuting Shen, Hailin Yu, Tao Xu, <strong>Qiubo Zhang</strong>, Kuibo Yin, Shan Cong, Yushen Liu, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano Research</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Defect-mediated ripening of core-shell nanostructures</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Xinxing Peng, Yifan Nie, Qi Zheng, Junyi Shangguan, Chao Zhu, Karen C Bustillo, Peter Ercius, Linwang Wang, David T Limmer, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nature Communications</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Super-Hybrid Transition Metal Sulfide Nanoarrays of Co3S4 Nanosheet/P-Doped WS2 Nanosheet/Co9S8 Nanoparticle with Pt-Like Activities for Robust All-pH Hydrogen Evolution</h5>
-                                        <p class="text-muted small mb-1">
-                                            Haiqing Wang, Jinhao Xu, <strong>Qiubo Zhang</strong>, Shuxian Hu, Weijia Zhou, Hong Liu, Xun Wang
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Advanced Functional Materials</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Laser-assisted synthesis of graphene-based paper for both oil/water mixtures and emulsions separation</h5>
-                                        <p class="text-muted small mb-1">
-                                          Jiawei Sun, Haiyang Jia, Hengchang Bi, Miaoling Que, Lixiang Chen, <strong>Qiubo Zhang</strong>, Yuwei Xiong, Xiao Xie, Yunfei Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Process Safety and Environmental Protection</span>, 2022.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 2021 List -->
-                    <div id="year-2021" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-secondary border-bottom pb-2">2021</h4>
-                        <ul class="list-unstyled pub-list">
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Tailoring atomic 1T phase CrTe2 for in situ fabrication</h5>
-                                        <p class="text-muted small mb-1">
-                                            Chaolun Wang, Qiran Zou, Zhiheng Cheng, Jietao Chen, Chen Luo, Fang Liang, Chunhua Cai, Hengchang Bi, Xiaocong Lian, Xiangyang Ji, <strong>Qiubo Zhang</strong>, Litao Sun, Xing Wu
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nanotechnology</span>, 2021.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Influence of sub-zero temperature on nucleation and
-                                            growth of copper nanoparticles in electrochemical reactions</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Jiawei Wan, Junyi Shangguan, Sophia Betzler, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Iscience</span>, 2021.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Observation of Surface Ligands-Controlled Etching of Palladium Nanocrystals</h5>
-                                        <p class="text-muted small mb-1">
-                                            Qi Zheng, Junyi Shangguan, Xinle Li, <strong>Qiubo Zhang</strong>, Karen C Bustillo, Lin-Wang Wang, Jinyang Jiang, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano Letters</span>, 2021.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Sub-4 nm nanodiamonds from graphene-oxide and nitrated polycyclic aromatic hydrocarbons at 423 K</h5>
-                                        <p class="text-muted small mb-1">
-                                            Yuting Shen, Shi Su, Wen Zhao, Shaobo Cheng, Tao Xu, Kuibo Yin, Linjiang Chen, Longbing He, Yilong Zhou, Hengchang Bi, Shu Wan, <strong>Qiubo Zhang</strong>, Liang Wang, Zhenhua Ni, Florian Banhart, Gianluigi A Botton, Feng Ding, Rodney S Ruoff, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">ACS nano</span>, 2021.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">In situ liquid cell transmission electron microscopy investigation on the dissolution-regrowth mechanism dominating the shape evolution of silver nanoplates</h5>
-                                        <p class="text-muted small mb-1">
-                                            Meng Dong, Ruining Fu, Huihua Min, <strong>Qiubo Zhang</strong>, Hui Dong, Yuchen Pan, Litao Sun, Wei Wei, Ming Qin, Zhen Zhu, Feng Xu
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Crystal Growth & Design</span>, 2021.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 2020 List -->
-                    <div id="year-2020" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-secondary border-bottom pb-2">2020</h4>
-                        <ul class="list-unstyled pub-list">
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Controlled oxidative etching of gold nanorods revealed through *in-situ* liquid cell electron microscopy</h5>
-                                        <p class="text-muted small mb-1">
-                                            Wen Wang, Tao Xu, Tingting Bai, Chao Zhu, <strong>Qiubo Zhang</strong>, Hongtao Zhang, Hui Zhang, Zhirui Guo, Haimei Zheng, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Science China Materials</span>, 2020.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">A Density Functional Theory Study of the Cu2ZnSnS4 Monolayer as a Photo-electrointegrated Catalyst for Water Splitting and Hydrogen Evolution</h5>
-                                        <p class="text-muted small mb-1">
-                                            Ruifen Zhang, Xin Wen, Fen Xu, <strong>Qiubo Zhang</strong>, Lixian Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">The Journal of Physical Chemistry C</span>, 2020.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Dynamic covalent synthesis of crystalline porous graphitic frameworks</h5>
-                                        <p class="text-muted small mb-1">
-                                            Xinle Li, Hongxia Wang, Hao Chen, Qi Zheng, <strong>Qiubo Zhang</strong>, Haiyan Mao, Yawei Liu, Songliang Cai, Bing Sun, Chaochao Dun, Madeleine P Gordon, Haimei Zheng, Jeffrey A Reimer, Jeffrey J Urban, Jim Ciston, Tianwei Tan, Emory M Chan, Jian Zhang, Yi Liu
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Chem</span>, 2020.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 2019 List -->
-                    <div id="year-2019" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-secondary border-bottom pb-2">2019</h4>
-                        <ul class="list-unstyled pub-list">
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">In situ observation of crystalline silicon growth from SiO2 at atomic scale</h5>
-                                        <p class="text-muted small mb-1">
-                                            Kaihao Yu, Tao Xu, Xing Wu, Wen Wang, Hui Zhang, <strong>Qiubo Zhang</strong>, Luping Tang, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Research</span>, 2019.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Identifying surface structural changes in a newly-developed Ga-based alloy with melting temperature below 10° C</h5>
-                                        <p class="text-muted small mb-1">
-                                            Qing Yu, <strong>Qiubo Zhang</strong>, Junjie Zong, Suya Liu, Xuelin Wang, Xiaodong Wang, Haimei Zheng, Qingping Cao, Dongxian Zhang, Jianzhong Jiang
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Applied Surface Science</span>, 2019.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">In situ interface engineering for probing the limit of quantum dot photovoltaic devices</h5>
-                                        <p class="text-muted small mb-1">
-                                            Hui Dong, Feng Xu, Ziqi Sun, Xing Wu, <strong>Qiubo Zhang</strong>, Yusheng Zhai, Xiao Dong Tan, Longbing He, Tao Xu, Ze Zhang, Xiangfeng Duan, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nature nanotechnology</span>, 2019.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Understanding the Ensemble of Growth Behaviors of Sub-10-nm Silver Nanorods Using *in Situ* Liquid Cell Transmission Electron Microscopy</h5>
-                                        <p class="text-muted small mb-1">
-                                            Meng Dong, Wen Wang, Wei Wei, Xiaobing Hu, Ming Qin, <strong>Qiubo Zhang</strong>, Litao Sun, Feng Xu
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">The Journal of Physical Chemistry C</span>, 2019.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Visualization of facet-dependent pseudo-photocatalytic behavior of TiO2 nanorods for water splitting using in situ liquid cell TEM</h5>
-                                        <p class="text-muted small mb-1">
-                                            Zu-Wei Yin, Sophia B Betzler, Tian Sheng, <strong>Qiubo Zhang</strong>, Xinxing Peng, Junyi Shangguan, Karen C Bustillo, Jun-Tao Li, Shi-Gang Sun, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano Energy</span>, 2019.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Revealing of the Activation Pathway and Cathode Electrolyte Interphase Evolution of Li-Rich 0.5Li2MnO3·0.5LiNi0.3Co0.3Mn0.4O2 Cathode by in Situ Electrochemical Quartz Crystal Microbalance</h5>
-                                        <p class="text-muted small mb-1">
-                                            Zu-Wei Yin, Xin-Xing Peng, Jun-Tao Li, Chong-Heng Shen, Ya-Ping Deng, Zhen-Guo Wu, Tao Zhang, <strong>Qiu-Bo Zhang</strong>, Yu-Xue Mo, Kai Wang, Ling Huang, Haimei Zheng, Shi-Gang Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">ACS applied materials & interfaces</span>, 2019.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Novel interface in CuAg nanostructure induced by size effect</h5>
-                                        <p class="text-muted small mb-1">
-                                            Luping Tang, Wei Wu, Longbing He, Kaihao Yu, Tao Xu, <strong>Qiubo Zhang</strong>, Lei Zhang, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">The Journal of Physical Chemistry Letters</span>, 2019.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                    <!-- 2018 List -->
-                    <div id="year-2018" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-secondary border-bottom pb-2">2018</h4>
-                        <ul class="list-unstyled pub-list">
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Anomalous Shape Evolution of Ag2O2 Nanocrystals Modulated by Surface Adsorbates during Electron Beam Etching</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Guoping Gao, Yuting Shen, Xinxing Peng, Junyi Shangguan, Yu Wang, Hui Dong, Karen Bustillo, Linwang Wang, Litao Sun, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano letters</span>, 2018.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">In situ TEM study of the degradation of PbSe nanocrystals in air</h5>
-                                        <p class="text-muted small mb-1">
-                                            Xinxing Peng, Alex Abelson, Yu Wang, Caroline Qian, Junyi Shangguan, <strong>Qiubo Zhang</strong>, Lei Yu, Zu-Wei Yin, Wenjing Zheng, Karen C Bustillo, Xuyun Guo, Hong-Gang Liao, Shi-Gang Sun, Matt Law, Haimei Zheng
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Chemistry of Materials</span>, 2018.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">In-situ TEM Study on Sub-10 nm Materials</h5>
-                                        <p class="text-muted small mb-1">
-                                            Tao Xu, Yuting Shen, Chao Zhu, <strong>Qiubo Zhang</strong>, Haimei Zheng, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Microscopy and Microanalysis</span>, 2018.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Spring-Like Pseudoelectroelasticity of Monocrystalline Cu2S Nanowire</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Zhe Shi, Kuibo Yin, Hui Dong, Feng Xu, Xinxing Peng, Kaihao Yu, Hongtao Zhang, Chia-Chin Chen, Ilia Valov, Haimei Zheng, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano letters</span>, 2018.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">In situ atomic-scale observation of monolayer graphene growth from SiC</h5>
-                                        <p class="text-muted small mb-1">
-                                            Kaihao Yu, Wen Zhao, Xing Wu, Jianing Zhuang, Xiaohui Hu, <strong>Qiubo Zhang</strong>, Jun Sun, Tao Xu, Yang Chai, Feng Ding, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nano Research</span>, 2018.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">A Novel Domain‐Confined Growth Strategy for In Situ Controllable Fabrication of Individual Hollow Nanostructures</h5>
-                                        <p class="text-muted small mb-1">
-                                            Luping Tang, Longbing He, Lei Zhang, Kaihao Yu, Tao Xu, <strong>Qiubo Zhang</strong>, Hui Dong, Chao Zhu, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Advanced Science</span>, 2018.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Novel behaviors/properties of nanometals induced by surface effects</h5>
-                                        <p class="text-muted small mb-1">
-                                            Long-Bing He, Lei Zhang, Lu-Ping Tang, Jun Sun, <strong>Qiu-Bo Zhang</strong>, Li-Tao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Materials Today Nano</span>, 2018.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Simultaneous atomic-level visualization and high precision photocurrent measurements on photoelectric devices by in situ TEM</h5>
-                                        <p class="text-muted small mb-1">
-                                            Hui Dong, Tao Xu, Ziqi Sun, <strong>Qiubo Zhang</strong>, Xing Wu, Longbing He, Feng Xu, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">RSC advances</span>, 2018.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Prior Works -->
-                    <div id="year-prior" class="year-section mb-5" data-aos="fade-up">
-                        <h4 class="mb-3 text-secondary border-bottom pb-2">Prior to 2018</h4>
-                        <ul class="list-unstyled pub-list">
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Electrically driven cation exchange for in situ fabrication of individual nanostructures</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Kuibo Yin, Hui Dong, Yilong Zhou, Xiaodong Tan, Kaihao Yu, Xiaohui Hu, Tao Xu, Chao Zhu, Weiwei Xia, Feng Xu, Haimei Zheng, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Nature communications</span>, 2017.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Incorporating pyrrolic and pyridinic nitrogen into a porous carbon made from C-60 molecules to obtain superior energy storage</h5>
-                                        <p class="text-muted small mb-1">
-                                            Ziqi Tan, Kun Ni, Guanxiong Chen, Wencong Zeng, Zhuchen Tao, Mujtaba Ikram, <strong>Qiubo Zhang</strong>, Huijuan Wang, Litao Sun, Xianjun Zhu, Xiaojun Wu, Hengxing Ji, Rodney S Ruoff, Yanwu Zhu
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Advanced Materials</span>, 2017.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">New Insights into Electrochemical Lithiation/Delithiation Mechanism of α-MoO3 Nanobelt by in Situ Transmission Electron Microscopy</h5>
-                                        <p class="text-muted small mb-1">
-                                            Weiwei Xia, <strong>Qiubo Zhang</strong>, Feng Xu, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">ACS Applied Materials & Interfaces</span>, 2016.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Visualizing the Electrochemical Lithiation/Delithiation Behaviors of Black Phosphorus by *in Situ* Transmission Electron Microscopy</h5>
-                                        <p class="text-muted small mb-1">
-                                            Weiwei Xia, <strong>Qiubo Zhang</strong>, Feng Xu, Hongyu Ma, Jing Chen, Khan Qasim, Binghui Ge, Chongyang Zhu, Litao Sun
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">The Journal of Physical Chemistry C</span>, 2016.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">New Insights into Electrochemical Lithiation/Delithiation Mechanism of α-MoO3 Nanobelt by in Situ Transmission Electron Microscopy</h5>
-                                        <p class="text-muted small mb-1">
-                                            Xia Weiwei, Zhang Qiubo, Xu Feng, Sun Litao
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">ACS Applied Materials & Interfaces</span>, 2016.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Two intermediate bands solar cells of InGaN/InN quantum dot supracrystals</h5>
-                                        <p class="text-muted small mb-1">
-                                            Wensheng Wei, <strong>Qiubo Zhang</strong>, Shaoyun Zhao, Yaoju Zhang
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Applied Physics A</span>, 2014.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Performance Comparison for Different Material Quantum Dot Single Intermediate Band Solar Cells</h5>
-                                        <p class="text-muted small mb-1">
-                                            Wen Sheng Wei, Feng Shan, Shao Yun Zhao, <strong>Qiu Bo Zhang</strong>
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Applied Mechanics and Materials</span>, 2014.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-4">
-                                <div class="d-flex align-items-start">
-                                    <span class="pub-number text-muted me-3"></span>
-                                    <div>
-                                        <h5 class="h6 fw-bold mb-1">Single intermediate-band solar cells of InGaN/InN quantum dot supracrystals</h5>
-                                        <p class="text-muted small mb-1">
-                                            <strong>Qiubo Zhang</strong>, Wensheng Wei
-                                            <br>
-                                            <span class="journal-name fw-bold text-dark">Applied Physics A</span>, 2013.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- Authorship note -->
-                        <div class="mt-4 pt-3 border-top">
-                            <p class="small text-muted mb-1">* Corresponding author / Co-corresponding author.</p>
-                            <p class="small text-muted fst-italic">For a complete list of publications, please visit
-                                Prof. Zhang's <a href="https://scholar.google.com/citations?hl=zh-CN&user=sSZYmjgAAAAJ" class="text-seu-green">Google
-                                    Scholar Profile</a>.</p>
-                        </div>
-                    </div>
-
                     <!-- Search No Results Message -->
                     <div id="noResultsMsg" class="text-center py-5" style="display: none;">
                         <i class="far fa-folder-open fa-3x text-muted mb-3 opacity-50"></i>
@@ -998,16 +236,7 @@
                     <div class="sticky-top" style="top: 100px;">
                         <div class="card border-0 shadow-sm p-3">
                             <h6 class="fw-bold text-uppercase text-muted mb-3 small ls-2">Jump To</h6>
-                            <div class="nav flex-column nav-pills" id="year-nav-wrapper">
-                                <a class="nav-link text-dark mb-1 active" href="#year-2025">2025</a>
-                                <a class="nav-link text-dark mb-1" href="#year-2024">2024</a>
-                                <a class="nav-link text-dark mb-1" href="#year-2023">2023</a>
-                                <a class="nav-link text-dark mb-1" href="#year-2022">2022</a>
-                                <a class="nav-link text-dark mb-1" href="#year-2021">2021</a>
-                                <a class="nav-link text-dark mb-1" href="#year-2020">2020</a>
-                                <a class="nav-link text-dark mb-1" href="#year-2019">2019</a>
-                                <a class="nav-link text-dark mb-1" href="#year-2018">2018</a>
-                                <a class="nav-link text-dark" href="#year-prior">Prior</a>
+                            <div class="nav flex-column nav-pills" id="year-nav-container">
                             </div>
                         </div>
                     </div>
@@ -1017,13 +246,8 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-5 mt-auto">
-        <div class="container">
-            <div class="text-center small opacity-50">
-                &copy; 2025 GOAT LAB. Southeast University.
-            </div>
-        </div>
+    <footer class="bg-dark text-white py-5 mt-auto" id="global-footer">
+        <!-- JS 将会自动加载页脚 -->
     </footer>
 
     <!-- Back to Top Button -->
@@ -1034,6 +258,8 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- 数据加载器 (必须放在 script.js 之前或之后均可，但建议放在这里) -->
+    <script src="data-loader.js"></script>
     <script src="script.js"></script>
 </body>
 

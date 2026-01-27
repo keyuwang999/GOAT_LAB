@@ -1,0 +1,9 @@
+[
+  { "name": "Home", "link": "index.html" },
+  { "name": "People", "link": "people.html" },
+  { "name": "Research", "link": "research.html" },
+  { "name": "Publications", "link": "publications.html" },
+  { "name": "News", "link": "news.html" },
+  { "name": "Gallery", "link": "gallery.html" },
+  { "name": "Join Us", "link": "join.html", "highlight": true }
+]

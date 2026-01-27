@@ -1,0 +1,363 @@
+[
+  {
+    "year": 2025,
+    "title": "Isothermal solidification for high-entropy alloy synthesis",
+    "authors": "Qiubo Zhang, Max C Gallant, Yi Chen, Zhigang Song, Yang Liu, Qi Zheng, Linfeng Chen, Karen C Bustillo, Yu Huang, Kristin A Persson, Haimei Zheng",
+    "journal": "Nature",
+    "doi": "https://doi.org/10.1038/s41586-025-09530-w",
+    "pdf": "files/s41586-025-09530-w-compressed.pdf",
+    "highlight": true
+  },
+  {
+    "year": 2025,
+    "title": "Strain release through hydrogen bond–mediated layer twisting",
+    "authors": "Qi Zheng, Boyang Li, Sizhan Liu, Chuntian Cao, Jessica M Rimsza, Qiubo Zhang, Jianming Bai, Chun Chang, Jiawei Wang, Chengyao Liang, Haiyan Mao, Matthew R Carbone, Deyu Lu, Tatiana Pyatina, Haimei Zheng",
+    "journal": "Science Advances",
+    "highlight": false
+  },
+  {
+    "year": 2025,
+    "title": "Liquid Phase Electron Microscopy Study of the Atomic Dynamics of Electrified Solid-liquid Interfaces",
+    "authors": "Yi Chen, Qiubo Zhang, Haimei Zheng",
+    "journal": "Microscopy and Microanalysis",
+    "highlight": false
+  },
+  {
+    "year": 2025,
+    "title": "In situ atomic observation of transformation twinning in nanocrystals",
+    "authors": "Qiubo Zhang, Hui Dong, Amy Ren, Yifan Nie, Haimei Zheng",
+    "journal": "Nano Today",
+    "highlight": false
+  },
+  {
+    "year": 2025,
+    "title": "In-situ/operando study of Cu-based nanocatalysts for CO2 electroreduction using electrochemical liquid cell TEM",
+    "authors": "Jiawei Wan, Qiubo Zhang, Ershuai Liu, Yi Chen, Jiana Zheng, Amy Ren, Walter S Drisdell, Haimei Zheng",
+    "journal": "Frontiers in Chemistry",
+    "highlight": false
+  },
+  {
+    "year": 2024,
+    "title": "Atomic dynamics of electrified solid–liquid interfaces in liquid-cell TEM",
+    "authors": "Qiubo Zhang, Zhigang Song, Xianhu Sun, Yang Liu, Jiawei Wan, Sophia B Betzler, Qi Zheng, Junyi Shangguan, Karen C Bustillo, Peter Ercius, Prineha Narang, Yu Huang, Haimei Zheng",
+    "journal": "Nature",
+    "doi": "https://doi.org/10.1038/s41586-024-07479-w",
+    "pdf": "files/s41586-024-07479-w.pdf",
+    "highlight": true
+  },
+  {
+    "year": 2024,
+    "title": "Nanoscale materials transformations revealed by liquid phase TEM",
+    "authors": "Qiubo Zhang, Daewon Lee, Haimei Zheng",
+    "journal": "Nano Research",
+    "highlight": false
+  },
+  {
+    "year": 2024,
+    "title": "Operando probing of nanocracking in CuO-derived Cu during CO electroreduction",
+    "authors": "Jiawei Wan, Ershuai Liu, Woong Choi, Jiayun Liang, Buyu Zhang, Keon-Han Kim, Xianhu Sun, Meng Zhang, Han Xue, Yi Chen, Qiubo Zhang, Changlian Wen, Ji Yang, Karen C Bustillo, Peter Ercius, Denis Leshchev, Ji Su, Zakaria Y Al Balushi, Adam Z Weber, Mark Asta, Alexis T Bell, Walter S Drisdell, Haimei Zheng",
+    "journal": "arXiv preprint arXiv:2407.16910",
+    "highlight": false
+  },
+  {
+    "year": 2024,
+    "title": "Engineering liquid-liquid interfaces for high-entropy alloy synthesis",
+    "authors": "Qiubo Zhang, Yi Chen, Karen Bustillo, Haimei Zheng",
+    "journal": "arXiv preprint arXiv:2405.16329",
+    "highlight": false
+  },
+  {
+    "year": 2024,
+    "title": "Unveiling corrosion pathways of Sn nanocrystals through high-resolution liquid cell electron microscopy",
+    "authors": "Xinxing Peng, Junyi Shangguan, Qiubo Zhang, Matthew Hauwiller, Haobo Yu, Yifan Nie, Karen C Bustillo, A Paul Alivisatos, Mark Asta, Haimei Zheng",
+    "journal": "Nano Letters",
+    "highlight": false
+  },
+  {
+    "year": 2023,
+    "title": "Visualizing facets asymmetry induced directional movement of cadmium chloride nanomotor",
+    "authors": "Jiawei Wan, Qiubo Zhang, Jiayun Liang, Karen C Bustillo, Zakaria Y Al Balushi, Mark Asta, Haimei Zheng",
+    "journal": "Nano Letters",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "A covalent organic framework onion structure",
+    "authors": "Qi Zheng, Xinle Li, Qiubo Zhang, Daewon Lee, Haiyan Mao, Chongqing Yang, Karen C Bustillo, Jeffrey A Reimer, Yi Liu, Jinyang Jiang, Haimei Zheng",
+    "journal": "Materials Today",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Swap motion–directed twinning of nanocrystals",
+    "authors": "Qiubo Zhang, Zhigang Song, Yu Wang, Yifan Nie, Jiawei Wan, Karen C Bustillo, Peter Ercius, Linwang Wang, Litao Sun, Haimei Zheng",
+    "journal": "Science Advances",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Observation of formation and local structures of metal-organic layers via complementary electron microscopy techniques",
+    "authors": "Xinxing Peng, Philipp M Pelz, Qiubo Zhang, Peican Chen, Lingyun Cao, Yaqian Zhang, Hong-Gang Liao, Haimei Zheng, Cheng Wang, Shi-Gang Sun, Mary C Scott",
+    "journal": "Nature Communications",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Tacking Directional Movement of Nanomotors with Liquid Cell Electron Microscopy",
+    "authors": "Jiawei Wan, Qiubo Zhang, Mark Asta, Haimei Zheng",
+    "journal": "Microscopy and Microanalysis",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Solid–liquid–gas reaction accelerated by gas molecule tunnelling-like effect",
+    "authors": "Wen Wang, Tao Xu, Jige Chen, Junyi Shangguan, Hui Dong, Huishu Ma, Qiubo Zhang, Junwei Yang, Tingting Bai, Zhirui Guo, Haiping Fang, Haimei Zheng, Litao Sun",
+    "journal": "Nature Materials",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Electron Tomography Reveals Porosity Degradation Spatially on Individual Pt-Based Nanocatalysts",
+    "authors": "Weiwei Xia, Mingxing Gong, Chuanyun Wang, Lianyang Chen, Yu Wang, Ran Cai, Zhichao Liu, Mengqian Zhang, Qiubo Zhang, Litao Sun",
+    "journal": "ACS applied materials & interfaces",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Tailoring Bi2Te3 edge with semiconductor and metal properties under electron beam irradiation",
+    "authors": "Yuting Shen, Hailin Yu, Tao Xu, Qiubo Zhang, Kuibo Yin, Shan Cong, Yushen Liu, Litao Sun",
+    "journal": "Nano Research",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Defect-mediated ripening of core-shell nanostructures",
+    "authors": "Qiubo Zhang, Xinxing Peng, Yifan Nie, Qi Zheng, Junyi Shangguan, Chao Zhu, Karen C Bustillo, Peter Ercius, Linwang Wang, David T Limmer, Haimei Zheng",
+    "journal": "Nature Communications",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Super-Hybrid Transition Metal Sulfide Nanoarrays of Co3S4 Nanosheet/P-Doped WS2 Nanosheet/Co9S8 Nanoparticle with Pt-Like Activities for Robust All-pH Hydrogen Evolution",
+    "authors": "Haiqing Wang, Jinhao Xu, Qiubo Zhang, Shuxian Hu, Weijia Zhou, Hong Liu, Xun Wang",
+    "journal": "Advanced Functional Materials",
+    "highlight": false
+  },
+  {
+    "year": 2022,
+    "title": "Laser-assisted synthesis of graphene-based paper for both oil/water mixtures and emulsions separation",
+    "authors": "Jiawei Sun, Haiyang Jia, Hengchang Bi, Miaoling Que, Lixiang Chen, Qiubo Zhang, Yuwei Xiong, Xiao Xie, Yunfei Sun",
+    "journal": "Process Safety and Environmental Protection",
+    "highlight": false
+  },
+  {
+    "year": 2021,
+    "title": "Tailoring atomic 1T phase CrTe2 for in situ fabrication",
+    "authors": "Chaolun Wang, Qiran Zou, Zhiheng Cheng, Jietao Chen, Chen Luo, Fang Liang, Chunhua Cai, Hengchang Bi, Xiaocong Lian, Xiangyang Ji, Qiubo Zhang, Litao Sun, Xing Wu",
+    "journal": "Nanotechnology",
+    "highlight": false
+  },
+  {
+    "year": 2021,
+    "title": "Influence of sub-zero temperature on nucleation and growth of copper nanoparticles in electrochemical reactions",
+    "authors": "Qiubo Zhang, Jiawei Wan, Junyi Shangguan, Sophia Betzler, Haimei Zheng",
+    "journal": "Iscience",
+    "highlight": false
+  },
+  {
+    "year": 2021,
+    "title": "Observation of Surface Ligands-Controlled Etching of Palladium Nanocrystals",
+    "authors": "Qi Zheng, Junyi Shangguan, Xinle Li, Qiubo Zhang, Karen C Bustillo, Lin-Wang Wang, Jinyang Jiang, Haimei Zheng",
+    "journal": "Nano Letters",
+    "highlight": false
+  },
+  {
+    "year": 2021,
+    "title": "Sub-4 nm nanodiamonds from graphene-oxide and nitrated polycyclic aromatic hydrocarbons at 423 K",
+    "authors": "Yuting Shen, Shi Su, Wen Zhao, Shaobo Cheng, Tao Xu, Kuibo Yin, Linjiang Chen, Longbing He, Yilong Zhou, Hengchang Bi, Shu Wan, Qiubo Zhang, Liang Wang, Zhenhua Ni, Florian Banhart, Gianluigi A Botton, Feng Ding, Rodney S Ruoff, Litao Sun",
+    "journal": "ACS nano",
+    "highlight": false
+  },
+  {
+    "year": 2021,
+    "title": "In situ liquid cell transmission electron microscopy investigation on the dissolution-regrowth mechanism dominating the shape evolution of silver nanoplates",
+    "authors": "Meng Dong, Ruining Fu, Huihua Min, Qiubo Zhang, Hui Dong, Yuchen Pan, Litao Sun, Wei Wei, Ming Qin, Zhen Zhu, Feng Xu",
+    "journal": "Crystal Growth & Design",
+    "highlight": false
+  },
+  {
+    "year": 2020,
+    "title": "Controlled oxidative etching of gold nanorods revealed through in-situ liquid cell electron microscopy",
+    "authors": "Wen Wang, Tao Xu, Tingting Bai, Chao Zhu, Qiubo Zhang, Hongtao Zhang, Hui Zhang, Zhirui Guo, Haimei Zheng, Litao Sun",
+    "journal": "Science China Materials",
+    "highlight": false
+  },
+  {
+    "year": 2020,
+    "title": "A Density Functional Theory Study of the Cu2ZnSnS4 Monolayer as a Photo-electrointegrated Catalyst for Water Splitting and Hydrogen Evolution",
+    "authors": "Ruifen Zhang, Xin Wen, Fen Xu, Qiubo Zhang, Lixian Sun",
+    "journal": "The Journal of Physical Chemistry C",
+    "highlight": false
+  },
+  {
+    "year": 2020,
+    "title": "Dynamic covalent synthesis of crystalline porous graphitic frameworks",
+    "authors": "Xinle Li, Hongxia Wang, Hao Chen, Qi Zheng, Qiubo Zhang, Haiyan Mao, Yawei Liu, Songliang Cai, Bing Sun, Chaochao Dun, Madeleine P Gordon, Haimei Zheng, Jeffrey A Reimer, Jeffrey J Urban, Jim Ciston, Tianwei Tan, Emory M Chan, Jian Zhang, Yi Liu",
+    "journal": "Chem",
+    "highlight": false
+  },
+  {
+    "year": 2019,
+    "title": "In situ observation of crystalline silicon growth from SiO2 at atomic scale",
+    "authors": "Kaihao Yu, Tao Xu, Xing Wu, Wen Wang, Hui Zhang, Qiubo Zhang, Luping Tang, Litao Sun",
+    "journal": "Research",
+    "highlight": false
+  },
+  {
+    "year": 2019,
+    "title": "Identifying surface structural changes in a newly-developed Ga-based alloy with melting temperature below 10° C",
+    "authors": "Qing Yu, Qiubo Zhang, Junjie Zong, Suya Liu, Xuelin Wang, Xiaodong Wang, Haimei Zheng, Qingping Cao, Dongxian Zhang, Jianzhong Jiang",
+    "journal": "Applied Surface Science",
+    "highlight": false
+  },
+  {
+    "year": 2019,
+    "title": "In situ interface engineering for probing the limit of quantum dot photovoltaic devices",
+    "authors": "Hui Dong, Feng Xu, Ziqi Sun, Xing Wu, Qiubo Zhang, Yusheng Zhai, Xiao Dong Tan, Longbing He, Tao Xu, Ze Zhang, Xiangfeng Duan, Litao Sun",
+    "journal": "Nature nanotechnology",
+    "highlight": false
+  },
+  {
+    "year": 2019,
+    "title": "Understanding the Ensemble of Growth Behaviors of Sub-10-nm Silver Nanorods Using in Situ Liquid Cell Transmission Electron Microscopy",
+    "authors": "Meng Dong, Wen Wang, Wei Wei, Xiaobing Hu, Ming Qin, Qiubo Zhang, Litao Sun, Feng Xu",
+    "journal": "The Journal of Physical Chemistry C",
+    "highlight": false
+  },
+  {
+    "year": 2019,
+    "title": "Visualization of facet-dependent pseudo-photocatalytic behavior of TiO2 nanorods for water splitting using in situ liquid cell TEM",
+    "authors": "Zu-Wei Yin, Sophia B Betzler, Tian Sheng, Qiubo Zhang, Xinxing Peng, Junyi Shangguan, Karen C Bustillo, Jun-Tao Li, Shi-Gang Sun, Haimei Zheng",
+    "journal": "Nano Energy",
+    "highlight": false
+  },
+  {
+    "year": 2019,
+    "title": "Revealing of the Activation Pathway and Cathode Electrolyte Interphase Evolution of Li-Rich 0.5Li2MnO3·0.5LiNi0.3Co0.3Mn0.4O2 Cathode by in Situ Electrochemical Quartz Crystal Microbalance",
+    "authors": "Zu-Wei Yin, Xin-Xing Peng, Jun-Tao Li, Chong-Heng Shen, Ya-Ping Deng, Zhen-Guo Wu, Tao Zhang, Qiu-Bo Zhang, Yu-Xue Mo, Kai Wang, Ling Huang, Haimei Zheng, Shi-Gang Sun",
+    "journal": "ACS applied materials & interfaces",
+    "highlight": false
+  },
+  {
+    "year": 2019,
+    "title": "Novel interface in CuAg nanostructure induced by size effect",
+    "authors": "Luping Tang, Wei Wu, Longbing He, Kaihao Yu, Tao Xu, Qiubo Zhang, Lei Zhang, Litao Sun",
+    "journal": "The Journal of Physical Chemistry Letters",
+    "highlight": false
+  },
+  {
+    "year": 2018,
+    "title": "Anomalous Shape Evolution of Ag2O2 Nanocrystals Modulated by Surface Adsorbates during Electron Beam Etching",
+    "authors": "Qiubo Zhang, Guoping Gao, Yuting Shen, Xinxing Peng, Junyi Shangguan, Yu Wang, Hui Dong, Karen Bustillo, Linwang Wang, Litao Sun, Haimei Zheng",
+    "journal": "Nano letters",
+    "highlight": false
+  },
+  {
+    "year": 2018,
+    "title": "In situ TEM study of the degradation of PbSe nanocrystals in air",
+    "authors": "Xinxing Peng, Alex Abelson, Yu Wang, Caroline Qian, Junyi Shangguan, Qiubo Zhang, Lei Yu, Zu-Wei Yin, Wenjing Zheng, Karen C Bustillo, Xuyun Guo, Hong-Gang Liao, Shi-Gang Sun, Matt Law, Haimei Zheng",
+    "journal": "Chemistry of Materials",
+    "highlight": false
+  },
+  {
+    "year": 2018,
+    "title": "In-situ TEM Study on Sub-10 nm Materials",
+    "authors": "Tao Xu, Yuting Shen, Chao Zhu, Qiubo Zhang, Haimei Zheng, Litao Sun",
+    "journal": "Microscopy and Microanalysis",
+    "highlight": false
+  },
+  {
+    "year": 2018,
+    "title": "Spring-Like Pseudoelectroelasticity of Monocrystalline Cu2S Nanowire",
+    "authors": "Qiubo Zhang, Zhe Shi, Kuibo Yin, Hui Dong, Feng Xu, Xinxing Peng, Kaihao Yu, Hongtao Zhang, Chia-Chin Chen, Ilia Valov, Haimei Zheng, Litao Sun",
+    "journal": "Nano letters",
+    "highlight": false
+  },
+  {
+    "year": 2018,
+    "title": "In situ atomic-scale observation of monolayer graphene growth from SiC",
+    "authors": "Kaihao Yu, Wen Zhao, Xing Wu, Jianing Zhuang, Xiaohui Hu, Qiubo Zhang, Jun Sun, Tao Xu, Yang Chai, Feng Ding, Litao Sun",
+    "journal": "Nano Research",
+    "highlight": false
+  },
+  {
+    "year": 2018,
+    "title": "A Novel Domain‐Confined Growth Strategy for In Situ Controllable Fabrication of Individual Hollow Nanostructures",
+    "authors": "Luping Tang, Longbing He, Lei Zhang, Kaihao Yu, Tao Xu, Qiubo Zhang, Hui Dong, Chao Zhu, Litao Sun",
+    "journal": "Advanced Science",
+    "highlight": false
+  },
+  {
+    "year": 2018,
+    "title": "Novel behaviors/properties of nanometals induced by surface effects",
+    "authors": "Long-Bing He, Lei Zhang, Lu-Ping Tang, Jun Sun, Qiu-Bo Zhang, Li-Tao Sun",
+    "journal": "Materials Today Nano",
+    "highlight": false
+  },
+  {
+    "year": 2018,
+    "title": "Simultaneous atomic-level visualization and high precision photocurrent measurements on photoelectric devices by in situ TEM",
+    "authors": "Hui Dong, Tao Xu, Ziqi Sun, Qiubo Zhang, Xing Wu, Longbing He, Feng Xu, Litao Sun",
+    "journal": "RSC advances",
+    "highlight": false
+  },
+  {
+    "year": 2017,
+    "title": "Electrically driven cation exchange for in situ fabrication of individual nanostructures",
+    "authors": "Qiubo Zhang, Kuibo Yin, Hui Dong, Yilong Zhou, Xiaodong Tan, Kaihao Yu, Xiaohui Hu, Tao Xu, Chao Zhu, Weiwei Xia, Feng Xu, Haimei Zheng, Litao Sun",
+    "journal": "Nature communications",
+    "highlight": false
+  },
+  {
+    "year": 2017,
+    "title": "Incorporating pyrrolic and pyridinic nitrogen into a porous carbon made from C-60 molecules to obtain superior energy storage",
+    "authors": "Ziqi Tan, Kun Ni, Guanxiong Chen, Wencong Zeng, Zhuchen Tao, Mujtaba Ikram, Qiubo Zhang, Huijuan Wang, Litao Sun, Xianjun Zhu, Xiaojun Wu, Hengxing Ji, Rodney S Ruoff, Yanwu Zhu",
+    "journal": "Advanced Materials",
+    "highlight": false
+  },
+  {
+    "year": 2016,
+    "title": "New Insights into Electrochemical Lithiation/Delithiation Mechanism of α-MoO3 Nanobelt by in Situ Transmission Electron Microscopy",
+    "authors": "Weiwei Xia, Qiubo Zhang, Feng Xu, Litao Sun",
+    "journal": "ACS Applied Materials & Interfaces",
+    "highlight": false
+  },
+  {
+    "year": 2016,
+    "title": "Visualizing the Electrochemical Lithiation/Delithiation Behaviors of Black Phosphorus by in Situ Transmission Electron Microscopy",
+    "authors": "Weiwei Xia, Qiubo Zhang, Feng Xu, Hongyu Ma, Jing Chen, Khan Qasim, Binghui Ge, Chongyang Zhu, Litao Sun",
+    "journal": "The Journal of Physical Chemistry C",
+    "highlight": false
+  },
+  {
+    "year": 2014,
+    "title": "Two intermediate bands solar cells of InGaN/InN quantum dot supracrystals",
+    "authors": "Wensheng Wei, Qiubo Zhang, Shaoyun Zhao, Yaoju Zhang",
+    "journal": "Applied Physics A",
+    "highlight": false
+  },
+  {
+    "year": 2014,
+    "title": "Performance Comparison for Different Material Quantum Dot Single Intermediate Band Solar Cells",
+    "authors": "Wen Sheng Wei, Feng Shan, Shao Yun Zhao, Qiu Bo Zhang",
+    "journal": "Applied Mechanics and Materials",
+    "highlight": false
+  },
+  {
+    "year": 2013,
+    "title": "Single intermediate-band solar cells of InGaN/InN quantum dot supracrystals",
+    "authors": "Qiubo Zhang, Wensheng Wei",
+    "journal": "Applied Physics A",
+    "highlight": false
+  }
+]
