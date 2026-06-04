@@ -80,6 +80,7 @@
                 </div>
             </div>
         </div>
+        <div class="atomic-bg-pattern"></div>
     </header>
 
     <!-- Main Content -->
@@ -89,7 +90,10 @@
 
                 <!-- Left Column: News Feed (关键容器ID，JS通过此ID识别列表) -->
                 <div class="col-lg-8" id="news-feed">
-                    <div class="text-center text-muted py-5">Loading news...</div>
+                    <div class="text-center text-muted py-5">
+                        <div class="spinner-border text-seu-green mb-3" role="status"></div>
+                        <p>Loading news...</p>
+                    </div>
 
                     <!-- No Results Found 提示 -->
                     <div id="noNewsMsg" class="text-center py-5" style="display: none;">

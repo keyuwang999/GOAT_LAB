@@ -1,0 +1,92 @@
+[
+    {
+        "id": "EQ-001",
+        "name": "这是名字1",
+        "category": "equipment",
+        "location": "这是地点1",
+        "status": "normal",
+        "owner": "这是持有人1",
+        "image": "images/logo.png",
+        "desc": "这是描述1"
+    },
+    {
+        "id": "MT-001",
+        "name": "这是名字2",
+        "category": "material",
+        "location": "地点2",
+        "status": "low",
+        "owner": "持有人2",
+        "image": "images/logo.png",
+        "desc": "描述2"
+    },
+    {
+        "id": "TL-001",
+        "name": "名字3",
+        "category": "tool",
+        "location": "地点",
+        "status": "borrowed",
+        "owner": "持有人",
+        "image": "images/logo.png",
+        "desc": "描述."
+    },
+    {
+        "id": "TL-002",
+        "name": "名字3",
+        "category": "tool",
+        "location": "地点",
+        "status": "borrowed",
+        "owner": "持有人",
+        "image": "images/logo.png",
+        "desc": "描述."
+    },
+    {
+        "id": "TL-003",
+        "name": "名字3",
+        "category": "tool",
+        "location": "地点",
+        "status": "borrowed",
+        "owner": "持有人",
+        "image": "images/logo.png",
+        "desc": "描述."
+    },
+    {
+        "id": "TL-004",
+        "name": "名字3",
+        "category": "tool",
+        "location": "地点",
+        "status": "borrowed",
+        "owner": "持有人",
+        "image": "images/logo.png",
+        "desc": "描述."
+    },
+    {
+        "id": "TL-005",
+        "name": "名字3",
+        "category": "tool",
+        "location": "地点",
+        "status": "borrowed",
+        "owner": "持有人",
+        "image": "images/logo.png",
+        "desc": "描述."
+    },
+    {
+        "id": "TL-006",
+        "name": "名字3",
+        "category": "tool",
+        "location": "地点",
+        "status": "borrowed",
+        "owner": "持有人",
+        "image": "images/logo.png",
+        "desc": "描述."
+    },
+    {
+        "id": "TL-007",
+        "name": "名字3",
+        "category": "tool",
+        "location": "地点",
+        "status": "borrowed",
+        "owner": "持有人",
+        "image": "images/logo.png",
+        "desc": "描述."
+    }
+]

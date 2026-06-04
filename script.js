@@ -35,12 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- 4. 论文页：搜索与吸顶 ---
     initPublicationFeatures();
 
-    // --- 5. 新闻页：分页与筛选 ---
-    // 只有在存在新闻列表容器时才启动新闻系统，避免在其他页面空跑资源
-    if (document.getElementById('news-feed')) {
-        initNewsSystem();
-    }
-
     // --- 6. 相册页：GLightbox 与 动画过滤 ---
     initGalleryFeatures();
 
@@ -194,39 +188,42 @@ function initPublicationFeatures() {
     // 搜索
     const searchInput = document.getElementById('paperSearch');
     if (searchInput) {
+        let paperSearchTimeout; // 【新增】：准备一个变量来存定时器
+
         searchInput.addEventListener('keyup', function () {
-            const term = this.value.toLowerCase();
-            const items = document.querySelectorAll('.pub-list li');
-            let hasResult = false;
+            clearTimeout(paperSearchTimeout); // 【新增】：只要敲了键盘，就打断之前的倒计时
 
-            items.forEach(item => {
-                if (item.innerText.toLowerCase().includes(term)) {
-                    item.style.display = '';
-                    hasResult = true;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+            // 【新增】：设置一个新的 300 毫秒倒计时，把原本的搜索逻辑包在里面
+            paperSearchTimeout = setTimeout(() => {
+                const term = this.value.toLowerCase();
+                const items = document.querySelectorAll('.pub-list li');
+                let hasResult = false;
 
-            const noMsg = document.getElementById('noResultsMsg');
-            if (noMsg) noMsg.style.display = hasResult ? 'none' : 'block';
+                items.forEach(item => {
+                    if (item.innerText.toLowerCase().includes(term)) {
+                        item.style.display = '';
+                        hasResult = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                const noMsg = document.getElementById('noResultsMsg');
+                if (noMsg) noMsg.style.display = hasResult ? 'none' : 'block';
+            }, 300); // 300 毫秒后执行
         });
     }
 
-    // 手机吸顶
+    // 手机吸顶 (这部分保留你原来的不变)
     const searchContainer = document.getElementById('searchContainer');
     const searchPlaceholder = document.getElementById('searchPlaceholder');
     
     if (searchContainer && searchPlaceholder) {
         window.addEventListener('scroll', () => {
-            // 只在移动端判断
             if (window.innerWidth < 992) {
-                // 占位块位置检测
                 const rect = searchPlaceholder.getBoundingClientRect();
-                // 76px 是导航栏底部的界限
                 const shouldFix = rect.top <= 76;
                 
-                // 仅当状态改变时才操作 Class，减少重绘
                 if (shouldFix && !searchContainer.classList.contains('search-is-fixed')) {
                     searchContainer.classList.add('search-is-fixed');
                     searchPlaceholder.classList.add('show');
@@ -235,7 +232,6 @@ function initPublicationFeatures() {
                     searchPlaceholder.classList.remove('show');
                 }
             } else {
-                // 电脑端清理
                 searchContainer.classList.remove('search-is-fixed');
                 searchPlaceholder.classList.remove('show');
             }
@@ -256,14 +252,21 @@ function initNewsSystem() {
 
     // 绑定搜索
     if (searchInput) {
+        let newsSearchTimeout; // 【新增】：新闻专用的定时器变量
+
         searchInput.addEventListener('keyup', (e) => {
-            // 清除分类高亮
-            catLinks.forEach(l => l.classList.remove('text-seu-green', 'fw-bold'));
-            runNewsFilter(e.target.value.toLowerCase(), 'all');
+            clearTimeout(newsSearchTimeout); // 【新增】：打断倒计时
+
+            // 【新增】：设置倒计时
+            newsSearchTimeout = setTimeout(() => {
+                // 清除分类高亮
+                catLinks.forEach(l => l.classList.remove('text-seu-green', 'fw-bold'));
+                runNewsFilter(e.target.value.toLowerCase(), 'all');
+            }, 300); // 300 毫秒后执行
         });
     }
 
-    // 绑定分类
+    // 绑定分类 (这部分保留你原来的不变)
     catLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();

@@ -214,3 +214,54 @@ body { counter-reset: paper-counter; }
     animation: spin 1s linear infinite;
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+/* =========================================
+   优化5：原子背景纹理 (Atomic Background Pattern)
+   ========================================= */
+
+/* 1. 加固页头容器，防止纹理溢出，并确保内容分层 */
+.page-header {
+    position: relative;
+    overflow: hidden; /* 防止巨型原子模型溢出边界 */
+}
+
+/* 2. 确保文字内容在纹理上方，绝对不会被遮挡 */
+.page-header .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* 3. 纹理暗纹核心样式 */
+.atomic-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.12; /* 严格控制透明度，若隐若现，保证白字标题清晰可读 */
+    pointer-events: none; /* 穿透鼠标事件，不影响页面任何点击操作 */
+    
+    /* 使用内联 SVG 编码绘制晶格与原子轨道 */
+    background-image: 
+        /* 第一层：无限平铺的纳米级晶格线与晶格点 */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.2'%3E%3Cpath d='M0 0h80v80H0z'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='0' cy='0' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='0' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='0' cy='80' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='80' r='1' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/g%3E%3C/svg%3E"),
+        /* 第二层：右侧不平铺的巨型经典原子模型（包含原子核与3条电子轨道） */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2' stroke-opacity='0.6'%3E%3Ccircle cx='200' cy='200' r='10' fill='%23ffffff' fill-opacity='0.3'/%3E%3Cellipse cx='200' cy='200' rx='130' ry='45' transform='rotate(0 200 200)'/%3E%3Cellipse cx='200' cy='200' rx='130' ry='45' transform='rotate(60 200 200)'/%3E%3Cellipse cx='200' cy='200' rx='130' ry='45' transform='rotate(120 200 200)'/%3E%3Ccircle cx='200' cy='75' r='3.5' fill='%23ffffff'/%3E%3Ccircle cx='95' cy='260' r='3.5' fill='%23ffffff'/%3E%3Ccircle cx='305' cy='260' r='3.5' fill='%23ffffff'/%3E%3C/g%3E%3C/svg%3E");
+    
+    /* 第一层全屏平铺，第二层靠右侧 10% 垂直居中显示 */
+    background-position: center center, right 10% center;
+    background-repeat: repeat, no-repeat;
+    background-size: auto, 280px 280px;
+}
+
+/* 4. 移动端响应式适配 */
+@media (max-width: 768px) {
+    .atomic-bg-pattern {
+        /* 手机端屏幕小，去掉巨型原子，只留纯晶格微细暗纹，防止视觉过于杂乱 */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.15'%3E%3Cpath d='M0 0h60v60H0z'/%3E%3Ccircle cx='30' cy='30' r='1' fill='%23ffffff' fill-opacity='0.3'/%3E%3C/g%3E%3C/svg%3E");
+        background-position: center center;
+        background-repeat: repeat;
+        background-size: auto;
+        opacity: 0.08;
+    }
+}

@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('news-feed')) {
         loadNews();
     }
+
+    if (document.getElementById('inventory-grid')) {
+        loadInventory();
+    }
 });
 
 /* =========================================
@@ -63,7 +67,18 @@ function loadNavbar() {
             });
             container.innerHTML = html;
         })
-        .catch(error => console.error('Error loading navbar:', error));
+        .catch(error => {
+            console.error('Error loading navbar:', error);
+            const container = document.getElementById('nav-menu-container');
+            if (container) {
+                // 如果导航加载失败，在右上角显示一个红色的错误提示
+                container.innerHTML = `
+                    <li class="nav-item">
+                        <span class="nav-link text-danger fw-bold"><i class="fas fa-exclamation-circle me-1"></i>Menu Load Error</span>
+                    </li>
+                `;
+            }
+        });
 }
 
 /* =========================================
@@ -142,7 +157,7 @@ function loadPeople() {
                 <div class="profile-row d-flex flex-column flex-md-row align-items-start py-4 border-bottom" data-aos="fade-up" data-aos-delay="${index * 50}">
                     <div class="mb-3 mb-md-0 me-md-4 flex-shrink-0">
                         <a href="${person.image}" class="glightbox">
-                            <img src="${person.image}" alt="${person.name}" class="member-img-rect rounded shadow-sm" onerror="this.src='images/placeholder_user.png'">
+                            <img src="${person.image}" alt="${person.name}" class="member-img-rect rounded shadow-sm" onerror="this.onerror=null;this.src='images/placeholder_user.png'">
                         </a>
                     </div>
                     <div class="flex-grow-1">
@@ -165,6 +180,22 @@ function loadPeople() {
             // 重新初始化 AOS 动画和 GLightbox
             if (typeof AOS !== 'undefined') AOS.refresh();
             if (typeof GLightbox !== 'undefined') GLightbox({ selector: '.glightbox' });
+        })
+        .catch(error => {
+            // 拦截到错误，执行这里的“备用方案”
+            console.error('获取人员数据失败:', error); 
+            
+            const container = document.getElementById('people-container');
+            if (container) {
+                // 用友好的提示替换掉原本的 Loading 文字
+                container.innerHTML = `
+                    <div class="text-center py-5 text-danger opacity-75">
+                        <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                        <h5>Sorry, data failed to load.</h5>
+                        <p class="text-muted small">Please refresh the page or try again later.</p>
+                    </div>
+                `;
+            }
         });
 }
 
@@ -271,6 +302,19 @@ function loadPublications() {
                 });
                 mobileSelect.innerHTML = opts;
             }
+        })
+        .catch(error => {
+            console.error('获取论文数据失败:', error);
+            const listContainer = document.getElementById('publications-container');
+            if (listContainer) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-5 text-danger opacity-75">
+                        <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                        <h5>Sorry, publications failed to load.</h5>
+                        <p class="text-muted small">Please refresh the page or try again later.</p>
+                    </div>
+                `;
+            }
         });
 }
 
@@ -306,6 +350,18 @@ function loadFeaturedPublications() {
                 `;
             });
             container.innerHTML = html;
+        })
+        .catch(error => {
+            console.error('获取精选论文失败:', error);
+            const container = document.getElementById('featured-container');
+            if (container) {
+                // 主页使用相对小巧的提示框
+                container.innerHTML = `
+                    <div class="alert alert-danger text-center border-0 opacity-75" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i> Failed to load featured publications.
+                    </div>
+                `;
+            }
         });
 }
 
@@ -338,7 +394,7 @@ function loadNews() {
                 <div class="card border-0 shadow-sm mb-5 news-card news-item" data-category="${item.category}" data-aos="fade-up">
                     <div class="row g-0">
                         <div class="col-md-4 position-relative">
-                            <img src="${item.image}" class="img-fluid h-100 object-fit-cover rounded-start" alt="News Image" onerror="this.src='images/placeholder_news.jpg'">
+                            <img src="${item.image}" class="img-fluid h-100 object-fit-cover rounded-start" alt="News Image" onerror="this.onerror=null;this.src='images/placeholder_news.jpg'">
                             <div class="date-badge-overlay">
                                 <span class="day">${item.day}</span>
                                 <span class="month">${item.month}</span>
@@ -370,7 +426,7 @@ function loadNews() {
             html += `
             <div id="noNewsMsg" class="text-center py-5" style="display: none;">
                 <p class="text-muted">No news found matching your criteria.</p>
-                <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('newsSearchInput').value=''; runInternalNewsFilter('', 'all');">Clear Search</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('newsSearchInput').value=''; runNewsFilter('', 'all');">Clear Search</button>
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center" id="pagination-container"></ul>
@@ -389,6 +445,19 @@ function loadNews() {
             }
             
             if(typeof AOS !== 'undefined') AOS.refresh();
+        })
+        .catch(error => {
+            console.error('获取新闻数据失败:', error);
+            const container = document.getElementById('news-feed');
+            if (container) {
+                container.innerHTML = `
+                    <div class="text-center py-5 text-danger opacity-75">
+                        <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                        <h5>Sorry, news failed to load.</h5>
+                        <p class="text-muted small">Please refresh the page or try again later.</p>
+                    </div>
+                `;
+            }
         });
 }
 
@@ -421,4 +490,104 @@ function updateSidebarCounts(data) {
     updateBadge('publication', counts.publication);
     updateBadge('academic', counts.academic);
     updateBadge('community', counts.community);
+}
+/* =========================================
+   6. 资产清单加载器 (Inventory Loader)
+   ========================================= */
+function loadInventory() {
+    fetch('data/inventory.json')
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            return res.json();
+        })
+        .then(data => {
+            const container = document.getElementById('inventory-grid');
+            if (!container) return;
+
+            const renderGrid = (filterText, filterCategory) => {
+                let html = '';
+                let count = 0;
+
+                data.forEach(item => {
+                    const matchText = item.name.toLowerCase().includes(filterText) || item.id.toLowerCase().includes(filterText);
+                    const matchCat = filterCategory === 'all' || item.category === filterCategory;
+                    
+                    if (!(matchText && matchCat)) return;
+                    count++;
+
+                    // 状态指示灯逻辑 - 已汉化
+                    let statusBadge = '';
+                    if (item.status === 'normal') statusBadge = `<span class="badge bg-success bg-opacity-10 text-success border border-success"><i class="fas fa-check-circle me-1"></i> 正常可用</span>`;
+                    else if (item.status === 'borrowed') statusBadge = `<span class="badge bg-warning bg-opacity-10 text-warning border border-warning"><i class="fas fa-hand-holding me-1"></i> 已借出</span>`;
+                    else if (item.status === 'low' || item.status === 'maintenance') statusBadge = `<span class="badge bg-danger bg-opacity-10 text-danger border border-danger"><i class="fas fa-exclamation-triangle me-1"></i> 告急 / 维修中</span>`;
+
+                    // 生成卡片
+                    html += `
+                    <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                        <div class="card h-100 border-0 shadow-sm hover-card overflow-hidden">
+                            <div class="bg-light" style="height: 180px;">
+                                <img src="${item.image}" class="w-100 h-100 object-fit-cover" alt="${item.name}" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="text-muted small font-monospace">${item.id}</span>
+                                    ${statusBadge}
+                                </div>
+                                <h4 class="h5 font-serif fw-bold text-dark-blue mb-2">${item.name}</h4>
+                                <p class="text-muted small mb-3 text-clamp-2">${item.desc}</p>
+                                <hr class="opacity-10">
+                                <div class="d-flex justify-content-between small">
+                                    <span class="text-muted"><i class="fas fa-map-marker-alt text-seu-green me-1"></i> ${item.location}</span>
+                                    <span class="text-muted"><i class="fas fa-user text-seu-green me-1"></i> ${item.owner}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+
+                if (count === 0) {
+                    html = `<div class="col-12 text-center py-5 text-muted"><i class="fas fa-box-open fa-3x mb-3 opacity-25"></i><p>未找到符合条件的资产。</p></div>`;
+                }
+                container.innerHTML = html;
+                if(typeof AOS !== 'undefined') AOS.refresh();
+            };
+
+            renderGrid('', 'all');
+
+            const searchInput = document.getElementById('inventorySearch');
+            let searchTimeout;
+            if (searchInput) {
+                searchInput.addEventListener('keyup', (e) => {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        const currentCat = document.querySelector('.inv-filter-btn.active').getAttribute('data-filter');
+                        renderGrid(e.target.value.toLowerCase(), currentCat);
+                    }, 300);
+                });
+            }
+
+            const filterBtns = document.querySelectorAll('.inv-filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => b.classList.remove('active', 'bg-seu-green', 'text-white'));
+                    btn.classList.add('active', 'bg-seu-green', 'text-white');
+                    
+                    const term = searchInput ? searchInput.value.toLowerCase() : '';
+                    renderGrid(term, btn.getAttribute('data-filter'));
+                });
+            });
+        })
+        .catch(error => {
+            console.error('获取资产数据失败:', error);
+            const container = document.getElementById('inventory-grid');
+            if (container) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5 text-danger opacity-75">
+                        <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                        <h5>资产数据加载失败。</h5>
+                        <p class="text-muted small">请刷新页面或稍后重试。</p>
+                    </div>`;
+            }
+        });
 }
