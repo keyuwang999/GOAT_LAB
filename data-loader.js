@@ -183,8 +183,8 @@ function loadPeople() {
         })
         .catch(error => {
             // 拦截到错误，执行这里的“备用方案”
-            console.error('获取人员数据失败:', error); 
-            
+            console.error('获取人员数据失败:', error);
+
             const container = document.getElementById('people-container');
             if (container) {
                 // 用友好的提示替换掉原本的 Loading 文字
@@ -443,8 +443,8 @@ function loadNews() {
             if (typeof initNewsSystem === 'function') {
                 initNewsSystem(); // 重新读取 DOM 元素
             }
-            
-            if(typeof AOS !== 'undefined') AOS.refresh();
+
+            if (typeof AOS !== 'undefined') AOS.refresh();
         })
         .catch(error => {
             console.error('获取新闻数据失败:', error);
@@ -491,70 +491,156 @@ function updateSidebarCounts(data) {
     updateBadge('academic', counts.academic);
     updateBadge('community', counts.community);
 }
+
 /* =========================================
-   6. 资产清单加载器 (Inventory Loader)
+   6. 资产清单加载器 (对接维格表后台)
    ========================================= */
 function loadInventory() {
-    fetch('data/inventory.json')
+    // 【注意：你需要修改下面这两行】
+    const DATASHEET_ID = 'dstl1RyX7VKqrWydsW'; // 替换为你的表格 ID
+    const API_TOKEN = 'uskVaWW1ukPpUubP6PHCHqP';    // 替换为你的 API Token
+
+    // 维格表的接口地址
+    const API_URL = `https://api.vika.cn/fusion/v1/datasheets/${DATASHEET_ID}/records`;
+
+    // 带着 Token 发起请求，而不是去读本地的 json 文件
+    fetch(API_URL, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${API_TOKEN}`
+        }
+    })
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             return res.json();
         })
-        .then(data => {
+        .then(responseJson => {
             const container = document.getElementById('inventory-grid');
             if (!container) return;
 
+            // 【关键改变】：解析维格表嵌套的数据结构，提取出有用的字段
+            const data = responseJson.data.records.map(record => record.fields);
+
+            // 渲染网格视图
             const renderGrid = (filterText, filterCategory) => {
                 let html = '';
                 let count = 0;
 
                 data.forEach(item => {
-                    const matchText = item.name.toLowerCase().includes(filterText) || item.id.toLowerCase().includes(filterText);
-                    const matchCat = filterCategory === 'all' || item.category === filterCategory;
-                    
+                    // 1. 基础数据读取
+                    const id = item.id || 'N/A';
+                    const name = item.name || '未命名';
+                    const status = item.status || 'normal';
+
+                    // 2. 安全读取 Category (分类单选项)
+                    let categoryStr = '其他';
+                    if (typeof item.category === 'string') {
+                        categoryStr = item.category;
+                    } else if (item.category && item.category.name) {
+                        categoryStr = item.category.name;
+                    }
+
+                    // 3. 【新增】安全读取 Owner (负责人单选项)
+                    let ownerStr = '待分配';
+                    if (typeof item.owner === 'string') {
+                        ownerStr = item.owner;
+                    } else if (item.owner && item.owner.name) {
+                        ownerStr = item.owner.name;
+                    } else if (Array.isArray(item.owner)) {
+                        // 顺手做一个兼容：如果以后你把负责人改成了“多选”，网页也能正常显示两个人名
+                        ownerStr = item.owner.map(o => typeof o === 'string' ? o : o.name).join(', ');
+                    }
+
+                    // 4. 中英文分类字典映射
+                    const categoryMap = {
+                        'equipment': '仪器设备',
+                        'material': '实验耗材',
+                        'tool': '工具配件'
+                    };
+                    const targetChineseCat = categoryMap[filterCategory];
+
+                    // 5. 【修复】强大的搜索匹配逻辑 (现在把 ownerStr 也加进来了)
+                    const filterTextLower = filterText.toLowerCase();
+                    const matchText = name.toLowerCase().includes(filterTextLower) ||
+                        id.toLowerCase().includes(filterTextLower) ||
+                        ownerStr.toLowerCase().includes(filterTextLower); // 支持搜人名！
+
+                    const matchCat = filterCategory === 'all' || categoryStr === targetChineseCat;
+
                     if (!(matchText && matchCat)) return;
                     count++;
 
-                    // 状态指示灯逻辑 - 已汉化
-                    let statusBadge = '';
-                    if (item.status === 'normal') statusBadge = `<span class="badge bg-success bg-opacity-10 text-success border border-success"><i class="fas fa-check-circle me-1"></i> 正常可用</span>`;
-                    else if (item.status === 'borrowed') statusBadge = `<span class="badge bg-warning bg-opacity-10 text-warning border border-warning"><i class="fas fa-hand-holding me-1"></i> 已借出</span>`;
-                    else if (item.status === 'low' || item.status === 'maintenance') statusBadge = `<span class="badge bg-danger bg-opacity-10 text-danger border border-danger"><i class="fas fa-exclamation-triangle me-1"></i> 告急 / 维修中</span>`;
+                    // 6. 极简状态指示灯逻辑
+                    let statusArray = [];
+                    if (Array.isArray(item.status)) {
+                        statusArray = item.status;
+                    } else if (item.status) {
+                        statusArray = [item.status];
+                    } else {
+                        statusArray = ['正常闲置'];
+                    }
 
-                    // 生成卡片
+                    let statusBadge = '';
+                    statusArray.forEach(tag => {
+                        let badgeClass = 'bg-secondary text-secondary border-secondary';
+                        let icon = 'fa-info-circle';
+
+                        if (tag.includes('正常') || tag.includes('闲置')) {
+                            badgeClass = 'bg-success text-success border-success';
+                            icon = 'fa-check-circle';
+                        } else if (tag.includes('使用') || tag.includes('借') || tag.includes('占')) {
+                            badgeClass = 'bg-warning text-warning border-warning';
+                            icon = 'fa-hand-holding';
+                        } else if (tag.includes('修') || tag.includes('异常') || tag.includes('坏') || tag.includes('废')) {
+                            badgeClass = 'bg-danger text-danger border-danger';
+                            icon = 'fa-tools';
+                        } else if (tag.includes('急') || tag.includes('缺') || tag.includes('尽')) {
+                            badgeClass = 'bg-danger text-danger border-danger';
+                            icon = 'fa-exclamation-triangle';
+                        }
+
+                        statusBadge += `<span class="badge ${badgeClass} bg-opacity-10 border ms-1 mb-1"><i class="fas ${icon} me-1"></i> ${tag}</span>`;
+                    });
+
+                    // 7. 生成卡片 HTML (注意底部负责人使用了转换后的 ownerStr)
                     html += `
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
                         <div class="card h-100 border-0 shadow-sm hover-card overflow-hidden">
-                            <div class="bg-light" style="height: 180px;">
-                                <img src="${item.image}" class="w-100 h-100 object-fit-cover" alt="${item.name}" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
+                            <div class="bg-light p-2" style="height: 180px;">
+                                <a href="${item.image || 'images/placeholder_news.jpg'}" class="glightbox" data-title="${name}">
+                                    <img src="${item.image || 'images/placeholder_news.jpg'}" class="w-100 h-100 object-fit-contain" style="cursor: zoom-in;" alt="${name}" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
+                                </a>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <span class="text-muted small font-monospace">${id}</span>
+                                ${statusBadge}
                             </div>
-                            <div class="card-body p-4">
-                                <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <span class="text-muted small font-monospace">${item.id}</span>
-                                    ${statusBadge}
-                                </div>
-                                <h4 class="h5 font-serif fw-bold text-dark-blue mb-2">${item.name}</h4>
-                                <p class="text-muted small mb-3 text-clamp-2">${item.desc}</p>
-                                <hr class="opacity-10">
-                                <div class="d-flex justify-content-between small">
-                                    <span class="text-muted"><i class="fas fa-map-marker-alt text-seu-green me-1"></i> ${item.location}</span>
-                                    <span class="text-muted"><i class="fas fa-user text-seu-green me-1"></i> ${item.owner}</span>
-                                </div>
+                            <h4 class="h5 font-serif fw-bold text-dark-blue mb-2">${name}</h4>
+                            <p class="text-muted small mb-3 text-clamp-2">${item.desc || '暂无描述'}</p>
+                            <hr class="opacity-10">
+                            <div class="d-flex justify-content-between small">
+                                <span class="text-muted"><i class="fas fa-map-marker-alt text-seu-green me-1"></i> ${item.location || '未知'}</span>
+                                <span class="text-muted"><i class="fas fa-user text-seu-green me-1"></i> ${ownerStr}</span>
                             </div>
                         </div>
                     </div>
-                    `;
+                </div>
+                `;
                 });
 
                 if (count === 0) {
                     html = `<div class="col-12 text-center py-5 text-muted"><i class="fas fa-box-open fa-3x mb-3 opacity-25"></i><p>未找到符合条件的资产。</p></div>`;
                 }
                 container.innerHTML = html;
-                if(typeof AOS !== 'undefined') AOS.refresh();
+                if (typeof AOS !== 'undefined') AOS.refresh();
+                if(typeof GLightbox !== 'undefined') GLightbox({ selector: '.glightbox' });
             };
 
+            // 初始化渲染
             renderGrid('', 'all');
 
+            // 绑定搜索功能
             const searchInput = document.getElementById('inventorySearch');
             let searchTimeout;
             if (searchInput) {
@@ -567,12 +653,13 @@ function loadInventory() {
                 });
             }
 
+            // 绑定分类筛选按钮
             const filterBtns = document.querySelectorAll('.inv-filter-btn');
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     filterBtns.forEach(b => b.classList.remove('active', 'bg-seu-green', 'text-white'));
                     btn.classList.add('active', 'bg-seu-green', 'text-white');
-                    
+
                     const term = searchInput ? searchInput.value.toLowerCase() : '';
                     renderGrid(term, btn.getAttribute('data-filter'));
                 });
@@ -583,11 +670,11 @@ function loadInventory() {
             const container = document.getElementById('inventory-grid');
             if (container) {
                 container.innerHTML = `
-                    <div class="col-12 text-center py-5 text-danger opacity-75">
-                        <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
-                        <h5>资产数据加载失败。</h5>
-                        <p class="text-muted small">请刷新页面或稍后重试。</p>
-                    </div>`;
+                <div class="col-12 text-center py-5 text-danger opacity-75">
+                    <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                    <h5>资产数据加载失败。</h5>
+                    <p class="text-muted small">请检查网络或维格表接口设置。</p>
+                </div>`;
             }
         });
 }
