@@ -27,8 +27,16 @@ document.addEventListener('DOMContentLoaded', function () {
         loadNews();
     }
 
+    if (document.getElementById('gallery-grid')) {
+        loadGallery();
+    }
+
     if (document.getElementById('inventory-grid')) {
         loadInventory();
+    }
+
+    if (document.getElementById('home-recent-news')) {
+        loadHomeData();
     }
 });
 
@@ -82,46 +90,61 @@ function loadNavbar() {
 }
 
 /* =========================================
-   2. 页脚加载器 (Footer Loader)
+   2. 页脚加载器 (Footer Loader - 无备案优化版)
    ========================================= */
 function loadFooter() {
-    const container = document.getElementById('global-footer');
-    if (!container) return;
+    const footer = document.getElementById('global-footer');
+    if (!footer) return;
 
-    // 这里放统一的页脚 HTML
-    container.innerHTML = `
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h4 class="mb-4">GOAT LAB</h4>
-                    <p class="small opacity-75">
-                        School of Integrated Circuits<br>
-                        Southeast University (Wuxi Campus)
-                    </p>
-                    <p class="small opacity-75">
-                        <i class="fas fa-map-marker-alt me-2"></i> No. 99, Linghu Avenue, Xinwu District, Wuxi, Jiangsu, China
-                    </p>
+    footer.innerHTML = `
+    <div class="container">
+        <div class="row g-4 mb-4">
+            <!-- 左侧：课题组信息 -->
+            <div class="col-lg-5 pe-lg-5">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="images/logo2.png" alt="GOAT LAB Logo" height="40" class="me-2" onerror="this.style.display='none'">
+                    <h5 class="font-serif fw-bold mb-0">G.O.A.T LAB</h5>
                 </div>
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5 class="mb-3">Quick Links</h5>
-                    <ul class="list-unstyled small opacity-75">
-                        <li><a href="research.html" class="text-white text-decoration-none">Research</a></li>
-                        <li><a href="publications.html" class="text-white text-decoration-none">Publications</a></li>
-                        <li><a href="join.html" class="text-white text-decoration-none">Join Us</a></li>
-                        <li><a href="https://www.seu.edu.cn" target="_blank" class="text-white text-decoration-none">Southeast University</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <h5 class="mb-3">Contact</h5>
-                    <ul class="list-unstyled small opacity-75">
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>qiubozhang@seu.edu.cn</li>
-                    </ul>
-                </div>
+                <p class="text-white-50 small mb-4">
+                    致力于在原子尺度下探索材料结构与器件性能的本源。依托东南大学无锡校区微纳中心，开展原位电子显微学、微纳制造与高熵合金的前沿研究。
+                </p>
             </div>
-            <div class="border-top border-secondary mt-4 pt-4 text-center small opacity-50">
-                &copy; ${new Date().getFullYear()} GOAT LAB. All Rights Reserved.
+
+            <!-- 中间：快捷链接 -->
+            <div class="col-lg-3 col-md-6">
+                <h6 class="text-uppercase text-seu-green fw-bold mb-3">快捷链接</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><a href="https://www.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">东南大学官网</a></li>
+                    <li class="mb-2"><a href="https://wuxi.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">东南大学无锡校区</a></li>
+                    <li class="mb-2"><a href="https://yzb.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">东南大学研究生招生网</a></li>
+                </ul>
+            </div>
+
+            <!-- 右侧：联系方式 -->
+            <div class="col-lg-4 col-md-6">
+                <h6 class="text-uppercase text-seu-green fw-bold mb-3">联系我们</h6>
+                <ul class="list-unstyled text-white-50 small mb-0">
+                    <li class="mb-2">
+                        <i class="fas fa-map-marker-alt fa-fw me-2"></i> 江苏省无锡市滨湖区状元道5号<br>
+                        <span class="ms-4">东南大学无锡校区 微纳中心</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-envelope fa-fw me-2"></i> qiubozhang@seu.edu.cn
+                    </li>
+                </ul>
             </div>
         </div>
+
+        <!-- 底部版权信息 (无备案版) -->
+        <div class="row border-top border-secondary pt-4 mt-4">
+            <div class="col-md-6 text-center text-md-start text-white-50 small mb-2 mb-md-0">
+                &copy; ${new Date().getFullYear()} Genesis of Operando Atomic Thought LAB. 版权所有.
+            </div>
+            <div class="col-md-6 text-center text-md-end text-white-50 small">
+                Designed & Built by G.O.A.T LAB
+            </div>
+        </div>
+    </div>
     `;
 }
 
@@ -380,30 +403,52 @@ function initMobileYearSelect(years) {
 /* =========================================
    5. 新闻列表加载器 (News Loader) - 修复计数与筛选
    ========================================= */
+/* =========================================
+   5. 新闻列表加载器 (已汉化并优化四大分类)
+   ========================================= */
 function loadNews() {
     fetch('data/news.json')
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            return res.json();
+        })
         .then(data => {
             const container = document.getElementById('news-feed');
             if (!container) return;
 
-            // 1. 渲染新闻列表
+            // 【新增：终极时间排序大法】
+            // 强制将所有新闻按照 date 字段（如 "2026-01-24"）从最新到最旧进行降序排列
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
             let html = '';
             data.forEach((item) => {
+                
+                // 【新增：中英文分类翻译官】
+                // 自动把 JSON 里的中文分类，翻译成网页认识的英文暗号
+                let hiddenCategory = 'all';
+                const catStr = (item.category || '').toLowerCase();
+                if (catStr.includes('科研') || catStr.includes('论文') || catStr.includes('成果')) hiddenCategory = 'publication';
+                else if (catStr.includes('学术') || catStr.includes('交流')) hiddenCategory = 'academic';
+                else if (catStr.includes('荣誉') || catStr.includes('奖')) hiddenCategory = 'award';
+                else if (catStr.includes('团队') || catStr.includes('生活') || catStr.includes('活动')) hiddenCategory = 'life';
+
+                // 注意：这里的 data-category 变成了翻译后的 hiddenCategory
                 html += `
-                <div class="card border-0 shadow-sm mb-5 news-card news-item" data-category="${item.category}" data-aos="fade-up">
+                <div class="card border-0 shadow-sm mb-5 news-card news-item" data-category="${hiddenCategory}" data-aos="fade-up">
                     <div class="row g-0">
                         <div class="col-md-4 position-relative">
-                            <img src="${item.image}" class="img-fluid h-100 object-fit-cover rounded-start" alt="News Image" onerror="this.onerror=null;this.src='images/placeholder_news.jpg'">
-                            <div class="date-badge-overlay">
-                                <span class="day">${item.day}</span>
-                                <span class="month">${item.month}</span>
+                            <img src="${item.image || 'images/placeholder_news.jpg'}" loading="lazy" 
+                                 decoding="async" class="img-fluid h-100 object-fit-cover rounded-start" alt="新闻配图" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
+                            <div class="date-badge-overlay text-center pb-1">
+                                <span class="day d-block">${item.day}</span>
+                                <span class="month d-block">${item.month}</span>
+                                <span class="year d-block text-muted border-top mt-1 pt-1" style="font-size: 0.75rem;">${item.date.split('-')[0]}</span>
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body p-4">
                                 <div class="mb-2">
-                                    <span class="badge bg-light text-seu-green border border-success">${item.badge || 'News'}</span>
+                                    <span class="badge bg-light text-seu-green border border-success">${item.badge || '新闻动态'}</span>
                                 </div>
                                 <h3 class="h4 card-title font-serif fw-bold text-clamp-2">
                                     <a href="#" class="text-dark text-decoration-none hover-green" onclick="return false;">${item.title}</a>
@@ -412,8 +457,8 @@ function loadNews() {
                                     ${item.summary}
                                 </p>
                                 <a href="#" class="text-seu-green small fw-bold text-decoration-none"
-                                   onclick="openNewsModal(this, '${item.title.replace(/'/g, "\\'")}', '${item.date}', '${item.badge}', '${item.content.replace(/'/g, "\\'")}', '${item.image}')">
-                                    Read More <i class="fas fa-arrow-right ms-1"></i>
+                                   onclick="openNewsModal(this, '${item.title.replace(/'/g, "\\'")}', '${item.date}', '${item.badge || '新闻'}', '${item.content.replace(/'/g, "\\'")}', '${item.image || ''}')">
+                                    阅读全文 <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
                             </div>
                         </div>
@@ -422,11 +467,12 @@ function loadNews() {
                 `;
             });
 
-            // 补充 Pagination 和 No Result 容器
+            // 无结果提示 & 分页容器 (已汉化)
             html += `
             <div id="noNewsMsg" class="text-center py-5" style="display: none;">
-                <p class="text-muted">No news found matching your criteria.</p>
-                <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('newsSearchInput').value=''; runNewsFilter('', 'all');">Clear Search</button>
+                <i class="far fa-newspaper fa-3x text-muted mb-3 opacity-50"></i>
+                <p class="text-muted">未找到符合条件的新闻。</p>
+                <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('newsSearchInput').value=''; runNewsFilter('', 'all');">清空搜索</button>
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center" id="pagination-container"></ul>
@@ -435,16 +481,13 @@ function loadNews() {
 
             container.innerHTML = html;
 
-            // 2. 自动统计分类数量并更新侧边栏 (关键修复)
+            // 更新侧边栏数字
             updateSidebarCounts(data);
 
-            // 3. 重新初始化筛选逻辑 (解决 No news found 问题)
-            // 因为数据是刚加载出来的，我们需要手动触发一次初始化
             if (typeof initNewsSystem === 'function') {
-                initNewsSystem(); // 重新读取 DOM 元素
+                initNewsSystem(); 
             }
-
-            if (typeof AOS !== 'undefined') AOS.refresh();
+            if(typeof AOS !== 'undefined') AOS.refresh();
         })
         .catch(error => {
             console.error('获取新闻数据失败:', error);
@@ -453,29 +496,31 @@ function loadNews() {
                 container.innerHTML = `
                     <div class="text-center py-5 text-danger opacity-75">
                         <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
-                        <h5>Sorry, news failed to load.</h5>
-                        <p class="text-muted small">Please refresh the page or try again later.</p>
-                    </div>
-                `;
+                        <h5>新闻加载失败。</h5>
+                        <p class="text-muted small">请刷新页面重试。</p>
+                    </div>`;
             }
         });
 }
 
-// 新增辅助函数：更新侧边栏计数
+// 辅助函数：更新侧边栏数字 (已加入强大的中英文模糊匹配)
 function updateSidebarCounts(data) {
     let counts = {
         all: data.length,
         publication: 0,
         academic: 0,
-        community: 0
+        award: 0,
+        life: 0
     };
 
     data.forEach(item => {
-        const cats = item.category.toLowerCase();
-        // 只要 json 里的 category 包含这个词，就算在内
-        if (cats.includes('publication')) counts.publication++;
-        if (cats.includes('academic') || cats.includes('conference')) counts.academic++;
-        if (cats.includes('community') || cats.includes('life') || cats.includes('award')) counts.community++;
+        const cats = (item.category || '').toLowerCase();
+        
+        // 智能分类识别：无论你在 json 里填英文还是中文，都能准确归类！
+        if (cats.includes('publication') || cats.includes('paper') || cats.includes('科研') || cats.includes('论文') || cats.includes('成果')) counts.publication++;
+        if (cats.includes('academic') || cats.includes('conference') || cats.includes('学术') || cats.includes('交流') || cats.includes('讲座')) counts.academic++;
+        if (cats.includes('award') || cats.includes('honor') || cats.includes('荣誉') || cats.includes('奖') || cats.includes('获评')) counts.award++;
+        if (cats.includes('community') || cats.includes('life') || cats.includes('graduation') || cats.includes('团队') || cats.includes('生活') || cats.includes('毕业') || cats.includes('活动')) counts.life++;
     });
 
     const updateBadge = (filterKey, count) => {
@@ -489,11 +534,103 @@ function updateSidebarCounts(data) {
     updateBadge('all', counts.all);
     updateBadge('publication', counts.publication);
     updateBadge('academic', counts.academic);
-    updateBadge('community', counts.community);
+    updateBadge('award', counts.award);
+    updateBadge('life', counts.life);
 }
 
 /* =========================================
-   6. 资产清单加载器 (对接维格表后台)
+   7. 相册加载器 (Gallery Loader - 完整版)
+   ========================================= */
+function loadGallery() {
+    fetch('data/gallery.json')
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            return res.json();
+        })
+        .then(data => {
+            const container = document.getElementById('gallery-grid');
+            if (!container) return;
+
+            // 内部渲染函数
+            const renderGallery = (filterCat) => {
+                let html = '';
+                let count = 0;
+
+                // 准备一张靠谱的默认占位图（科研烧杯背景），防止本地图片丢失
+                const fallbackImg = 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop';
+
+                data.forEach(item => {
+                    const title = item.title || '精彩瞬间';
+                    const category = item.category || 'life';
+                    
+                    if (filterCat !== 'all' && category !== filterCat) return;
+                    count++;
+
+                    // 匹配三大全新中文分类
+                    let badgeText = category === 'equipment' ? '科研设备' : (category === 'academic' ? '学术交流' : '团队风采');
+
+                    html += `
+                    <div class="col-sm-6 col-md-4 col-lg-4 mb-4" data-aos="fade-up">
+                        <a href="${item.image || fallbackImg}" class="glightbox d-block position-relative overflow-hidden rounded shadow-sm" data-title="${title}">
+                            <img src="${item.image || fallbackImg}" 
+                                 alt="${title}" 
+                                 loading="lazy" 
+                                 decoding="async"
+                                 class="w-100 object-fit-cover" 
+                                 style="height: 250px; transition: transform 0.3s ease;" 
+                                 onerror="this.onerror=null; this.src='${fallbackImg}'"
+                                 onmouseover="this.style.transform='scale(1.05)'" 
+                                 onmouseout="this.style.transform='scale(1)'">
+                            
+                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-start" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); pointer-events: none;">
+                                <h5 class="text-white mb-1 fs-6 text-truncate fw-bold">${title}</h5>
+                                <span class="badge bg-seu-green bg-opacity-75 small">${badgeText}</span>
+                            </div>
+                        </a>
+                    </div>
+                    `;
+                });
+
+                if(count === 0) {
+                    html = `<div class="col-12 text-center py-5 text-muted">该分类下暂无照片。</div>`;
+                }
+                
+                container.innerHTML = html;
+                
+                if(typeof GLightbox !== 'undefined') GLightbox({ selector: '.glightbox' });
+                if(typeof AOS !== 'undefined') AOS.refresh();
+            };
+
+            // 首次加载渲染所有图片
+            renderGallery('all');
+
+            // 绑定页面顶部的分类按钮点击事件
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // 切换按钮的视觉高亮状态
+                    filterBtns.forEach(b => b.classList.remove('active', 'bg-dark', 'text-white'));
+                    btn.classList.add('active', 'bg-dark', 'text-white');
+                    
+                    // 获取按钮上的暗号并过滤渲染
+                    const filterValue = btn.getAttribute('data-filter');
+                    renderGallery(filterValue);
+                });
+            });
+
+        })
+        .catch(error => {
+            console.error('获取相册数据失败:', error);
+            const container = document.getElementById('gallery-grid');
+            if (container) {
+                container.innerHTML = `<div class="col-12 text-center py-5 text-danger">加载相册失败，请检查网络。</div>`;
+            }
+        });
+}
+
+
+/* =========================================
+   7. 资产清单加载器 (对接维格表后台)
    ========================================= */
 function loadInventory() {
     // 【注意：你需要修改下面这两行】
@@ -608,7 +745,8 @@ function loadInventory() {
                         <div class="card h-100 border-0 shadow-sm hover-card overflow-hidden">
                             <div class="bg-light p-2" style="height: 180px;">
                                 <a href="${item.image || 'images/placeholder_news.jpg'}" class="glightbox" data-title="${name}">
-                                    <img src="${item.image || 'images/placeholder_news.jpg'}" class="w-100 h-100 object-fit-contain" style="cursor: zoom-in;" alt="${name}" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
+                                    <img src="${item.image || 'images/placeholder_news.jpg'}" loading="lazy" 
+                                 decoding="async" class="w-100 h-100 object-fit-contain" style="cursor: zoom-in;" alt="${name}" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
                                 </a>
                         </div>
                         <div class="card-body p-4">
@@ -677,4 +815,61 @@ function loadInventory() {
                 </div>`;
             }
         });
+}
+
+/* =========================================
+   8. 首页动态数据加载器 (Home Data Loader)
+   ========================================= */
+function loadHomeData() {
+    // 加载首页最新新闻 (自动读取 news.json 并截取最新 3 条)
+    const newsContainer = document.getElementById('home-recent-news');
+    if (newsContainer) {
+        fetch('data/news.json')
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                return res.json();
+            })
+            .then(data => {
+                // 1. 强制按日期从最新到最旧排序
+                data.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                // 2. 截取排在最前面的 3 条新闻
+                const recentNews = data.slice(0, 3);
+
+                let html = '';
+                recentNews.forEach(item => {
+                    html += `
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="card h-100 border-0 shadow-sm hover-card">
+                            <div class="position-relative overflow-hidden" style="height: 220px;">
+                                <img src="${item.image || 'images/placeholder_news.jpg'}" loading="lazy" 
+                                     decoding="async" class="w-100 h-100 object-fit-cover" alt="${item.title}" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
+                                <div class="position-absolute top-0 start-0 m-3">
+                                    <span class="badge bg-seu-green shadow-sm">${item.badge || '新闻'}</span>
+                                </div>
+                            </div>
+                            <div class="card-body p-4 d-flex flex-column">
+                                <div class="text-muted small mb-2">
+                                    <i class="far fa-calendar-alt me-1"></i> ${item.date}
+                                </div>
+                                <h4 class="h5 font-serif fw-bold mb-3 text-clamp-2">
+                                    <a href="news.html" class="text-dark text-decoration-none hover-green">${item.title}</a>
+                                </h4>
+                                <p class="text-muted small text-clamp-2 mb-4">${item.summary}</p>
+                                <a href="news.html" class="mt-auto text-seu-green fw-bold text-decoration-none small">
+                                    阅读全文 <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+                newsContainer.innerHTML = html;
+                if(typeof AOS !== 'undefined') AOS.refresh();
+            })
+            .catch(error => {
+                console.error('获取首页新闻数据失败:', error);
+                newsContainer.innerHTML = `<div class="col-12 text-center py-5 text-danger">新闻数据同步失败，请刷新重试。</div>`;
+            });
+    }
 }

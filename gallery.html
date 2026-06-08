@@ -78,8 +78,8 @@
         <div class="container position-relative z-2">
             <div class="row">
                 <div class="col-md-8" data-aos="fade-right">
-                    <h1 class="display-4 font-serif fw-bold">Life at Zhang Group</h1>
-                    <p class="lead opacity-75">Research Facilities, Academic Events, and Team Life.</p>
+                    <h1 class="display-4 font-serif fw-bold">课题组相册</h1>
+                    <p class="lead opacity-75">记录科研探索、学术交流与团队生活的精彩瞬间。</p>
                 </div>
             </div>
         </div>
@@ -90,149 +90,28 @@
     <section class="py-section">
         <div class="container">
 
-            <!-- Filters (分类按钮) -->
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12 text-center">
                     <div class="btn-group filter-group" role="group">
                         <button type="button" class="btn btn-outline-dark active filter-btn rounded-pill px-4 mx-1"
-                            data-filter="all">All</button>
+                            data-filter="all">全部照片</button>
                         <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1"
-                            data-filter="lab">Facility</button>
+                            data-filter="equipment">科研设备</button>
                         <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1"
-                            data-filter="events">Events</button>
+                            data-filter="academic">学术交流</button>
                         <button type="button" class="btn btn-outline-dark filter-btn rounded-pill px-4 mx-1"
-                            data-filter="life">Life</button>
+                            data-filter="life">团队风采</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Masonry Grid -->
-            <div class="gallery-grid" id="galleryGrid">
-
-                <!-- 增加gallery时增加这一项 -->
-                <!-- 修改category:lab实验室,life团建,events活动 -->
-                <div class="gallery-item lab mb-4" data-aos="fade-up">
-                    <!-- 修改大图链接、相关信息 -->
-                    <a href="images/gallery_1.png" class="glightbox gallery-card" data-gallery="lab-gallery"
-                        data-title="Advanced TEM Facility"
-                        data-description="Our state-of-the-art Aberration-Corrected Transmission Electron Microscope used for atomic-scale imaging.">
-                        <!-- 修改小图链接 -->
-                        <img src="images/gallery_1.png" alt="TEST FOR ADDING" class="img-fluid" loading="lazy">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
-                                <!-- 修改图名 -->
-                                <h6 class="text-white fw-bold mb-0">TEST FOR ADDING</h6>
-                                <!-- 修改备注 -->
-                                <small class="text-white-50">It's a test.</small>
-                            </div>
-                        </div>
-                    </a>
+            <div class="row" id="gallery-grid">
+                <div class="col-12 text-center text-muted py-5">
+                    <div class="spinner-border text-seu-green mb-3" role="status"></div>
+                    <p>正在加载相册数据...</p>
                 </div>
-
-                <!-- Item 1: Lab Facility -->
-                <div class="gallery-item lab mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1581093588401-fbb07586547a?q=80&w=2000"
-                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Advanced TEM Facility"
-                        data-description="Our state-of-the-art Aberration-Corrected Transmission Electron Microscope used for atomic-scale imaging.">
-                        <img src="https://images.unsplash.com/photo-1581093588401-fbb07586547a?q=80&w=2000&auto=format&fit=crop"
-                            alt="TEM Facility" class="img-fluid" loading="lazy">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
-                                <h6 class="text-white fw-bold mb-0">TEM Facility</h6>
-                                <small class="text-white-50">Instrumentation</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Item 2: Campus Life -->
-                <div class="gallery-item life mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1596496356938-a2a198c3d964?q=80&w=2071"
-                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="SEU Wuxi Campus"
-                        data-description="The beautiful environment of Southeast University Wuxi Campus, providing a quiet place for research.">
-                        <img src="https://images.unsplash.com/photo-1596496356938-a2a198c3d964?q=80&w=2071&auto=format&fit=crop"
-                            alt="Campus View" class="img-fluid" loading="lazy">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
-                                <h6 class="text-white fw-bold mb-0">Wuxi Campus</h6>
-                                <small class="text-white-50">Scenery</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Item 3: Conference Event -->
-                <div class="gallery-item events mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070"
-                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="International Conference"
-                        data-description="Group members attending the international conference on nanotechnology.">
-                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop"
-                            alt="Conference" class="img-fluid" loading="lazy">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
-                                <h6 class="text-white fw-bold mb-0">Academic Exchange</h6>
-                                <small class="text-white-50">Conference</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Item 4: Lab Work -->
-                <div class="gallery-item lab mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1574170609519-d1d8d4b71f60?q=80&w=2069"
-                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Device Fabrication"
-                        data-description="Cleanroom processing of nanodevices for in-situ experiments.">
-                        <img src="https://images.unsplash.com/photo-1574170609519-d1d8d4b71f60?q=80&w=2069&auto=format&fit=crop"
-                            alt="Wafer" class="img-fluid" loading="lazy">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
-                                <h6 class="text-white fw-bold mb-0">Device Fabrication</h6>
-                                <small class="text-white-50">Cleanroom</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Item 5: Team Building -->
-                <div class="gallery-item life mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070"
-                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Annual Group Dinner"
-                        data-description="GOAT LAB celebrating a productive year with a team dinner.">
-                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop"
-                            alt="Dinner" class="img-fluid" loading="lazy">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
-                                <h6 class="text-white fw-bold mb-0">Group Dinner</h6>
-                                <small class="text-white-50">Team Building</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Item 6: Group Meeting -->
-                <div class="gallery-item lab mb-4" data-aos="fade-up">
-                    <a href="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070"
-                        class="glightbox gallery-card" data-gallery="lab-gallery" data-title="Group Meeting"
-                        data-description="Weekly group meeting discussion and research progress updates.">
-                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop"
-                            alt="Meeting" class="img-fluid" loading="lazy">
-                        <div class="gallery-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-search-plus fa-2x text-white mb-2"></i>
-                                <h6 class="text-white fw-bold mb-0">Group Meeting</h6>
-                                <small class="text-white-50">Discussion</small>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
             </div>
+
         </div>
     </section>
 

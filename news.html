@@ -75,8 +75,8 @@
         <div class="container position-relative z-2">
             <div class="row">
                 <div class="col-md-8" data-aos="fade-right">
-                    <h1 class="display-4 font-serif fw-bold">News & Events</h1>
-                    <p class="lead opacity-75">Latest updates from our laboratory.</p>
+                    <h1 class="display-4 font-serif fw-bold">新闻动态</h1>
+                    <p class="lead opacity-75">课题组最新科研成果、学术交流与团队生活。</p>
                 </div>
             </div>
         </div>
@@ -88,103 +88,71 @@
         <div class="container">
             <div class="row">
 
-                <!-- Left Column: News Feed (关键容器ID，JS通过此ID识别列表) -->
                 <div class="col-lg-8" id="news-feed">
                     <div class="text-center text-muted py-5">
                         <div class="spinner-border text-seu-green mb-3" role="status"></div>
-                        <p>Loading news...</p>
+                        <p>正在加载新闻数据...</p>
                     </div>
-
-                    <!-- No Results Found 提示 -->
-                    <div id="noNewsMsg" class="text-center py-5" style="display: none;">
-                        <i class="far fa-newspaper fa-3x text-muted mb-3 opacity-50"></i>
-                        <p class="text-muted">No news found matching your criteria.</p>
-                        <button class="btn btn-sm btn-outline-secondary"
-                            onclick="document.getElementById('newsSearchInput').value=''; document.getElementById('newsSearchInput').dispatchEvent(new Event('keyup'));">Clear
-                            Search</button>
-                    </div>
-
-                    <!-- Pagination分页 -->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center" id="pagination-container">
-                            <!-- JS will inject buttons here -->
-                        </ul>
-                    </nav>
-
                 </div>
 
-                <!-- Right Column: Sidebar (带悬浮功能) -->
                 <div class="col-lg-4 ps-lg-5">
                     <div class="sticky-sidebar">
 
-                        <!-- Search Widget -->
                         <div class="card border-0 shadow-sm mb-4">
                             <div class="card-body p-4">
-                                <h5 class="font-serif fw-bold mb-3">Search</h5>
+                                <h5 class="font-serif fw-bold mb-3">搜索新闻</h5>
                                 <div class="input-group">
                                     <input type="text" id="newsSearchInput" class="form-control"
-                                        placeholder="Search news..." aria-label="Search">
+                                        placeholder="输入关键词..." aria-label="Search">
                                     <button class="btn btn-seu-green" type="button"><i
                                             class="fas fa-search"></i></button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Categories Widget -->
                         <div class="card border-0 shadow-sm mb-4">
                             <div class="card-body p-4">
-                                <h5 class="font-serif fw-bold mb-3">Categories</h5>
+                                <h5 class="font-serif fw-bold mb-3">新闻分类</h5>
                                 <ul class="list-unstyled mb-0" id="category-list">
-                                    <!-- 全部 -->
                                     <li class="mb-2">
-                                        <a href="#"
-                                            class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between"
-                                            data-filter="all">
-                                            <span>All News</span>
+                                        <a href="#" class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between text-seu-green fw-bold" data-filter="all">
+                                            <span>全部新闻</span>
                                             <span class="badge bg-light text-dark count-badge">0</span>
                                         </a>
                                     </li>
-
-                                    <!-- 1. 论文成果 -->
                                     <li class="mb-2">
-                                        <a href="#"
-                                            class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between"
-                                            data-filter="publication">
-                                            <span>Publications</span>
+                                        <a href="#" class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between" data-filter="publication">
+                                            <span>科研成果</span>
                                             <span class="badge bg-light text-dark count-badge">0</span>
                                         </a>
                                     </li>
-
-                                    <!-- 2. 学术交流 -->
                                     <li class="mb-2">
-                                        <a href="#"
-                                            class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between"
-                                            data-filter="academic">
-                                            <span>Academic</span>
+                                        <a href="#" class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between" data-filter="academic">
+                                            <span>学术交流</span>
                                             <span class="badge bg-light text-dark count-badge">0</span>
                                         </a>
                                     </li>
-
-                                    <!-- 3. 团队生活 -->
                                     <li class="mb-2">
-                                        <a href="#"
-                                            class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between"
-                                            data-filter="community">
-                                            <span>Community</span>
+                                        <a href="#" class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between" data-filter="award">
+                                            <span>荣誉奖项</span>
                                             <span class="badge bg-light text-dark count-badge">0</span>
                                         </a>
                                     </li>
-                                    </ul>
+                                    <li class="mb-2">
+                                        <a href="#" class="category-filter text-decoration-none text-muted hover-green d-flex justify-content-between" data-filter="life">
+                                            <span>团队生活</span>
+                                            <span class="badge bg-light text-dark count-badge">0</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
-                        <!-- Join Us Widget -->
                         <div class="card bg-dark-blue text-white border-0 shadow-sm mb-4">
                             <div class="card-body p-4 text-center">
-                                <h5 class="font-serif fw-bold mb-3">Join The Team</h5>
-                                <p class="small opacity-75 mb-4">We are looking for motivated Ph.D. students and
-                                    Postdocs.</p>
-                                <a href="join.html" class="btn btn-outline-light btn-sm px-4">See Openings</a>
+                                <h5 class="font-serif fw-bold mb-3">加入我们</h5>
+                                <p class="small opacity-75 mb-4">课题组长期招收硕士、博士研究生及博士后研究员。</p>
+                                <a href="join.html" class="btn btn-outline-light btn-sm px-4">查看招生简章</a>
                             </div>
                         </div>
                     </div>
@@ -198,21 +166,18 @@
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content border-0">
                 <div class="modal-header border-0 pb-0">
-                    <span class="badge bg-light text-seu-green border border-success me-2"
-                        id="modalCategory">News</span>
-                    <span class="text-muted small" id="modalDate">Date</span>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <span class="badge bg-light text-seu-green border border-success me-2" id="modalCategory">新闻</span>
+                    <span class="text-muted small" id="modalDate">日期</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
                 <div class="modal-body p-4 p-lg-5">
-                    <h2 class="font-serif fw-bold mb-4" id="modalTitle">Title</h2>
-                    <img src="" id="modalImage" class="img-fluid rounded mb-4 w-100 object-fit-cover"
-                        style="height: 300px;">
+                    <h2 class="font-serif fw-bold mb-4" id="modalTitle">标题</h2>
+                    <img src="" id="modalImage" class="img-fluid rounded mb-4 w-100 object-fit-cover" style="height: 300px; display: none;">
                     <div id="modalContent" class="text-muted lh-lg text-justify">
-                        <!-- Content will be injected by JS -->
-                    </div>
+                        </div>
                 </div>
                 <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>

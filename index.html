@@ -242,51 +242,21 @@
     </section>
 
     <!-- Latest News 新闻动态 -->
-    <section class="py-section">
+    <section class="py-section bg-light">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-end mb-5">
+            <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
                 <div>
-                    <h2 class="font-serif">Latest News</h2>
+                    <h6 class="text-uppercase text-seu-green ls-2 fw-bold">Latest Updates</h6>
+                    <h2 class="font-serif fw-bold mb-0">新闻动态</h2>
                 </div>
-                <a href="news.html" class="btn btn-outline-dark btn-sm rounded-pill px-4">View All</a>
+                <a href="news.html" class="btn btn-outline-dark rounded-pill px-4">查看全部新闻</a>
             </div>
 
-            <div class="row">
-                <!-- News Item 1 -->
-                <div class="col-md-6 mb-4" data-aos="fade-up">
-                    <div class="news-item d-flex align-items-start border-bottom pb-4">
-                        <div class="date-box bg-light text-center p-2 rounded me-3" style="min-width: 70px;">
-                            <span class="d-block fw-bold fs-4 text-seu-green">15</span>
-                            <span class="d-block small text-muted text-uppercase">Nov</span>
-                            <span class="d-block small text-muted">2025</span>
-                        </div>
-                        <div>
-                            <h5 class="fw-bold">
-                                <a href="news.html" class="text-dark text-decoration-none hover-green">GOAT LAB was
-                                    officially established!</a>
-                            </h5>
-                            <p class="text-muted small mb-0">The Laboratory of In-situ Electron Microscopy & Devices is
-                                now open at SEU Wuxi Campus. Welcome our first cohort of graduate students!</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- News Item 2 -->
-                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="news-item d-flex align-items-start border-bottom pb-4">
-                        <div class="date-box bg-light text-center p-2 rounded me-3" style="min-width: 70px;">
-                            <span class="d-block fw-bold fs-4 text-seu-green">02</span>
-                            <span class="d-block small text-muted text-uppercase">Oct</span>
-                            <span class="d-block small text-muted">2025</span>
-                        </div>
-                        <div>
-                            <h5 class="fw-bold">
-                                <a href="news.html" class="text-dark text-decoration-none hover-green">New publication
-                                    in Nature</a>
-                            </h5>
-                            <p class="text-muted small mb-0">Prof. Zhang's work on "Isothermal solidification for
-                                high-entropy alloy synthesis" has been published in Nature. Congratulations!</p>
-                        </div>
-                    </div>
+            <!-- JS 动态数据容器 -->
+            <div class="row g-4" id="home-recent-news">
+                <div class="col-12 text-center text-muted py-5">
+                    <div class="spinner-border text-seu-green mb-3" role="status"></div>
+                    <p>正在同步最新动态...</p>
                 </div>
             </div>
         </div>
