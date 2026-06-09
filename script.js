@@ -118,8 +118,10 @@ function initSmartScroll() {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             
-            // 过滤：忽略 News 分页按钮、无效链接
-            if (targetId === '#' || targetId === '' || this.classList.contains('page-link')) return;
+            // 过滤：忽略 News 分页按钮、无效链接、以及 Bootstrap 专属控制链接
+            if (targetId === '#' || targetId === '' || 
+                this.classList.contains('page-link') || 
+                this.hasAttribute('data-bs-toggle')) return; // 【重点：增加这一行】
             
             // 阻止默认跳转，使用精确计算
             e.preventDefault();

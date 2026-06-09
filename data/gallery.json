@@ -1,32 +1,32 @@
 [
   {
-    "title": "球差校正透射电子显微镜",
+    "title": "Aberration-Corrected TEM",
     "category": "equipment",
-    "image": "https://images.unsplash.com/photo-1581093588401-fbb07586547a?q=80&w=2000"
+    "image": "images/Aberration-Corrected_TEM.png"
   },
   {
-    "title": "微纳加工超净间",
+    "title": "Micro-Nano Cleanroom",
     "category": "equipment",
     "image": "https://images.unsplash.com/photo-1574170609519-d1d8d4b71f60?q=80&w=2069"
   },
   {
-    "title": "赴外地参加国际学术会议",
+    "title": "International Conference",
     "category": "academic",
     "image": "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070"
   },
   {
-    "title": "每周组会汇报与讨论",
+    "title": "Weekly Group Meeting",
     "category": "academic",
     "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070"
   },
   {
-    "title": "课题组江南大悦城聚餐",
+    "title": "Group Dinner Event",
     "category": "life",
     "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070"
   },
   {
-    "title": "东南大学无锡校区校园风光",
+    "title": "SEU Wuxi Campus Scenery",
     "category": "life",
-    "image": "https://images.unsplash.com/photo-1596496356938-a2a198c3d964?q=80&w=2071"
+    "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070"
   }
 ]

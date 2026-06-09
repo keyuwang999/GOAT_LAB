@@ -99,46 +99,34 @@ function loadFooter() {
     footer.innerHTML = `
     <div class="container">
         <div class="row g-4 mb-4">
-            <!-- 左侧：课题组信息 -->
             <div class="col-lg-5 pe-lg-5">
                 <div class="d-flex align-items-center mb-3">
                     <img src="images/logo2.png" alt="GOAT LAB Logo" height="40" class="me-2" onerror="this.style.display='none'">
                     <h5 class="font-serif fw-bold mb-0">G.O.A.T LAB</h5>
                 </div>
                 <p class="text-white-50 small mb-4">
-                    致力于在原子尺度下探索材料结构与器件性能的本源。依托东南大学无锡校区微纳中心，开展原位电子显微学、微纳制造与高熵合金的前沿研究。
+                    Committed to exploring the fundamental origins of material structures and device performances at the atomic scale. Based at SEU Wuxi Campus.
                 </p>
             </div>
-
-            <!-- 中间：快捷链接 -->
             <div class="col-lg-3 col-md-6">
-                <h6 class="text-uppercase text-seu-green fw-bold mb-3">快捷链接</h6>
+                <h6 class="text-uppercase text-seu-green fw-bold mb-3">Quick Links</h6>
                 <ul class="list-unstyled mb-0">
-                    <li class="mb-2"><a href="https://www.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">东南大学官网</a></li>
-                    <li class="mb-2"><a href="https://wuxi.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">东南大学无锡校区</a></li>
-                    <li class="mb-2"><a href="https://yzb.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">东南大学研究生招生网</a></li>
+                    <li class="mb-2"><a href="https://www.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">SEU Homepage</a></li>
+                    <li class="mb-2"><a href="https://wuxi.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">SEU Wuxi Campus</a></li>
+                    <li class="mb-2"><a href="https://yzb.seu.edu.cn/" target="_blank" class="text-white-50 text-decoration-none hover-white">SEU Grad Admissions</a></li>
                 </ul>
             </div>
-
-            <!-- 右侧：联系方式 -->
             <div class="col-lg-4 col-md-6">
-                <h6 class="text-uppercase text-seu-green fw-bold mb-3">联系我们</h6>
+                <h6 class="text-uppercase text-seu-green fw-bold mb-3">Contact Us</h6>
                 <ul class="list-unstyled text-white-50 small mb-0">
-                    <li class="mb-2">
-                        <i class="fas fa-map-marker-alt fa-fw me-2"></i> 江苏省无锡市滨湖区状元道5号<br>
-                        <span class="ms-4">东南大学无锡校区 微纳中心</span>
-                    </li>
-                    <li class="mb-2">
-                        <i class="fas fa-envelope fa-fw me-2"></i> qiubozhang@seu.edu.cn
-                    </li>
+                    <li class="mb-2"><i class="fas fa-map-marker-alt fa-fw me-2"></i> Micro-Nano Center, SEU Wuxi Campus<br><span class="ms-4">No. 5 Zhuangyuan Rd, Wuxi, Jiangsu</span></li>
+                    <li class="mb-2"><i class="fas fa-envelope fa-fw me-2"></i> qiubozhang@seu.edu.cn</li>
                 </ul>
             </div>
         </div>
-
-        <!-- 底部版权信息 (无备案版) -->
         <div class="row border-top border-secondary pt-4 mt-4">
             <div class="col-md-6 text-center text-md-start text-white-50 small mb-2 mb-md-0">
-                &copy; ${new Date().getFullYear()} Genesis of Operando Atomic Thought LAB. 版权所有.
+                &copy; ${new Date().getFullYear()} Genesis of Operando Atomic Thought LAB. All Rights Reserved.
             </div>
             <div class="col-md-6 text-center text-md-end text-white-50 small">
                 Designed & Built by G.O.A.T LAB
@@ -401,9 +389,6 @@ function initMobileYearSelect(years) {
 
 
 /* =========================================
-   5. 新闻列表加载器 (News Loader) - 修复计数与筛选
-   ========================================= */
-/* =========================================
    5. 新闻列表加载器 (已汉化并优化四大分类)
    ========================================= */
 function loadNews() {
@@ -423,14 +408,15 @@ function loadNews() {
             let html = '';
             data.forEach((item) => {
                 
-                // 【新增：中英文分类翻译官】
-                // 自动把 JSON 里的中文分类，翻译成网页认识的英文暗号
+                // 【升级版：中英双语分类翻译官】
                 let hiddenCategory = 'all';
                 const catStr = (item.category || '').toLowerCase();
-                if (catStr.includes('科研') || catStr.includes('论文') || catStr.includes('成果')) hiddenCategory = 'publication';
-                else if (catStr.includes('学术') || catStr.includes('交流')) hiddenCategory = 'academic';
-                else if (catStr.includes('荣誉') || catStr.includes('奖')) hiddenCategory = 'award';
-                else if (catStr.includes('团队') || catStr.includes('生活') || catStr.includes('活动')) hiddenCategory = 'life';
+                
+                // 只要包含对应的中英文关键词，就能正确识别
+                if (catStr.includes('publication') || catStr.includes('paper') || catStr.includes('科研') || catStr.includes('论文') || catStr.includes('成果')) hiddenCategory = 'publication';
+                else if (catStr.includes('academic') || catStr.includes('conference') || catStr.includes('学术') || catStr.includes('交流')) hiddenCategory = 'academic';
+                else if (catStr.includes('award') || catStr.includes('honor') || catStr.includes('荣誉') || catStr.includes('奖')) hiddenCategory = 'award';
+                else if (catStr.includes('life') || catStr.includes('community') || catStr.includes('团队') || catStr.includes('生活') || catStr.includes('活动')) hiddenCategory = 'life';
 
                 // 注意：这里的 data-category 变成了翻译后的 hiddenCategory
                 html += `
@@ -458,7 +444,7 @@ function loadNews() {
                                 </p>
                                 <a href="#" class="text-seu-green small fw-bold text-decoration-none"
                                    onclick="openNewsModal(this, '${item.title.replace(/'/g, "\\'")}', '${item.date}', '${item.badge || '新闻'}', '${item.content.replace(/'/g, "\\'")}', '${item.image || ''}')">
-                                    阅读全文 <i class="fas fa-arrow-right ms-1"></i>
+                                    Read More <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
                             </div>
                         </div>
@@ -471,8 +457,8 @@ function loadNews() {
             html += `
             <div id="noNewsMsg" class="text-center py-5" style="display: none;">
                 <i class="far fa-newspaper fa-3x text-muted mb-3 opacity-50"></i>
-                <p class="text-muted">未找到符合条件的新闻。</p>
-                <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('newsSearchInput').value=''; runNewsFilter('', 'all');">清空搜索</button>
+                <p class="text-muted">No news found matching your criteria.</p>
+                <button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('newsSearchInput').value=''; runNewsFilter('', 'all');">Clear Search</button>
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center" id="pagination-container"></ul>
@@ -539,7 +525,7 @@ function updateSidebarCounts(data) {
 }
 
 /* =========================================
-   7. 相册加载器 (Gallery Loader - 完整版)
+   6. 相册加载器 (Gallery Loader - 完整版)
    ========================================= */
 function loadGallery() {
     fetch('data/gallery.json')
@@ -567,11 +553,11 @@ function loadGallery() {
                     count++;
 
                     // 匹配三大全新中文分类
-                    let badgeText = category === 'equipment' ? '科研设备' : (category === 'academic' ? '学术交流' : '团队风采');
+                    let badgeText = category === 'equipment' ? 'Equipment' : (category === 'academic' ? 'Academic' : 'Life');
 
                     html += `
                     <div class="col-sm-6 col-md-4 col-lg-4 mb-4" data-aos="fade-up">
-                        <a href="${item.image || fallbackImg}" class="glightbox d-block position-relative overflow-hidden rounded shadow-sm" data-title="${title}">
+                        <a href="${item.image || fallbackImg}" class="glightbox d-block position-relative overflow-hidden rounded shadow-sm" data-type="image" data-title="${title}">
                             <img src="${item.image || fallbackImg}" 
                                  alt="${title}" 
                                  loading="lazy" 
@@ -592,7 +578,7 @@ function loadGallery() {
                 });
 
                 if(count === 0) {
-                    html = `<div class="col-12 text-center py-5 text-muted">该分类下暂无照片。</div>`;
+                    html = `<div class="col-12 text-center py-5 text-muted">No photos found in this category.</div>`;
                 }
                 
                 container.innerHTML = html;
@@ -628,24 +614,26 @@ function loadGallery() {
         });
 }
 
-
 /* =========================================
-   7. 资产清单加载器 (对接维格表后台)
+   7. 资产清单加载器 (支持 200+ 大数据量及高级客户端分页)
    ========================================= */
 function loadInventory() {
-    // 【注意：你需要修改下面这两行】
-    const DATASHEET_ID = 'dstl1RyX7VKqrWydsW'; // 替换为你的表格 ID
-    const API_TOKEN = 'uskVaWW1ukPpUubP6PHCHqP';    // 替换为你的 API Token
+    const DATASHEET_ID = 'dstl1RyX7VKqrWydsW'; 
+    const API_TOKEN = 'uskAnpuKY1URALGNeOKIkSx';    
 
-    // 维格表的接口地址
-    const API_URL = `https://api.vika.cn/fusion/v1/datasheets/${DATASHEET_ID}/records`;
+    // 【重要优化】：加上 ?pageSize=1000 彻底打破维格表默认只返回 100 条记录的硬件限制
+    const API_URL = `https://api.vika.cn/fusion/v1/datasheets/${DATASHEET_ID}/records?pageSize=1000`;
 
-    // 带着 Token 发起请求，而不是去读本地的 json 文件
+    // 建立资产独立的分页状态管理机制
+    let invState = {
+        currentPage: 1,
+        itemsPerPage: 9,   // 3x3 矩阵，单页展示 9 个资产卡片最美观
+        filteredData: []   // 存储筛选过滤后的临时结果集
+    };
+
     fetch(API_URL, {
         method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${API_TOKEN}`
-        }
+        headers: { 'Authorization': `Bearer ${API_TOKEN}` }
     })
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -653,165 +641,209 @@ function loadInventory() {
         })
         .then(responseJson => {
             const container = document.getElementById('inventory-grid');
+            const pagContainer = document.getElementById('inventory-pagination-container');
             if (!container) return;
 
-            // 【关键改变】：解析维格表嵌套的数据结构，提取出有用的字段
-            const data = responseJson.data.records.map(record => record.fields);
+            // 提取出纯粹的记录字段
+            const allRecords = responseJson.data.records.map(record => record.fields);
 
-            // 渲染网格视图
-            const renderGrid = (filterText, filterCategory) => {
+            // 核心页面显示逻辑函数
+            const displayPageItems = () => {
                 let html = '';
-                let count = 0;
+                
+                // 计算当前页应该截取的数据起止索引
+                const start = (invState.currentPage - 1) * invState.itemsPerPage;
+                const end = start + invState.itemsPerPage;
+                const itemsToShow = invState.filteredData.slice(start, end);
 
-                data.forEach(item => {
-                    // 1. 基础数据读取
+                itemsToShow.forEach(item => {
                     const id = item.id || 'N/A';
-                    const name = item.name || '未命名';
-                    const status = item.status || 'normal';
+                    const name = item.name || 'Unnamed';
 
-                    // 2. 安全读取 Category (分类单选项)
-                    let categoryStr = '其他';
-                    if (typeof item.category === 'string') {
-                        categoryStr = item.category;
-                    } else if (item.category && item.category.name) {
-                        categoryStr = item.category.name;
-                    }
+                    // 负责人及分类的数据清洗适配
+                    let categoryStr = 'Other';
+                    if (typeof item.category === 'string') categoryStr = item.category;
+                    else if (item.category && item.category.name) categoryStr = item.category.name;
 
-                    // 3. 【新增】安全读取 Owner (负责人单选项)
-                    let ownerStr = '待分配';
-                    if (typeof item.owner === 'string') {
-                        ownerStr = item.owner;
-                    } else if (item.owner && item.owner.name) {
-                        ownerStr = item.owner.name;
-                    } else if (Array.isArray(item.owner)) {
-                        // 顺手做一个兼容：如果以后你把负责人改成了“多选”，网页也能正常显示两个人名
+                    let ownerStr = 'Unassigned';
+                    if (typeof item.owner === 'string') ownerStr = item.owner;
+                    else if (item.owner && item.owner.name) ownerStr = item.owner.name;
+                    else if (Array.isArray(item.owner)) {
                         ownerStr = item.owner.map(o => typeof o === 'string' ? o : o.name).join(', ');
                     }
 
-                    // 4. 中英文分类字典映射
-                    const categoryMap = {
-                        'equipment': '仪器设备',
-                        'material': '实验耗材',
-                        'tool': '工具配件'
-                    };
-                    const targetChineseCat = categoryMap[filterCategory];
-
-                    // 5. 【修复】强大的搜索匹配逻辑 (现在把 ownerStr 也加进来了)
-                    const filterTextLower = filterText.toLowerCase();
-                    const matchText = name.toLowerCase().includes(filterTextLower) ||
-                        id.toLowerCase().includes(filterTextLower) ||
-                        ownerStr.toLowerCase().includes(filterTextLower); // 支持搜人名！
-
-                    const matchCat = filterCategory === 'all' || categoryStr === targetChineseCat;
-
-                    if (!(matchText && matchCat)) return;
-                    count++;
-
-                    // 6. 极简状态指示灯逻辑
-                    let statusArray = [];
-                    if (Array.isArray(item.status)) {
-                        statusArray = item.status;
-                    } else if (item.status) {
-                        statusArray = [item.status];
-                    } else {
-                        statusArray = ['正常闲置'];
-                    }
-
+                    // 状态指示灯数据清洗
+                    let statusArray = Array.isArray(item.status) ? item.status : (item.status ? [item.status] : ['In Stock']);
                     let statusBadge = '';
                     statusArray.forEach(tag => {
                         let badgeClass = 'bg-secondary text-secondary border-secondary';
                         let icon = 'fa-info-circle';
-
-                        if (tag.includes('正常') || tag.includes('闲置')) {
-                            badgeClass = 'bg-success text-success border-success';
-                            icon = 'fa-check-circle';
-                        } else if (tag.includes('使用') || tag.includes('借') || tag.includes('占')) {
-                            badgeClass = 'bg-warning text-warning border-warning';
-                            icon = 'fa-hand-holding';
-                        } else if (tag.includes('修') || tag.includes('异常') || tag.includes('坏') || tag.includes('废')) {
-                            badgeClass = 'bg-danger text-danger border-danger';
-                            icon = 'fa-tools';
-                        } else if (tag.includes('急') || tag.includes('缺') || tag.includes('尽')) {
-                            badgeClass = 'bg-danger text-danger border-danger';
-                            icon = 'fa-exclamation-triangle';
-                        }
-
+                        if (tag.includes('正常') || tag.includes('闲置') || tag.includes('Stock')) { badgeClass = 'bg-success text-success border-success'; icon = 'fa-check-circle'; }
+                        else if (tag.includes('使用') || tag.includes('借') || tag.includes('In Use')) { badgeClass = 'bg-warning text-warning border-warning'; icon = 'fa-hand-holding'; }
+                        else if (tag.includes('修') || tag.includes('坏') || tag.includes('Broken')) { badgeClass = 'bg-danger text-danger border-danger'; icon = 'fa-tools'; }
+                        
                         statusBadge += `<span class="badge ${badgeClass} bg-opacity-10 border ms-1 mb-1"><i class="fas ${icon} me-1"></i> ${tag}</span>`;
                     });
 
-                    // 7. 生成卡片 HTML (注意底部负责人使用了转换后的 ownerStr)
+                    // 动态铺设卡片 HTML
                     html += `
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
                         <div class="card h-100 border-0 shadow-sm hover-card overflow-hidden">
-                            <div class="bg-light p-2" style="height: 180px;">
-                                <a href="${item.image || 'images/placeholder_news.jpg'}" class="glightbox" data-title="${name}">
-                                    <img src="${item.image || 'images/placeholder_news.jpg'}" loading="lazy" 
-                                 decoding="async" class="w-100 h-100 object-fit-contain" style="cursor: zoom-in;" alt="${name}" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
+                            <div class="bg-white p-2" style="height: 180px;">
+                                <a href="${item.image || 'images/placeholder_news.jpg'}" class="glightbox" data-type="image" data-title="${name}">
+                                    <img src="${item.image || 'images/placeholder_news.jpg'}" loading="lazy" decoding="async" class="w-100 h-100 object-fit-contain" style="cursor: zoom-in;" alt="${name}" onerror="this.onerror=null; this.src='images/placeholder_news.jpg'">
                                 </a>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-start mb-3">
-                                <span class="text-muted small font-monospace">${id}</span>
-                                ${statusBadge}
                             </div>
-                            <h4 class="h5 font-serif fw-bold text-dark-blue mb-2">${name}</h4>
-                            <p class="text-muted small mb-3 text-clamp-2">${item.desc || '暂无描述'}</p>
-                            <hr class="opacity-10">
-                            <div class="d-flex justify-content-between small">
-                                <span class="text-muted"><i class="fas fa-map-marker-alt text-seu-green me-1"></i> ${item.location || '未知'}</span>
-                                <span class="text-muted"><i class="fas fa-user text-seu-green me-1"></i> ${ownerStr}</span>
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="text-muted small font-monospace">${id}</span>
+                                    ${statusBadge}
+                                </div>
+                                <h4 class="h5 font-serif fw-bold text-dark-blue mb-2">${name}</h4>
+                                <p class="text-muted small mb-3 text-clamp-2">${item.desc || 'No description provided.'}</p>
+                                <hr class="opacity-10">
+                                <div class="d-flex justify-content-between small">
+                                    <span class="text-muted"><i class="fas fa-map-marker-alt text-seu-green me-1"></i> ${item.location || 'Unknown'}</span>
+                                    <span class="text-muted"><i class="fas fa-user text-seu-green me-1"></i> ${ownerStr}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                `;
+                    `;
                 });
 
-                if (count === 0) {
-                    html = `<div class="col-12 text-center py-5 text-muted"><i class="fas fa-box-open fa-3x mb-3 opacity-25"></i><p>未找到符合条件的资产。</p></div>`;
-                }
                 container.innerHTML = html;
+                
+                // 激活外部动效插件
                 if (typeof AOS !== 'undefined') AOS.refresh();
-                if(typeof GLightbox !== 'undefined') GLightbox({ selector: '.glightbox' });
+                if (typeof GLightbox !== 'undefined') GLightbox({ selector: '.glightbox' });
             };
 
-            // 初始化渲染
-            renderGrid('', 'all');
+            // 核心分页按钮渲染函数
+            const renderPaginationControls = () => {
+                if (!pagContainer) return;
+                const totalPages = Math.ceil(invState.filteredData.length / invState.itemsPerPage);
 
-            // 绑定搜索功能
+                // 如果只有 1 页或者没数据，直接隐藏分页栏
+                if (totalPages <= 1) {
+                    pagContainer.innerHTML = '';
+                    return;
+                }
+
+                let html = `
+                    <li class="page-item ${invState.currentPage === 1 ? 'disabled' : ''}">
+                        <a class="page-link text-dark" href="javascript:void(0)" onclick="window.switchInvPage(${invState.currentPage - 1})">Prev</a>
+                    </li>
+                `;
+
+                for (let i = 1; i <= totalPages; i++) {
+                    html += `
+                        <li class="page-item ${invState.currentPage === i ? 'active' : ''}">
+                            <a class="page-link ${invState.currentPage === i ? 'bg-seu-green border-seu-green text-white' : 'text-dark'}" 
+                               href="javascript:void(0)" onclick="window.switchInvPage(${i})">${i}</a>
+                        </li>
+                    `;
+                }
+
+                html += `
+                    <li class="page-item ${invState.currentPage === totalPages ? 'disabled' : ''}">
+                        <a class="page-link text-dark" href="javascript:void(0)" onclick="window.switchInvPage(${invState.currentPage + 1})">Next</a>
+                    </li>
+                `;
+
+                pagContainer.innerHTML = html;
+            };
+
+            // 组合过滤器：处理顶部搜索输入和分类过滤
+            const runFiltering = (filterText, filterCategory) => {
+                const textLower = filterText.toLowerCase();
+                const categoryMap = { 'equipment': '仪器设备', 'material': '实验耗材', 'tool': '工具配件' };
+                const targetChineseCat = categoryMap[filterCategory];
+
+                // 1. 执行全局过滤
+                invState.filteredData = allRecords.filter(item => {
+                    let itemCatStr = '';
+                    if (typeof item.category === 'string') itemCatStr = item.category;
+                    else if (item.category && item.category.name) itemCatStr = item.category.name;
+
+                    let itemOwnerStr = '';
+                    if (typeof item.owner === 'string') itemOwnerStr = item.owner;
+                    else if (item.owner && item.owner.name) itemOwnerStr = item.owner.name;
+                    else if (Array.isArray(item.owner)) itemOwnerStr = item.owner.map(o => typeof o === 'string' ? o : o.name).join(' ');
+
+                    const matchText = (item.name || '').toLowerCase().includes(textLower) ||
+                                      (item.id || '').toLowerCase().includes(textLower) ||
+                                      itemOwnerStr.toLowerCase().includes(textLower);
+
+                    const matchCat = filterCategory === 'all' || itemCatStr === targetChineseCat;
+                    return matchText && matchCat;
+                });
+
+                // 2. 检索结果重置回到第一页
+                invState.currentPage = 1;
+
+                // 3. 如果结果为空的兜底显示
+                if (invState.filteredData.length === 0) {
+                    container.innerHTML = `<div class="col-12 text-center py-5 text-muted"><i class="fas fa-box-open fa-3x mb-3 opacity-25"></i><p>No assets found matching your criteria.</p></div>`;
+                    pagContainer.innerHTML = '';
+                    return;
+                }
+
+                // 4. 执行渲染
+                displayPageItems();
+                renderPaginationControls();
+            };
+
+            // 初始化首次渲染（展示全部）
+            runFiltering('', 'all');
+
+            // 给全局 Window 注入切换页码的控制开关（供分页按钮点击调用）
+            window.switchInvPage = function(targetPage) {
+                const totalPages = Math.ceil(invState.filteredData.length / invState.itemsPerPage);
+                if (targetPage < 1 || targetPage > totalPages) return;
+
+                invState.currentPage = targetPage;
+                displayPageItems();
+                renderPaginationControls();
+
+                // 翻页后，平滑滚动回到资产页顶端，防止页面突兀
+                window.scrollTo({ top: container.offsetTop - 140, behavior: 'smooth' });
+            };
+
+            // 绑定顶部的输入搜索框交互
             const searchInput = document.getElementById('inventorySearch');
             let searchTimeout;
             if (searchInput) {
                 searchInput.addEventListener('keyup', (e) => {
                     clearTimeout(searchTimeout);
                     searchTimeout = setTimeout(() => {
-                        const currentCat = document.querySelector('.inv-filter-btn.active').getAttribute('data-filter');
-                        renderGrid(e.target.value.toLowerCase(), currentCat);
+                        const currentActiveCat = document.querySelector('.inv-filter-btn.active').getAttribute('data-filter');
+                        runFiltering(e.target.value, currentActiveCat);
                     }, 300);
                 });
             }
 
-            // 绑定分类筛选按钮
+            // 绑定顶部的分类过滤按钮交互
             const filterBtns = document.querySelectorAll('.inv-filter-btn');
             filterBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
+                btn.addEventListener('click', () => {
                     filterBtns.forEach(b => b.classList.remove('active', 'bg-seu-green', 'text-white'));
                     btn.classList.add('active', 'bg-seu-green', 'text-white');
 
-                    const term = searchInput ? searchInput.value.toLowerCase() : '';
-                    renderGrid(term, btn.getAttribute('data-filter'));
+                    const textValue = searchInput ? searchInput.value : '';
+                    runFiltering(textValue, btn.getAttribute('data-filter'));
                 });
             });
         })
         .catch(error => {
-            console.error('获取资产数据失败:', error);
+            console.error('Fetch asset data encountered error:', error);
             const container = document.getElementById('inventory-grid');
             if (container) {
                 container.innerHTML = `
                 <div class="col-12 text-center py-5 text-danger opacity-75">
                     <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
-                    <h5>资产数据加载失败。</h5>
-                    <p class="text-muted small">请检查网络或维格表接口设置。</p>
+                    <h5>Failed to load asset records.</h5>
+                    <p class="text-muted small">Please check your network connection or try again later.</p>
                 </div>`;
             }
         });
@@ -857,7 +889,7 @@ function loadHomeData() {
                                 </h4>
                                 <p class="text-muted small text-clamp-2 mb-4">${item.summary}</p>
                                 <a href="news.html" class="mt-auto text-seu-green fw-bold text-decoration-none small">
-                                    阅读全文 <i class="fas fa-arrow-right ms-1"></i>
+                                    Read More <i class="fas fa-arrow-right ms-1"></i>
                                 </a>
                             </div>
                         </div>
