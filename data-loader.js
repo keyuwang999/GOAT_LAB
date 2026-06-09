@@ -101,7 +101,7 @@ function loadFooter() {
         <div class="row g-4 mb-4">
             <div class="col-lg-5 pe-lg-5">
                 <div class="d-flex align-items-center mb-3">
-                    <img src="images/logo2.png" alt="GOAT LAB Logo" height="40" class="me-2" onerror="this.style.display='none'">
+                    <img src="images/logo.svg" alt="GOAT LAB Logo" height="40" class="me-2" onerror="this.style.display='none'">
                     <h5 class="font-serif fw-bold mb-0">G.O.A.T LAB</h5>
                 </div>
                 <p class="text-white-50 small mb-4">
