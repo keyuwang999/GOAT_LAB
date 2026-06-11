@@ -8,37 +8,24 @@ document.addEventListener('DOMContentLoaded', function () {
     loadNavbar();
     loadFooter();
 
-    // 2. 根据当前页面 ID，加载特定内容
-    // (请确保 HTML body 或特定容器有对应的 ID，或者直接判断容器是否存在)
+    // 页面容器与对应加载函数的映射表
+    const loaderMap = {
+        'people-container': loadPeople,
+        'publications-container': loadPublications,
+        'featured-container': loadFeaturedPublications,
+        'news-feed': loadNews,
+        'gallery-grid': loadGallery,
+        'inventory-grid': loadInventory,
+        'home-recent-news': loadHomeData
+    };
 
-    if (document.getElementById('people-container')) {
-        loadPeople();
-    }
-
-    if (document.getElementById('publications-container')) {
-        loadPublications();
-    }
-
-    if (document.getElementById('featured-container')) {
-        loadFeaturedPublications(); // 首页或 Research 页的精选论文
-    }
-
-    if (document.getElementById('news-feed')) {
-        loadNews();
-    }
-
-    if (document.getElementById('gallery-grid')) {
-        loadGallery();
-    }
-
-    if (document.getElementById('inventory-grid')) {
-        loadInventory();
-    }
-
-    if (document.getElementById('home-recent-news')) {
-        loadHomeData();
+    // 遍历映射表，如果页面存在该容器，则执行对应的加载函数
+    for (const [id, loadFn] of Object.entries(loaderMap)) {
+        if (document.getElementById(id)) loadFn();
     }
 });
+
+
 
 /* =========================================
    1. 导航栏加载器 (Navbar Loader)
@@ -376,16 +363,7 @@ function loadFeaturedPublications() {
         });
 }
 
-// 辅助：初始化移动端年份下拉框
-function initMobileYearSelect(years) {
-    const select = document.getElementById('mobileYearSelect');
-    if (!select) return;
-    let html = '<option selected disabled>Jump to Year</option>';
-    years.forEach(y => {
-        html += `<option value="#year-${y}">${y}</option>`;
-    });
-    select.innerHTML = html;
-}
+
 
 
 /* =========================================
@@ -618,23 +596,31 @@ function loadGallery() {
    7. 资产清单加载器 (支持 200+ 大数据量及高级客户端分页)
    ========================================= */
 function loadInventory() {
-    const DATASHEET_ID = 'dstl1RyX7VKqrWydsW'; 
-    const API_TOKEN = 'uskAnpuKY1URALGNeOKIkSx';    
+    // 1. 将原来获取数据的核心代码封装成一个函数
+    const executeInventoryFetch = () => {
+        // 1. 获取输入框的密码
+        const userPassword = document.getElementById('inventoryPwdInput').value;
+        // 2. 向你的 Vercel 后端接口发送请求
+        fetch('/api/inventory', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: userPassword })
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('访问被拒绝或请求失败');
+            return res.json();
+        })
 
-    // 【重要优化】：加上 ?pageSize=1000 彻底打破维格表默认只返回 100 条记录的硬件限制
-    const API_URL = `https://api.vika.cn/fusion/v1/datasheets/${DATASHEET_ID}/records?pageSize=1000`;
+        let invState = {
+            currentPage: 1,
+            itemsPerPage: 9,
+            filteredData: []
+        };
 
-    // 建立资产独立的分页状态管理机制
-    let invState = {
-        currentPage: 1,
-        itemsPerPage: 9,   // 3x3 矩阵，单页展示 9 个资产卡片最美观
-        filteredData: []   // 存储筛选过滤后的临时结果集
-    };
-
-    fetch(API_URL, {
-        method: 'GET',
-        headers: { 'Authorization': `Bearer ${API_TOKEN}` }
-    })
+        fetch(API_URL, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${API_TOKEN}` }
+        })
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             return res.json();
@@ -644,14 +630,10 @@ function loadInventory() {
             const pagContainer = document.getElementById('inventory-pagination-container');
             if (!container) return;
 
-            // 提取出纯粹的记录字段
             const allRecords = responseJson.data.records.map(record => record.fields);
 
-            // 核心页面显示逻辑函数
             const displayPageItems = () => {
                 let html = '';
-                
-                // 计算当前页应该截取的数据起止索引
                 const start = (invState.currentPage - 1) * invState.itemsPerPage;
                 const end = start + invState.itemsPerPage;
                 const itemsToShow = invState.filteredData.slice(start, end);
@@ -660,7 +642,6 @@ function loadInventory() {
                     const id = item.id || 'N/A';
                     const name = item.name || 'Unnamed';
 
-                    // 负责人及分类的数据清洗适配
                     let categoryStr = 'Other';
                     if (typeof item.category === 'string') categoryStr = item.category;
                     else if (item.category && item.category.name) categoryStr = item.category.name;
@@ -672,8 +653,7 @@ function loadInventory() {
                         ownerStr = item.owner.map(o => typeof o === 'string' ? o : o.name).join(', ');
                     }
 
-                    // 状态指示灯数据清洗
-                    let statusArray = Array.isArray(item.status) ? item.status : (item.status ? [item.status] : ['In Stock']);
+                    let statusArray = Array.isArray(item.status) ? item.status : (item.status ? [item.status] : ['Unknown']);
                     let statusBadge = '';
                     statusArray.forEach(tag => {
                         let badgeClass = 'bg-secondary text-secondary border-secondary';
@@ -685,7 +665,6 @@ function loadInventory() {
                         statusBadge += `<span class="badge ${badgeClass} bg-opacity-10 border ms-1 mb-1"><i class="fas ${icon} me-1"></i> ${tag}</span>`;
                     });
 
-                    // 动态铺设卡片 HTML
                     html += `
                     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
                         <div class="card h-100 border-0 shadow-sm hover-card overflow-hidden">
@@ -713,18 +692,14 @@ function loadInventory() {
                 });
 
                 container.innerHTML = html;
-                
-                // 激活外部动效插件
                 if (typeof AOS !== 'undefined') AOS.refresh();
                 if (typeof GLightbox !== 'undefined') GLightbox({ selector: '.glightbox' });
             };
 
-            // 核心分页按钮渲染函数
             const renderPaginationControls = () => {
                 if (!pagContainer) return;
                 const totalPages = Math.ceil(invState.filteredData.length / invState.itemsPerPage);
 
-                // 如果只有 1 页或者没数据，直接隐藏分页栏
                 if (totalPages <= 1) {
                     pagContainer.innerHTML = '';
                     return;
@@ -750,17 +725,14 @@ function loadInventory() {
                         <a class="page-link text-dark" href="javascript:void(0)" onclick="window.switchInvPage(${invState.currentPage + 1})">Next</a>
                     </li>
                 `;
-
                 pagContainer.innerHTML = html;
             };
 
-            // 组合过滤器：处理顶部搜索输入和分类过滤
             const runFiltering = (filterText, filterCategory) => {
                 const textLower = filterText.toLowerCase();
                 const categoryMap = { 'equipment': '仪器设备', 'material': '实验耗材', 'tool': '工具配件' };
                 const targetChineseCat = categoryMap[filterCategory];
 
-                // 1. 执行全局过滤
                 invState.filteredData = allRecords.filter(item => {
                     let itemCatStr = '';
                     if (typeof item.category === 'string') itemCatStr = item.category;
@@ -779,25 +751,20 @@ function loadInventory() {
                     return matchText && matchCat;
                 });
 
-                // 2. 检索结果重置回到第一页
                 invState.currentPage = 1;
 
-                // 3. 如果结果为空的兜底显示
                 if (invState.filteredData.length === 0) {
                     container.innerHTML = `<div class="col-12 text-center py-5 text-muted"><i class="fas fa-box-open fa-3x mb-3 opacity-25"></i><p>No assets found matching your criteria.</p></div>`;
                     pagContainer.innerHTML = '';
                     return;
                 }
 
-                // 4. 执行渲染
                 displayPageItems();
                 renderPaginationControls();
             };
 
-            // 初始化首次渲染（展示全部）
             runFiltering('', 'all');
 
-            // 给全局 Window 注入切换页码的控制开关（供分页按钮点击调用）
             window.switchInvPage = function(targetPage) {
                 const totalPages = Math.ceil(invState.filteredData.length / invState.itemsPerPage);
                 if (targetPage < 1 || targetPage > totalPages) return;
@@ -806,24 +773,22 @@ function loadInventory() {
                 displayPageItems();
                 renderPaginationControls();
 
-                // 翻页后，平滑滚动回到资产页顶端，防止页面突兀
                 window.scrollTo({ top: container.offsetTop - 140, behavior: 'smooth' });
             };
 
-            // 绑定顶部的输入搜索框交互
             const searchInput = document.getElementById('inventorySearch');
             let searchTimeout;
             if (searchInput) {
                 searchInput.addEventListener('keyup', (e) => {
                     clearTimeout(searchTimeout);
                     searchTimeout = setTimeout(() => {
-                        const currentActiveCat = document.querySelector('.inv-filter-btn.active').getAttribute('data-filter');
+                        const activeBtn = document.querySelector('.inv-filter-btn.active');
+                        const currentActiveCat = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
                         runFiltering(e.target.value, currentActiveCat);
                     }, 300);
                 });
             }
 
-            // 绑定顶部的分类过滤按钮交互
             const filterBtns = document.querySelectorAll('.inv-filter-btn');
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -847,6 +812,45 @@ function loadInventory() {
                 </div>`;
             }
         });
+    };
+
+    // 2. 全新的美化弹窗密码验证逻辑
+    const modalEl = document.getElementById('passwordModal');
+    if (modalEl) {
+        // 唤起 Bootstrap 弹窗
+        const pwdModal = new bootstrap.Modal(modalEl);
+        pwdModal.show();
+        
+        const verifyBtn = document.getElementById('verifyPwdBtn');
+        const pwdInput = document.getElementById('inventoryPwdInput');
+        const errorMsg = document.getElementById('pwdErrorMsg');
+
+        // 校验密码函数
+        const checkPwd = () => {
+            if (pwdInput.value === 'goat2026') {
+                pwdModal.hide();         // 密码正确，关闭弹窗
+                executeInventoryFetch(); // 开始拉取资产数据
+            } else {
+                errorMsg.style.display = 'block'; // 密码错误，显示红字提示
+                verifyBtn.disabled = true;        // 禁用按钮防多次点击
+                // 延迟 1.2 秒后跳转，让用户看清楚错误提示
+                setTimeout(() => window.location.href = 'index.html', 1200); 
+            }
+        };
+
+        // 绑定点击确认按钮
+        verifyBtn.addEventListener('click', checkPwd);
+        // 绑定回车键快捷提交
+        pwdInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPwd(); });
+    } else {
+        // 防呆设计：如果 HTML 里没加弹窗代码，则降级回原生框并包含跳转逻辑
+        const pwd = prompt("此页面仅限内部人员使用，请输入访问密码：");
+        if (pwd !== "goat2026") {
+            window.location.href = 'index.html'; // 输错直接跳回首页
+            return;
+        }
+        executeInventoryFetch();
+    }
 }
 
 /* =========================================

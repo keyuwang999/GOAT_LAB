@@ -5,6 +5,5 @@
   { "name": "Publications", "link": "publications.html" },
   { "name": "News", "link": "news.html" },
   { "name": "Gallery", "link": "gallery.html" },
-  { "name": "Inventory", "link": "inventory.html" },
   { "name": "Join Us", "link": "join.html", "highlight": true }
 ]

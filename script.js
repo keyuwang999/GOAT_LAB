@@ -98,12 +98,19 @@ function initBackToTop() {
 function initImageProtection() {
     document.querySelectorAll('img').forEach(img => {
         img.addEventListener('error', function () {
-            // 如果图片挂了，隐藏它，如果是卡片里的图，可以用灰色块代替
+            // 【修复核心 1】：如果原本就没有 src，直接跳过，不触发防崩坏
+            if (!this.getAttribute('src') || this.getAttribute('src') === '') return;
+
             if (this.classList.contains('img-fluid')) {
                 this.style.display = 'none';
+                
+                // 防止重复生成占位符
+                if (this.previousElementSibling && this.previousElementSibling.classList.contains('image-fallback-placeholder')) return;
+
                 const placeholder = document.createElement('div');
-                placeholder.className = 'bg-light text-muted d-flex align-items-center justify-content-center';
-                placeholder.style.cssText = 'height: 200px; width: 100%; border-radius: inherit;';
+                // 加入 image-fallback-placeholder 用于精准识别
+                placeholder.className = 'bg-light text-muted d-flex align-items-center justify-content-center image-fallback-placeholder';
+                placeholder.style.cssText = 'height: 200px; width: 100%; border-radius: inherit; margin-bottom: 1rem;';
                 placeholder.innerHTML = '<i class="fas fa-image fa-2x opacity-25"></i>';
                 if(this.parentNode) this.parentNode.insertBefore(placeholder, this);
             }
@@ -130,9 +137,8 @@ function initSmartScroll() {
             // 移动端：如果是导航栏链接，点击后自动收起菜单
             const navbarToggler = document.querySelector('.navbar-toggler');
             const navbarCollapse = document.querySelector('.navbar-collapse');
-            if (navbarCollapse && navbarCollapse.classList.contains('show') && 
-                window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
+            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                new bootstrap.Collapse(navbarCollapse).hide();
             }
         });
     });
@@ -430,15 +436,6 @@ window.copyContent = function(text) {
         }).catch(err => alert("Copy failed. Please manually copy."));
     } else {
         alert("Your browser does not support auto-copy.\nText: " + text);
-    }
-};
-
-// 3. 复制引用 (Cite Button)
-window.copyCitation = function(text) {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(() => {
-            alert("Reference copied successfully!\n引用已复制到剪贴板。");
-        });
     }
 };
 

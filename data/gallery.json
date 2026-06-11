@@ -2,31 +2,31 @@
   {
     "title": "Aberration-Corrected TEM",
     "category": "equipment",
-    "image": "images/Aberration-Corrected_TEM.png"
+    "image": "images/hero_bg7.png"
   },
   {
     "title": "Micro-Nano Cleanroom",
     "category": "equipment",
-    "image": "https://images.unsplash.com/photo-1574170609519-d1d8d4b71f60?q=80&w=2069"
+    "image": "images/hero_bg2.png"
   },
   {
     "title": "International Conference",
     "category": "academic",
-    "image": "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070"
+    "image": "images/hero_bg3.png"
   },
   {
     "title": "Weekly Group Meeting",
     "category": "academic",
-    "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070"
+    "image": "images/hero_bg4.png"
   },
   {
     "title": "Group Dinner Event",
     "category": "life",
-    "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070"
+    "image": "images/hero_bg5.png"
   },
   {
     "title": "SEU Wuxi Campus Scenery",
     "category": "life",
-    "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070"
+    "image": "images/hero_bg6.png"
   }
 ]
