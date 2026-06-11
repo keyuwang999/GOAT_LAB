@@ -596,20 +596,11 @@ function loadGallery() {
    7. 资产清单加载器 (支持 200+ 大数据量及高级客户端分页)
    ========================================= */
 function loadInventory() {
-    // 1. 将原来获取数据的核心代码封装成一个函数
+    // 1. 恢复纯前端直接请求维格表（彻底废弃 Vercel 后端接口）
     const executeInventoryFetch = () => {
-        // 1. 获取输入框的密码
-        const userPassword = document.getElementById('inventoryPwdInput').value;
-        // 2. 向你的 Vercel 后端接口发送请求
-        fetch('/api/inventory', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ password: userPassword })
-        })
-        .then(res => {
-            if (!res.ok) throw new Error('访问被拒绝或请求失败');
-            return res.json();
-        })
+        const DATASHEET_ID = 'dstl1RyX7VKqrWydsW'; 
+        const API_TOKEN = 'uskAnpuKY1URALGNeOKIkSx';    
+        const API_URL = `https://api.vika.cn/fusion/v1/datasheets/${DATASHEET_ID}/records?pageSize=1000`;
 
         let invState = {
             currentPage: 1,
@@ -754,7 +745,7 @@ function loadInventory() {
                 invState.currentPage = 1;
 
                 if (invState.filteredData.length === 0) {
-                    container.innerHTML = `<div class="col-12 text-center py-5 text-muted"><i class="fas fa-box-open fa-3x mb-3 opacity-25"></i><p>No assets found matching your criteria.</p></div>`;
+                    container.innerHTML = `<div class="col-12 text-center py-5 text-muted"><i class="fas fa-box-open fa-3x mb-3 opacity-25"></i><p>未找到符合条件的资产。</p></div>`;
                     pagContainer.innerHTML = '';
                     return;
                 }
@@ -807,17 +798,16 @@ function loadInventory() {
                 container.innerHTML = `
                 <div class="col-12 text-center py-5 text-danger opacity-75">
                     <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
-                    <h5>Failed to load asset records.</h5>
-                    <p class="text-muted small">Please check your network connection or try again later.</p>
+                    <h5>获取资产数据失败</h5>
+                    <p class="text-muted small">请检查网络或维格表 Token 是否正常。</p>
                 </div>`;
             }
         });
     };
 
-    // 2. 全新的美化弹窗密码验证逻辑
+    // 2. 纯前端密码验证逻辑（在浏览器里比对，正确直接调用维格表链接）
     const modalEl = document.getElementById('passwordModal');
     if (modalEl) {
-        // 唤起 Bootstrap 弹窗
         const pwdModal = new bootstrap.Modal(modalEl);
         pwdModal.show();
         
@@ -825,28 +815,24 @@ function loadInventory() {
         const pwdInput = document.getElementById('inventoryPwdInput');
         const errorMsg = document.getElementById('pwdErrorMsg');
 
-        // 校验密码函数
         const checkPwd = () => {
             if (pwdInput.value === 'goat2026') {
-                pwdModal.hide();         // 密码正确，关闭弹窗
-                executeInventoryFetch(); // 开始拉取资产数据
+                pwdModal.hide();         // 密码正确，关弹窗
+                executeInventoryFetch(); // 直接去拉取数据
             } else {
-                errorMsg.style.display = 'block'; // 密码错误，显示红字提示
-                verifyBtn.disabled = true;        // 禁用按钮防多次点击
-                // 延迟 1.2 秒后跳转，让用户看清楚错误提示
+                errorMsg.style.display = 'block'; // 密码错误提示
+                verifyBtn.disabled = true;
                 setTimeout(() => window.location.href = 'index.html', 1200); 
             }
         };
 
-        // 绑定点击确认按钮
         verifyBtn.addEventListener('click', checkPwd);
-        // 绑定回车键快捷提交
         pwdInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPwd(); });
     } else {
-        // 防呆设计：如果 HTML 里没加弹窗代码，则降级回原生框并包含跳转逻辑
+        // 兜底降级保护：万一 HTML 里没有弹窗代码，使用原始框确保绝对不卡死
         const pwd = prompt("此页面仅限内部人员使用，请输入访问密码：");
         if (pwd !== "goat2026") {
-            window.location.href = 'index.html'; // 输错直接跳回首页
+            window.location.href = 'index.html';
             return;
         }
         executeInventoryFetch();
