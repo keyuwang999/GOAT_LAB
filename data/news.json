@@ -1,18 +1,6 @@
 [
   {
     "id": "4",
-    "date": "2026-01-01",
-    "day": "1",
-    "month": "1月",
-    "title": "苏雨发表了论文",
-    "category": "科研成果",
-    "badge": "论文发表",
-    "summary": "苏雨/尚子铭等人在XXX领域的最新研究成果被XXX期刊正式接收。",
-    "content": "<p>123456</p>",
-    "image": "images/hero_bg2.png"
-  },
-  {
-    "id": "1",
     "date": "2026-01-24",
     "day": "24",
     "month": "Jan",
@@ -24,7 +12,7 @@
     "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070"
   },
   {
-    "id": "2",
+    "id": "3",
     "date": "2026-01-23",
     "day": "23",
     "month": "Jan",
@@ -36,7 +24,19 @@
     "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070"
   },
   {
-    "id": "3",
+    "id": "2",
+    "date": "2026-01-06",
+    "day": "6",
+    "month": "Jan",
+    "title": "课题组在《物理化学学报》发表S型异质结光催化剂研究综述",
+    "category": "publication",
+    "badge": "Publication",
+    "summary": "课题组成员苏雨和尚子铭在《物理化学学报》发表了关于S型异质结光催化剂及其表征方法的综述文章。",
+    "content": "<p>2026年1月6日，课题组成员<strong>苏雨</strong>与<strong>尚子铭</strong>在期刊 <strong>《Acta Physico-Chimica Sinica》 (物理化学学报)</strong> 上在线发表了题为 <em>'Research progress and related characterization methods of S-scheme heterojunction photocatalyst'</em> 的综述文章。</p><p>该综述系统总结了S型异质结光催化剂的最新研究进展及相关关键表征技术。文章梳理了其发展历程与机制，探讨了非原位和原位表征技术在研究微观结构、演变动力学及反应路径中的应用场景和优势。此外，文章从材料设计和机理研究两个角度，客观分析了当前S型异质结领域面临的挑战，并对其未来的发展前景进行了展望。</p>",
+    "image": "images/news_suyu.jpg"
+  },
+  {
+    "id": "1",
     "date": "2025-09-16",
     "day": "16",
     "month": "Sep",

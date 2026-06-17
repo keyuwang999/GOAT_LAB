@@ -78,30 +78,47 @@
     </nav>
 
     <!-- Hero Section 首屏大图 -->
-    <header class="hero-section d-flex align-items-center"
-        style="background-image: url('images/hero_bg.png');background-position: right center;">
-        <div class="overlay"></div>
-        <div class="container text-white position-relative z-2">
-            <div class="row">
-                <div class="col-lg-8" data-aos="fade-up" data-aos-duration="1000">
-                    <h5 class="text-uppercase ls-2 mb-3 text-warning">GOAT LAB</h5>
-                    <h1 class="display-3 fw-bold mb-4" style="text-shadow: 0px 4px 15px rgba(0,0,0,0.8);">
-                        <p>See world,</p>
-                        <p>by world.</p>
-                    </h1>
-                    <p class="lead mb-5 opacity-90">
-                        Change is constant.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="research.html" class="btn btn-outline-light rounded-0 px-4 py-2">Explore Research</a>
-                        <a href="#pi-intro" class="btn btn-seu-green rounded-0 px-4 py-2">Meet the PI</a>
-                    </div>
+    <header class="hero-section position-relative overflow-hidden" style="height: 100vh; min-height: 600px;">
+        
+        <div id="heroCarousel" class="carousel slide carousel-fade w-100 h-100" data-bs-ride="carousel" data-bs-pause="false">
+            
+            <div class="carousel-indicators" style="z-index: 3;">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            </div>
+
+            <div class="carousel-inner w-100 h-100">
+                <div class="carousel-item active w-100 h-100" data-bs-interval="4000">
+                    <img src="images/hero_bg_goat.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 1">
+                </div>
+                <div class="carousel-item w-100 h-100" data-bs-interval="4000">
+                    <img src="images/hero_bg_suyu.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 2">
+                </div>
+                <div class="carousel-item w-100 h-100" data-bs-interval="4000">
+                    <img src="images/hero_bg5.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 3">
+                </div>
+                <div class="carousel-item w-100 h-100" data-bs-interval="4000">
+                    <img src="images/hero_bg9.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 4">
+                </div>
+                <div class="carousel-item w-100 h-100" data-bs-interval="4000">
+                    <img src="images/hero_bg11.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 5">
                 </div>
             </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" style="z-index: 3;">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" style="z-index: 3;">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
-        <!-- Scroll Down Indicator -->
-        <div class="scroll-down-indicator">
+        <div class="scroll-down-indicator position-absolute bottom-0 start-50 translate-middle-x pb-4" style="z-index: 2;">
             <div class="mouse">
                 <div class="wheel"></div>
             </div>
@@ -125,7 +142,7 @@
                 </div>
                 <div class="col-lg-7 ps-lg-5" data-aos="fade-left">
                     <h6 class="text-seu-green fw-bold text-uppercase">Principal Investigator</h6>
-                    <h2 class="mb-4 font-serif">Pioneering In-situ TEM & Device Physics</h2>
+                    <h2 class="mb-4 font-serif ">Pioneering In-situ TEM & Device Physics</h2>
                     <p class="text-muted">
                         Prof. Qiubo Zhang is a Professor and Ph.D. Supervisor at the School of Integrated Circuits,
                         Southeast University. He is a recipient of the National Overseas High-level Talent Program and

@@ -72,8 +72,53 @@
         </div>
     </nav>
 
-    <!-- Page Header 顶部标题栏 -->
-    <header class="page-header banner-people d-flex align-items-center"></header>
+    <!-- Page Header 顶部轮播标题栏 -->
+    <!-- 去掉了 banner-people 类，防止与原有静态背景图冲突 -->
+    <header class="page-header position-relative overflow-hidden">
+        
+        <!-- 背景轮播图组 -->
+        <!-- 注意 id 改成了 peopleBannerCarousel，防止与首页冲突 -->
+        <div id="peopleBannerCarousel" class="carousel slide carousel-fade w-100 h-100" data-bs-ride="carousel" data-bs-pause="false">
+            
+            <!-- 轮播图指示器 (5个定位点) -->
+            <div class="carousel-indicators" style="z-index: 3;">
+                <button type="button" data-bs-target="#peopleBannerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#peopleBannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#peopleBannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#peopleBannerCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#peopleBannerCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            </div>
+
+            <!-- 5张图片内容 -->
+            <div class="carousel-inner w-100 h-100">
+                <div class="carousel-item active w-100 h-100" data-bs-interval="1000">
+                    <img src="images/banner_people.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 1">
+                </div>
+                <div class="carousel-item w-100 h-100" data-bs-interval="1000">
+                    <img src="images/banner_join.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 2">
+                </div>
+                <div class="carousel-item w-100 h-100" data-bs-interval="1000">
+                    <img src="images/banner_news.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 3">
+                </div>
+                <div class="carousel-item w-100 h-100" data-bs-interval="1000">
+                    <img src="images/banner_research.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 4">
+                </div>
+                <div class="carousel-item w-100 h-100" data-bs-interval="1000">
+                    <img src="images/banner_gallery.png" class="d-block w-100 h-100 object-fit-cover" alt="Slide 5">
+                </div>
+            </div>
+
+            <!-- 左右切换控制箭头 -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#peopleBannerCarousel" data-bs-slide="prev" style="z-index: 3;">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#peopleBannerCarousel" data-bs-slide="next" style="z-index: 3;">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
 
     <!-- PI Section 教授介绍 -->
     <section class="py-section bg-white">
@@ -176,27 +221,6 @@
         </div>
     </section>
 
-    <!-- Group Photo Section (团队合影区) -->
-    <section class="py-5 bg-light border-bottom">
-        <div class="container" data-aos="fade-up">
-            <div class="position-relative rounded-3 overflow-hidden shadow-sm">
-                <!-- 占位图：以后换成真合影 -->
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
-                    class="img-fluid w-100" style="height: 400px; object-fit: cover; filter: brightness(0.8);"
-                    loading="lazy" alt="Group Photo">
-
-                <div class="position-absolute top-50 start-50 translate-middle text-center text-white w-75">
-                    <h2 class="font-serif fw-bold mb-3">Genesis of Operando Atomic Thought (G.O.A.T) LAB</h2>
-                    <p class="lead opacity-90 d-none d-md-block">
-                        "Exploring the unknown world at the atomic scale."
-                    </p>
-                    <a href="join.html" class="btn btn-outline-light btn-sm rounded-pill mt-2">Join Our Family</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Graduate Students Section (Merged List) -->
     <!-- Graduate Students List -->
     <section class="py-section">
         <div class="container">

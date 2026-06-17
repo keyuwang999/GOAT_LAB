@@ -116,7 +116,10 @@ function loadFooter() {
                 &copy; ${new Date().getFullYear()} Genesis of Operando Atomic Thought LAB. All Rights Reserved.
             </div>
             <div class="col-md-6 text-center text-md-end text-white-50 small">
-                Designed & Built by G.O.A.T LAB
+                Designed & Built by 
+                <a href="inventory.html" class="text-white-50 text-decoration-none" style="cursor: default;" title="">
+                    G.O.A.T LAB
+                </a>
             </div>
         </div>
     </div>
@@ -721,7 +724,7 @@ function loadInventory() {
 
             const runFiltering = (filterText, filterCategory) => {
                 const textLower = filterText.toLowerCase();
-                const categoryMap = { 'equipment': '仪器设备', 'material': '实验耗材', 'tool': '工具配件' };
+                const categoryMap = { 'equipment': '仪器设备', 'material': '实验耗材', 'tool': '工具配件', 'chemical':'化学试剂' };
                 const targetChineseCat = categoryMap[filterCategory];
 
                 invState.filteredData = allRecords.filter(item => {
@@ -816,7 +819,7 @@ function loadInventory() {
         const errorMsg = document.getElementById('pwdErrorMsg');
 
         const checkPwd = () => {
-            if (pwdInput.value === 'goat2026') {
+            if (pwdInput.value === 'go') {
                 pwdModal.hide();         // 密码正确，关弹窗
                 executeInventoryFetch(); // 直接去拉取数据
             } else {

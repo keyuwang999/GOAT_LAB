@@ -133,13 +133,6 @@ a:hover {
     align-items: center;
 }
 
-.hero-section .overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    /*从左侧 50% 黑，向右侧渐变到 0% 黑 */
-    background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
-    z-index: 1;
-}
-
 /* 终极版 Banner 容器设置 */
 .page-header {
     position: relative;
@@ -281,4 +274,96 @@ body { counter-reset: paper-counter; }
                     rgba(14, 29, 52, 0.9) 0%, 
                     rgba(14, 29, 52, 0.75) 100%);
     }
+}
+/* ===================================================
+   导航栏自定义调整：放大字体与两侧伸展
+   =================================================== */
+
+/* 1. 向两侧伸展导航栏（取消固定宽度限制） */
+#mainNav .container {
+    max-width: 100% !important; /* 突破 Bootstrap 默认的固定宽度限制 */
+    padding-left: 4rem;         /* 伸展后，左侧留出适量边距（可根据视觉效果自行调整数值） */
+    padding-right: 4rem;        /* 伸展后，右侧留出适量边距 */
+}
+
+/* 2. 放大右侧导航菜单的字体大小 */
+#mainNav .nav-link {
+    font-size: 1.15rem;         /* 原默认约 1rem (16px)，此处放大至 1.15rem */
+    margin-left: 20px;          /* 适当加大菜单项之间的间距，配合大字体 */
+}
+
+/* 3. 放大左侧实验室名称的字体大小 */
+#mainNav .navbar-brand {
+    font-size: 1.45rem;         /* 原为 1.25rem，此处按比例放大 */
+}
+
+/* 4. 放大右侧“Join Us”特殊按钮的字体大小 */
+#mainNav .btn-sm {
+    font-size: 1rem;            /* 适当调大按钮内的文字，使其与普通菜单协调 */
+    padding: 0.4rem 1.2rem;     /* 稍微加大按钮的内边距 */
+}
+
+/* ===================================================
+   全站排版与字体优化（符合现代国际学术网站审美）
+   =================================================== */
+
+/* 1. 基础字号、行高与护眼颜色 */
+body {
+    /* 1.125rem 约等于 18px，是现代长文本阅读的黄金字号，减少视觉疲劳 */
+    font-size: 1.125rem; 
+    /* 使用柔和的深蓝灰色（Slate）代替纯黑，大幅减少屏幕眩光 */
+    color: #334155;      
+    /* 拉大行高，让文字有呼吸感，阅读不串行 */
+    line-height: 1.7;    
+}
+
+/* 2. 段落和列表的呼吸感优化 */
+p { 
+    margin-bottom: 1.25rem; 
+}
+.pub-list li, .research-list li {
+    margin-bottom: 1.5rem !important; /* 增加列表项之间的距离 */
+}
+
+/* 3. 标题层级重塑 (建立清晰的视觉主次) */
+h1, .display-5 { 
+    font-size: 2.75rem !important; 
+    font-weight: 700; 
+    color: #0f172a; /* 极深灰，用于大标题 */
+}
+h2 { 
+    font-size: 2.1rem !important; 
+    font-weight: 700; 
+    color: #0f172a; 
+}
+h3 { 
+    font-size: 1.5rem !important; 
+    font-weight: 600; 
+    color: #1e293b; 
+}
+h4 { 
+    font-size: 1.25rem !important; 
+    font-weight: 600; 
+}
+h5, .h5 { 
+    font-size: 1.15rem !important; 
+    font-weight: 600; 
+}
+
+/* 4. 辅助文本优化（避免辅助信息过小） */
+.text-muted { 
+    color: #64748b !important; /* 柔和的高级灰 */
+}
+.small, small { 
+    font-size: 0.95rem !important; /* 辅助文字保持在约 15px，清晰可辨 */
+    line-height: 1.6; 
+}
+
+/* 5. 导航栏字体适配 */
+#mainNav .nav-link {
+    font-size: 1.1rem;
+    margin-left: 20px;
+}
+#mainNav .navbar-brand {
+    font-size: 1.35rem;
 }
